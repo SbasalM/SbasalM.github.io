@@ -225,14 +225,23 @@
             filter: brightness(0.7);
         }
         
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -50;
+        }
+        
         .hero-overlay {
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(6,182,212,0.2) 100%);
-            z-index: -50;
+            background: linear-gradient(135deg, rgba(0,0,0,0.5) 0%, rgba(6,182,212,0.1) 100%);
+            z-index: -40;
         }
         
         /* Animated gradient background */
@@ -635,6 +644,7 @@
             <video autoplay muted loop playsinline id="heroVideo" poster="Photography%20Showcase.jpg">
                 <source src="Hero%20Video.mp4" type="video/mp4">
             </video>
+            <canvas id="hero-canvas"></canvas>
             <div class="hero-overlay"></div>
             <div class="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
                 <h1 class="glitch mb-6" data-text="SEBASTIAN BASALDUA">SEBASTIAN BASALDUA</h1>
@@ -644,7 +654,7 @@
                     </p>
                 </div>
                 <div class="flex gap-4 mt-8">
-                    <a href="#portfolio" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                    <a href="#latest-projects" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
                         View My Work
                     </a>
                     <a href="#contact" class="px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
@@ -654,6 +664,69 @@
             </div>
             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
                 <i data-lucide="chevron-down" class="w-8 h-8 text-cyan-400"></i>
+            </div>
+        </section>
+
+        <!-- Latest Projects Section -->
+        <section id="latest-projects" class="py-20 bg-gray-900 relative overflow-hidden">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <div class="section-title-container">
+                        <h2 class="section-title">Latest Projects</h2>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Latest Project 1 - WCTS Documentary -->
+                    <div class="portfolio-item" data-category="video"
+                        data-modal-type="vimeo"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
+                        data-modal-title="WCTS 60th Anniversary Documentary"
+                        data-modal-text="Currently directing and producing a comprehensive documentary celebrating WCTS Radio's 60 years of growth, utilizing AI-assisted workflows for interview management.">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="Photography%20Showcase.jpg" alt="WCTS Documentary" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="text-left">
+                                    <h3 class="font-heading text-2xl text-white">WCTS 60th Anniversary</h3>
+                                    <p class="text-cyan-400">In Production</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Latest Project 2 - Studio Renovation -->
+                    <div class="portfolio-item" data-category="3d"
+                        data-modal-type="image"
+                        data-modal-image="https://placehold.co/1200x800/1a1a2e/22d3ee?text=Studio+Design"
+                        data-modal-title="Podcast Studio Renovation"
+                        data-modal-text="Overseeing complete renovation of studio facilities for podcast production, implementing state-of-the-art audio equipment and workflow optimization.">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://placehold.co/600x400/1a1a2e/22d3ee?text=Studio+Renovation" alt="Studio Renovation" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="text-left">
+                                    <h3 class="font-heading text-2xl text-white">Studio Renovation</h3>
+                                    <p class="text-cyan-400">2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Latest Project 3 - AI Automation -->
+                    <div class="portfolio-item" data-category="radio"
+                        data-modal-type="image"
+                        data-modal-image="https://placehold.co/1200x800/0f3460/06b6d4?text=AI+Automation"
+                        data-modal-title="AI-Powered Broadcast Automation"
+                        data-modal-text="Developed innovative FTP automation scripts using AI to streamline program scheduling, significantly reducing broadcast disruptions.">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://placehold.co/600x400/0f3460/06b6d4?text=AI+Automation" alt="AI Automation" class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="text-left">
+                                    <h3 class="font-heading text-2xl text-white">AI Automation</h3>
+                                    <p class="text-cyan-400">2024</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -706,37 +779,61 @@
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <div class="card group">
-                        <div class="flex justify-center mb-4">
-                            <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="film" class="w-12 h-12 text-cyan-400"></i>
-                            </div>
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="path/to/media-production.mp4" type="video/mp4">
+                                <!-- Fallback to icon if video not available -->
+                                <div class="flex justify-center p-4">
+                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
+                                        <i data-lucide="film" class="w-12 h-12 text-cyan-400"></i>
+                                    </div>
+                                </div>
+                            </video>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Media Production</h3>
                         <p class="text-gray-400">From documentaries and training content to motion graphics and indie films. 7+ years creating diverse visual content.</p>
                     </div>
                     <div class="card group">
-                        <div class="flex justify-center mb-4">
-                            <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="box" class="w-12 h-12 text-cyan-400"></i>
-                            </div>
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="path/to/3d-graphics.mp4" type="video/mp4">
+                                <!-- Fallback to icon if video not available -->
+                                <div class="flex justify-center p-4">
+                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
+                                        <i data-lucide="box" class="w-12 h-12 text-cyan-400"></i>
+                                    </div>
+                                </div>
+                            </video>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
                         <p class="text-gray-400">Expert in Blender for modeling, sculpting, and animation. Award-winning educational segments and 2.5D techniques.</p>
                     </div>
                     <div class="card group">
-                        <div class="flex justify-center mb-4">
-                            <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="cpu" class="w-12 h-12 text-cyan-400"></i>
-                            </div>
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="path/to/ai-automation.mp4" type="video/mp4">
+                                <!-- Fallback to icon if video not available -->
+                                <div class="flex justify-center p-4">
+                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
+                                        <i data-lucide="cpu" class="w-12 h-12 text-cyan-400"></i>
+                                    </div>
+                                </div>
+                            </video>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">AI & Automation</h3>
                         <p class="text-gray-400">Developing AI-assisted scripts for workflow automation, FTP scheduling, and interview management systems.</p>
                     </div>
                     <div class="card group">
-                        <div class="flex justify-center mb-4">
-                            <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full group-hover:scale-110 transition-transform duration-300">
-                                <i data-lucide="radio" class="w-12 h-12 text-cyan-400"></i>
-                            </div>
+                        <div class="mb-4 overflow-hidden rounded-lg">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="path/to/broadcast-operations.mp4" type="video/mp4">
+                                <!-- Fallback to icon if video not available -->
+                                <div class="flex justify-center p-4">
+                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
+                                        <i data-lucide="radio" class="w-12 h-12 text-cyan-400"></i>
+                                    </div>
+                                </div>
+                            </video>
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Broadcast Operations</h3>
                         <p class="text-gray-400">Managing radio station operations, studio renovations, and broadcast automation systems for seamless content delivery.</p>
@@ -1031,19 +1128,39 @@
                     Ready to bring your creative vision to life? I'm available for freelance projects and collaborations.
                 </p>
                 
-                <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-12">
-                    <a href="mailto:sbasalmedia@gmail.com" class="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 flex items-center gap-3">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                        <span>sbasalmedia@gmail.com</span>
+                <!-- Contact Form -->
+                <form id="contact-form" class="max-w-xl mx-auto">
+                    <div class="mb-6">
+                        <input type="text" name="name" placeholder="Your Name" required
+                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+                    <div class="mb-6">
+                        <input type="email" name="email" placeholder="Your Email" required
+                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
+                    </div>
+                    <div class="mb-6">
+                        <textarea name="message" placeholder="Your Message" rows="5" required
+                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
+                    </div>
+                    <button type="submit" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                        Send Message
+                    </button>
+                    <p id="form-status" class="mt-4 text-cyan-400 hidden"></p>
+                </form>
+                
+                <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
+                    <a href="mailto:sbasalmedia@gmail.com" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i data-lucide="mail" class="inline w-5 h-5 mr-2"></i>
+                        sbasalmedia@gmail.com
                     </a>
-                    <a href="Sebastian%20Basaldua%20-%20Updated%20Resume%20(1).pdf" download="Sebastian-Basaldua-Resume.pdf" class="group px-8 py-4 bg-gradient-to-r from-gray-700 to-gray-800 rounded-full font-bold hover:from-gray-600 hover:to-gray-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-gray-500/30 flex items-center gap-3">
-                        <i data-lucide="download" class="w-5 h-5"></i>
-                        <span>Download Resume</span>
+                    <a href="Sebastian%20Basaldua%20-%20Updated%20Resume%20(1).pdf" download="Sebastian-Basaldua-Resume.pdf" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                        <i data-lucide="download" class="inline w-5 h-5 mr-2"></i>
+                        Download Resume
                     </a>
                 </div>
                 
                 <!-- Social Links -->
-                <div class="flex justify-center items-center gap-6">
+                <div class="flex justify-center items-center gap-6 mt-8">
                     <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="linkedin" class="w-6 h-6"></i>
                     </a>
@@ -1073,6 +1190,132 @@
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
+
+        // Loading Screen
+        window.addEventListener('load', () => {
+            let progress = 0;
+            const progressBar = document.getElementById('progress');
+            const loader = document.getElementById('loader');
+            
+            const interval = setInterval(() => {
+                progress += 10;
+                progressBar.style.width = progress + '%';
+                
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.style.opacity = '0';
+                        setTimeout(() => {
+                            loader.style.display = 'none';
+                        }, 500);
+                    }, 300);
+                }
+            }, 100);
+        });
+
+        // Hero Canvas Particles
+        const initHeroCanvas = () => {
+            const heroCanvas = document.querySelector('#hero-canvas');
+            if (heroCanvas) {
+                const scene = new THREE.Scene();
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+                const renderer = new THREE.WebGLRenderer({
+                    canvas: heroCanvas,
+                    alpha: true,
+                    antialias: true
+                });
+
+                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.position.setZ(5);
+
+                // Create particles
+                const particleCount = 1000;
+                const particleGeometry = new THREE.BufferGeometry();
+                const particlePositions = new Float32Array(particleCount * 3);
+
+                for (let i = 0; i < particleCount * 3; i++) {
+                    particlePositions[i] = (Math.random() - 0.5) * 10;
+                }
+
+                particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+                const particleMaterial = new THREE.PointsMaterial({
+                    size: 0.015,
+                    color: 0x06b6d4,
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending
+                });
+
+                const particleMesh = new THREE.Points(particleGeometry, particleMaterial);
+                scene.add(particleMesh);
+
+                let mouseX = 0;
+                let mouseY = 0;
+
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                });
+
+                const clock = new THREE.Clock();
+
+                const animate = () => {
+                    requestAnimationFrame(animate);
+                    const elapsedTime = clock.getElapsedTime();
+                    
+                    particleMesh.rotation.y = elapsedTime * 0.02;
+                    particleMesh.rotation.x = mouseY * 0.5;
+                    particleMesh.rotation.z = mouseX * 0.5;
+
+                    renderer.render(scene, camera);
+                };
+
+                animate();
+
+                window.addEventListener('resize', () => {
+                    camera.aspect = window.innerWidth / window.innerHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(window.innerWidth, window.innerHeight);
+                });
+            }
+        };
+
+        // Initialize hero canvas on load
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initHeroCanvas);
+        } else {
+            initHeroCanvas();
+        }
+
+        // Contact Form Handler
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Show sending status
+                formStatus.textContent = 'Sending...';
+                formStatus.classList.remove('hidden', 'text-cyan-400', 'text-red-400');
+                formStatus.classList.add('text-yellow-400');
+                
+                // Simulate form submission
+                setTimeout(() => {
+                    formStatus.textContent = 'Message sent successfully!';
+                    formStatus.classList.remove('text-yellow-400');
+                    formStatus.classList.add('text-cyan-400');
+                    contactForm.reset();
+                    
+                    // Hide success message after 5 seconds
+                    setTimeout(() => {
+                        formStatus.classList.add('hidden');
+                    }, 5000);
+                }, 1500);
+            });
+        }
 
         // Loading Screen
         window.addEventListener('load', () => {
@@ -1350,9 +1593,7 @@
             const servicesCanvas = document.querySelector('#services-canvas');
             if (servicesCanvas && servicesSection) {
                 const scene = new THREE.Scene();
-                const width = servicesSection.offsetWidth;
-                const height = servicesSection.offsetHeight || 600;
-                const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
                 const renderer = new THREE.WebGLRenderer({
                     canvas: servicesCanvas,
                     alpha: true,
@@ -1360,35 +1601,26 @@
                 });
 
                 renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize(width, height);
+                renderer.setSize(window.innerWidth, servicesSection.offsetHeight);
                 camera.position.setZ(5);
 
                 // Create particles
-                const particleCount = 2000;
+                const particleCount = 1500;
                 const particleGeometry = new THREE.BufferGeometry();
                 const particlePositions = new Float32Array(particleCount * 3);
-                const particleColors = new Float32Array(particleCount * 3);
 
-                for (let i = 0; i < particleCount * 3; i += 3) {
-                    particlePositions[i] = (Math.random() - 0.5) * 10;
-                    particlePositions[i + 1] = (Math.random() - 0.5) * 10;
-                    particlePositions[i + 2] = (Math.random() - 0.5) * 10;
-                    
-                    const color = Math.random() > 0.5 ? 0x06b6d4 : 0x22d3ee;
-                    particleColors[i] = ((color >> 16) & 255) / 255;
-                    particleColors[i + 1] = ((color >> 8) & 255) / 255;
-                    particleColors[i + 2] = (color & 255) / 255;
+                for (let i = 0; i < particleCount * 3; i++) {
+                    particlePositions[i] = (Math.random() - 0.5) * 15;
                 }
 
                 particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-                particleGeometry.setAttribute('color', new THREE.BufferAttribute(particleColors, 3));
 
                 const particleMaterial = new THREE.PointsMaterial({
-                    size: 0.02,
-                    vertexColors: true,
-                    blending: THREE.AdditiveBlending,
+                    size: 0.01,
+                    color: 0x06b6d4,
                     transparent: true,
-                    opacity: 0.8
+                    opacity: 0.4,
+                    blending: THREE.AdditiveBlending
                 });
 
                 const particleMesh = new THREE.Points(particleGeometry, particleMaterial);
@@ -1396,22 +1628,17 @@
 
                 // Add connecting lines
                 const lineGeometry = new THREE.BufferGeometry();
-                const linePositions = new Float32Array(500 * 6);
+                const linePositions = new Float32Array(300 * 6);
                 
-                for (let i = 0; i < 500 * 6; i += 6) {
-                    linePositions[i] = (Math.random() - 0.5) * 10;
-                    linePositions[i + 1] = (Math.random() - 0.5) * 10;
-                    linePositions[i + 2] = (Math.random() - 0.5) * 10;
-                    linePositions[i + 3] = (Math.random() - 0.5) * 10;
-                    linePositions[i + 4] = (Math.random() - 0.5) * 10;
-                    linePositions[i + 5] = (Math.random() - 0.5) * 10;
+                for (let i = 0; i < 300 * 6; i++) {
+                    linePositions[i] = (Math.random() - 0.5) * 15;
                 }
                 
                 lineGeometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
                 
                 const lineMaterial = new THREE.LineBasicMaterial({
                     color: 0x06b6d4,
-                    opacity: 0.2,
+                    opacity: 0.1,
                     transparent: true,
                     blending: THREE.AdditiveBlending
                 });
@@ -1419,29 +1646,14 @@
                 const lines = new THREE.LineSegments(lineGeometry, lineMaterial);
                 scene.add(lines);
 
-                let mouseX = 0;
-                let mouseY = 0;
-
-                document.addEventListener('mousemove', (event) => {
-                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-                });
-
                 const clock = new THREE.Clock();
 
                 const animate = () => {
                     requestAnimationFrame(animate);
                     const elapsedTime = clock.getElapsedTime();
                     
-                    particleMesh.rotation.y = elapsedTime * 0.05;
-                    particleMesh.rotation.x = elapsedTime * 0.03;
-                    
-                    lines.rotation.y = -elapsedTime * 0.02;
-                    lines.rotation.z = elapsedTime * 0.01;
-                    
-                    camera.position.x = mouseX * 0.5;
-                    camera.position.y = mouseY * 0.5;
-                    camera.lookAt(scene.position);
+                    particleMesh.rotation.y = elapsedTime * 0.03;
+                    lines.rotation.y = -elapsedTime * 0.01;
 
                     renderer.render(scene, camera);
                 };
@@ -1449,20 +1661,20 @@
                 animate();
 
                 window.addEventListener('resize', () => {
-                    const newWidth = servicesSection.offsetWidth;
-                    const newHeight = servicesSection.offsetHeight || 600;
-                    camera.aspect = newWidth / newHeight;
+                    camera.aspect = window.innerWidth / servicesSection.offsetHeight;
                     camera.updateProjectionMatrix();
-                    renderer.setSize(newWidth, newHeight);
+                    renderer.setSize(window.innerWidth, servicesSection.offsetHeight);
                 });
             }
         };
         
-        // Initialize Three.js after DOM is ready
+        // Initialize Services canvas after DOM is ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initServicesCanvas);
+            document.addEventListener('DOMContentLoaded', () => {
+                setTimeout(initServicesCanvas, 200);
+            });
         } else {
-            setTimeout(initServicesCanvas, 100);
+            setTimeout(initServicesCanvas, 200);
         }
 
         // About section particles
