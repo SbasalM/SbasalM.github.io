@@ -595,6 +595,15 @@
             }
         }
     </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZNXJ7ZCK"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-1JZNXJ7ZCK');
+</script>
 </head>
 <body class="gradient-bg">
     <!-- Loading Screen -->
@@ -656,10 +665,10 @@
                     </p>
                 </div>
                 <div class="flex gap-4 mt-8">
-                    <a href="#latest-projects" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                    <a href="#latest-projects" onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'view_my_work'});" class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
                         View My Work
                     </a>
-                    <a href="#contact" class="px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
+                    <a href="#contact" onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'get_in_touch'});" class="px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
                         Get In Touch
                     </a>
                 </div>
@@ -1147,7 +1156,7 @@
                 </form>
                 
                 <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
-                    <a href="Sebastian%20Basaldua%20-%20Updated%20Resume%20(1).pdf" download="Sebastian-Basaldua-Resume.pdf" class="text-gray-400 hover:text-cyan-400 transition-colors">
+                    <a href="Sebastian%20Basaldua%20-%20Updated%20Resume%20(1).pdf" download="Sebastian-Basaldua-Resume.pdf" onclick="gtag('event', 'download_resume', {'event_category': 'engagement', 'event_label': 'resume_pdf'});" class="text-gray-400 hover:text-cyan-400 transition-colors">
                         <i data-lucide="download" class="inline w-5 h-5 mr-2"></i>
                         Download Resume
                     </a>
@@ -1155,17 +1164,16 @@
                 
                 <!-- Social Links -->
                 <div class="flex justify-center items-center gap-6 mt-8">
-                    <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
+                    <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'linkedin'});" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="linkedin" class="w-6 h-6"></i>
                     </a>
-                    <a href="#" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
+                    <a href="#" onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'youtube'});" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="youtube" class="w-6 h-6"></i>
                     </a>
-                    <a href="#" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
+                    <a href="#" onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'instagram'});" class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="instagram" class="w-6 h-6"></i>
                     </a>
                 </div>
-            </div>
         </section>
     </main>
 
@@ -1302,8 +1310,11 @@
                 
                 // Send the form using EmailJS
                 // Get Service ID and Template ID from your EmailJS dashboard
-                emailjs.sendForm('service_g7kbu63', 'template_shv139p', contactForm)
+                emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', contactForm)
                     .then(() => {
+                        // ADD THIS LINE FOR EVENT TRACKING
+                        gtag('event', 'contact_form_submit', { 'event_category': 'engagement', 'event_label': 'success' });
+
                         formStatus.textContent = 'Message sent successfully!';
                         formStatus.classList.remove('text-yellow-400', 'text-red-500');
                         formStatus.classList.add('text-cyan-400');
@@ -1518,6 +1529,9 @@
                 const type = item.dataset.modalType;
                 const title = item.dataset.modalTitle;
                 const text = item.dataset.modalText;
+                
+                // ADD THIS LINE FOR EVENT TRACKING
+                gtag('event', 'view_project', { 'event_category': 'portfolio', 'event_label': title });
 
                 modalTitle.textContent = title;
                 modalText.textContent = text;
@@ -1596,4 +1610,5 @@
     </script>
 </body>
 </html>
+
 
