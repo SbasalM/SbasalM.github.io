@@ -732,9 +732,6 @@
 
         <!-- About Section -->
         <section id="about" class="py-20 relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
-                <canvas id="about-particles"></canvas>
-            </div>
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div class="section-title-container">
                     <h2 class="section-title">My Philosophy</h2>
@@ -1675,66 +1672,6 @@
             });
         } else {
             setTimeout(initServicesCanvas, 200);
-        }
-
-        // About section particles
-        const aboutCanvas = document.getElementById('about-particles');
-        if (aboutCanvas) {
-            const ctx = aboutCanvas.getContext('2d');
-            let particles = [];
-            
-            const resizeCanvas = () => {
-                aboutCanvas.width = aboutCanvas.offsetWidth;
-                aboutCanvas.height = aboutCanvas.offsetHeight;
-            };
-            
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-            
-            class Particle {
-                constructor() {
-                    this.x = Math.random() * aboutCanvas.width;
-                    this.y = Math.random() * aboutCanvas.height;
-                    this.size = Math.random() * 2 + 1;
-                    this.speedX = Math.random() * 0.5 - 0.25;
-                    this.speedY = Math.random() * 0.5 - 0.25;
-                    this.opacity = Math.random() * 0.5 + 0.2;
-                }
-                
-                update() {
-                    this.x += this.speedX;
-                    this.y += this.speedY;
-                    
-                    if (this.x > aboutCanvas.width) this.x = 0;
-                    if (this.x < 0) this.x = aboutCanvas.width;
-                    if (this.y > aboutCanvas.height) this.y = 0;
-                    if (this.y < 0) this.y = aboutCanvas.height;
-                }
-                
-                draw() {
-                    ctx.fillStyle = `rgba(6, 182, 212, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-            
-            for (let i = 0; i < 50; i++) {
-                particles.push(new Particle());
-            }
-            
-            const animateParticles = () => {
-                ctx.clearRect(0, 0, aboutCanvas.width, aboutCanvas.height);
-                
-                particles.forEach(particle => {
-                    particle.update();
-                    particle.draw();
-                });
-                
-                requestAnimationFrame(animateParticles);
-            };
-            
-            animateParticles();
         }
     </script>
 </body>
