@@ -32,10 +32,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        * {
-            cursor: none;
-        }
-
+        /* Base styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0a0a0a;
@@ -43,34 +40,52 @@
             overflow-x: hidden;
         }
 
-        /* Custom Cursor */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #06b6d4;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease;
-            mix-blend-mode: difference;
+        /* Desktop-only cursor styles */
+        @media (pointer: fine) {
+            * {
+                cursor: none;
+            }
+
+            .cursor {
+                width: 20px;
+                height: 20px;
+                border: 2px solid #06b6d4;
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+                mix-blend-mode: difference;
+            }
+
+            .cursor-follower {
+                width: 40px;
+                height: 40px;
+                background: rgba(6, 182, 212, 0.1);
+                border-radius: 50%;
+                position: fixed;
+                pointer-events: none;
+                z-index: 9998;
+                transition: transform 0.3s ease;
+            }
+
+            .cursor-hover {
+                transform: scale(2);
+                background: rgba(6, 182, 212, 0.2);
+                border-color: #22d3ee;
+            }
         }
 
-        .cursor-follower {
-            width: 40px;
-            height: 40px;
-            background: rgba(6, 182, 212, 0.1);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9998;
-            transition: transform 0.3s ease;
-        }
+        /* Hide cursor on touch devices */
+        @media (pointer: coarse) {
+            * {
+                cursor: auto !important;
+            }
 
-        .cursor-hover {
-            transform: scale(2);
-            background: rgba(6, 182, 212, 0.2);
-            border-color: #22d3ee;
+            .cursor,
+            .cursor-follower {
+                display: none !important;
+            }
         }
 
         /* Loading Screen */
@@ -94,7 +109,7 @@
 
         .loader-text {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 4rem;
+            font-size: clamp(2rem, 8vw, 4rem);
             background: linear-gradient(90deg, #06b6d4, #22d3ee, #06b6d4);
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -129,11 +144,11 @@
             letter-spacing: 1.5px;
         }
 
-        /* Glitch Effect for Hero Title */
+        /* Responsive Glitch Effect */
         .glitch {
             position: relative;
             color: white;
-            font-size: 6rem;
+            font-size: clamp(3rem, 10vw, 6rem);
             animation: glitch-skew 1s infinite linear alternate-reverse;
         }
 
@@ -160,28 +175,22 @@
         }
 
         @keyframes glitch-1 {
-
-            0%,
-            100% {
+            0%, 100% {
                 clip-path: inset(0 0 0 0);
                 transform: translate(0);
             }
-
             20% {
                 clip-path: inset(33% 0 40% 0);
                 transform: translate(-2px, 2px);
             }
-
             40% {
                 clip-path: inset(20% 0 30% 0);
                 transform: translate(2px, -2px);
             }
-
             60% {
                 clip-path: inset(70% 0 10% 0);
                 transform: translate(-2px, 2px);
             }
-
             80% {
                 clip-path: inset(10% 0 80% 0);
                 transform: translate(2px, -2px);
@@ -189,28 +198,22 @@
         }
 
         @keyframes glitch-2 {
-
-            0%,
-            100% {
+            0%, 100% {
                 clip-path: inset(0 0 0 0);
                 transform: translate(0);
             }
-
             20% {
                 clip-path: inset(60% 0 20% 0);
                 transform: translate(2px, 2px);
             }
-
             40% {
                 clip-path: inset(10% 0 70% 0);
                 transform: translate(-2px, -2px);
             }
-
             60% {
                 clip-path: inset(40% 0 40% 0);
                 transform: translate(2px, 2px);
             }
-
             80% {
                 clip-path: inset(80% 0 10% 0);
                 transform: translate(-2px, -2px);
@@ -218,24 +221,18 @@
         }
 
         @keyframes glitch-skew {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: skew(0deg);
             }
-
             20% {
                 transform: skew(1deg);
             }
-
             40% {
                 transform: skew(-1deg);
             }
-
             60% {
                 transform: skew(0.5deg);
             }
-
             80% {
                 transform: skew(-0.5deg);
             }
@@ -291,11 +288,9 @@
             0% {
                 background-position: 0% 50%;
             }
-
             50% {
                 background-position: 100% 50%;
             }
-
             100% {
                 background-position: 0% 50%;
             }
@@ -309,7 +304,7 @@
         }
 
         .section-title {
-            font-size: 4rem;
+            font-size: clamp(2.5rem, 7vw, 4rem);
             font-family: 'Bebas Neue', sans-serif;
             background: linear-gradient(90deg, #06b6d4, #22d3ee, #06b6d4);
             background-size: 200% auto;
@@ -334,13 +329,10 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 width: 60px;
                 opacity: 0.6;
             }
-
             50% {
                 width: 100px;
                 opacity: 1;
@@ -419,7 +411,6 @@
             0% {
                 transform: rotate(0deg);
             }
-
             100% {
                 transform: rotate(360deg);
             }
@@ -434,7 +425,7 @@
             box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
         }
 
-        /* Portfolio Items */
+        /* Portfolio Items - Mobile Optimized */
         .portfolio-item {
             position: relative;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -465,14 +456,36 @@
             box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
         }
 
+        /* Mobile-specific portfolio overlay */
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        @media (hover: hover) {
+            .portfolio-item:hover .portfolio-overlay {
+                opacity: 1;
+            }
+        }
+
+        @media (hover: none) {
+            .portfolio-overlay {
+                opacity: 1;
+                background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+            }
+        }
+
         /* Floating animation */
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0px);
             }
-
             50% {
                 transform: translateY(-20px);
             }
@@ -482,27 +495,7 @@
             animation: float 4s ease-in-out infinite;
         }
 
-        /* Text reveal animation */
-        .reveal-text {
-            overflow: hidden;
-            position: relative;
-        }
-
-        .reveal-text span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(100%);
-            animation: revealText 0.8s ease forwards;
-        }
-
-        @keyframes revealText {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Modal Enhancements - CORRECTED */
+        /* Modal Enhancements */
         .modal {
             display: none;
             position: fixed;
@@ -512,7 +505,6 @@
             width: 100%;
             height: 100%;
             overflow: auto;
-            /* This allows scrolling for the whole modal overlay if content overflows */
             background-color: rgba(0, 0, 0, 0.95);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
@@ -521,11 +513,17 @@
         .modal-content {
             position: relative;
             margin: 5% auto;
-            /* Centers the content box */
             padding: 20px;
             width: 90%;
             max-width: 900px;
             animation: modalSlideIn 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                margin: 2% auto;
+                width: 95%;
+            }
         }
 
         @keyframes modalSlideIn {
@@ -533,7 +531,6 @@
                 transform: translateY(-50px);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -548,7 +545,6 @@
             box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
         }
 
-        /* Close button styling */
         .close-modal {
             position: absolute;
             top: 15px;
@@ -575,12 +571,12 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
             transition: all 0.3s ease;
             animation: float 3s ease-in-out infinite;
+            cursor: pointer;
         }
 
         #to-top-btn:hover {
@@ -622,7 +618,6 @@
             0% {
                 transform: translateX(-100%);
             }
-
             100% {
                 transform: translateX(100%);
             }
@@ -648,14 +643,52 @@
             font-family: Georgia, serif;
         }
 
-        /* Responsive adjustments */
+        /* Mobile-specific adjustments */
         @media (max-width: 768px) {
-            .glitch {
-                font-size: 3rem;
+            .section-title {
+                letter-spacing: 2px;
             }
 
-            .section-title {
-                font-size: 2.5rem;
+            .card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-card {
+                padding: 1.5rem;
+            }
+
+            .testimonial-card::before {
+                font-size: 60px;
+                top: -10px;
+            }
+
+            #mobile-menu {
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+            }
+
+            /* Reduce particle count on mobile */
+            #hero-canvas {
+                opacity: 0.5;
+            }
+        }
+
+        /* Video optimization */
+        .service-video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Touch-friendly tap highlights */
+        @media (hover: none) {
+            .portfolio-item:active {
+                transform: scale(0.98);
+            }
+
+            button:active,
+            a:active {
+                transform: scale(0.95);
             }
         }
     </style>
@@ -665,7 +698,6 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-1JZNXJ7ZCK');
     </script>
 
@@ -684,25 +716,25 @@
         </div>
     </div>
 
-    <!-- Custom Cursor -->
+    <!-- Custom Cursor (Desktop Only) -->
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <!-- Header & Navigation -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white font-heading hover:text-cyan-400 transition-colors">
+            <a href="#" class="text-xl md:text-2xl font-bold text-white font-heading hover:text-cyan-400 transition-colors">
                 <span style="display: inline-block; animation: float 3s ease-in-out infinite;">SB</span> MEDIA
             </a>
-            <nav class="hidden md:flex items-center space-x-4">
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#portfolio" class="nav-link">Portfolio</a>
-                <a href="#testimonials" class="nav-link">Testimonials</a>
-                <a href="#contact" class="nav-link">Contact</a>
+            <nav class="hidden md:flex items-center space-x-2 lg:space-x-4">
+                <a href="#about" class="nav-link text-sm lg:text-base">About</a>
+                <a href="#services" class="nav-link text-sm lg:text-base">Services</a>
+                <a href="#skills" class="nav-link text-sm lg:text-base">Skills</a>
+                <a href="#portfolio" class="nav-link text-sm lg:text-base">Portfolio</a>
+                <a href="#testimonials" class="nav-link text-sm lg:text-base">Testimonials</a>
+                <a href="#contact" class="nav-link text-sm lg:text-base">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-white">
+            <button id="mobile-menu-button" class="md:hidden text-white p-2">
                 <i data-lucide="menu"></i>
             </button>
         </div>
@@ -733,21 +765,21 @@
             <div class="hero-overlay"></div>
             <div
                 class="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
-                <h1 class="glitch mb-6" data-text="SEBASTIAN BASALDUA">SEBASTIAN BASALDUA</h1>
+                <h1 class="glitch mb-4 md:mb-6" data-text="SEBASTIAN BASALDUA">SEBASTIAN BASALDUA</h1>
                 <div class="reveal-text">
-                    <p class="text-2xl md:text-3xl text-gray-300 mb-8">
+                    <p class="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 md:mb-8 px-4">
                         <span id="typewriter"></span>
                     </p>
                 </div>
-                <div class="flex gap-4 mt-8">
+                <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
                     <a href="#latest-projects"
                         onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'view_my_work'});"
-                        class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                        class="px-6 md:px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
                         View My Work
                     </a>
                     <a href="#contact"
                         onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'get_in_touch'});"
-                        class="px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
+                        class="px-6 md:px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
                         Get In Touch
                     </a>
                 </div>
@@ -758,14 +790,14 @@
         </section>
 
         <!-- Latest Projects Section -->
-        <section id="latest-projects" class="py-20 bg-gray-900 relative overflow-hidden">
+        <section id="latest-projects" class="py-12 md:py-20 bg-gray-900 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center">
                     <div class="section-title-container">
                         <h2 class="section-title">Latest Projects</h2>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Latest Project 1 - WCTS Documentary -->
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
@@ -774,11 +806,10 @@
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">WCTS 60th Anniversary</h3>
-                                    <p class="text-cyan-400">In Production</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS 60th Anniversary</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">In Production</p>
                                 </div>
                             </div>
                         </div>
@@ -790,15 +821,14 @@
                         data-modal-title="Audiobook - Breathless Haste (Coming Soon)"
                         data-modal-text="I just finished assembling my second audiobook for the publisher Hope*Books. This project involved cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and formatting the final master to meet strict ACX standards.<br><br><a href='https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0' target='_blank' class='text-cyan-400 font-bold hover:underline'>Purchase the book on Amazon &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline
+                            <video autoplay loop muted playsinline data-lazy-video
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                 <source src="assets/videos/breathless-haste.mp4" type="video/mp4">
                             </video>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">Breathless Haste</h3>
-                                    <p class="text-cyan-400">Audiobook (Coming Soon)</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">Breathless Haste</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">Audiobook (Coming Soon)</p>
                                 </div>
                             </div>
                         </div>
@@ -810,28 +840,29 @@
                         data-modal-title="TRFF Website Remake"
                         data-modal-text="I was asked to completely remake the Teresa Rosalind French Foundation's website from the ground up. Using WordPress and the Divi Theme, I built a new, modern site to support their mission. My role also included providing much of the video and some of the photos featured on the site.<br><br><a href='https://teressarosalindfrenchfoundation.org/' target='_blank' class='text-cyan-400 font-bold hover:underline'>Visit the live website and support their cause! &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline
+                            <video autoplay loop muted playsinline data-lazy-video
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                 <source src="assets/videos/trff-web.mp4" type="video/mp4">
                             </video>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">TRFF Website</h3>
-                                    <p class="text-cyan-400">WordPress & Divi</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">TRFF Website</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">WordPress & Divi</p>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
         </section>
 
         <!-- About Section -->
-        <section id="about" class="py-20 relative overflow-hidden">
+        <section id="about" class="py-12 md:py-20 relative overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div class="section-title-container">
                     <h2 class="section-title">My Philosophy</h2>
                 </div>
-                <div class="max-w-3xl mx-auto text-gray-300 text-lg leading-relaxed space-y-6">
+                <div class="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed space-y-4 md:space-y-6">
                     <p class="transform hover:scale-105 transition-transform duration-300">
                         I love where <span class="text-cyan-400 font-semibold">media and technology</span> intersect to
                         make creative visions more achievable. The tools available now are incredible, and I believe in
@@ -847,29 +878,29 @@
                 </div>
 
                 <!-- Stats Section -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-16">
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
                     <div class="text-center p-4">
-                        <div class="text-4xl font-bold text-cyan-400 counter" data-target="3">0</div>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="3">0</div>
                         <div class="text-gray-300 font-semibold mt-2">Million+ Metro Audience</div>
-                        <p class="text-gray-500 text-sm mt-1">Serving the 7-county Twin Cities metro area via AM/FM
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Serving the 7-county Twin Cities metro area via AM/FM
                             broadcast.</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-4xl font-bold text-cyan-400 counter" data-target="10000">0</div>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="10000">0</div>
                         <div class="text-gray-300 font-semibold mt-2">Media Assets Managed</div>
-                        <p class="text-gray-500 text-sm mt-1">Processing and archiving thousands of syndicated shows,
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Processing and archiving thousands of syndicated shows,
                             sermons, and daily productions.</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-4xl font-bold text-cyan-400 counter" data-target="900">0</div>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="900">0</div>
                         <div class="text-gray-300 font-semibold mt-2">On-Air Errors Prevented</div>
-                        <p class="text-gray-500 text-sm mt-1">Through custom FTP automation scripts that ensure seamless
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Through custom FTP automation scripts that ensure seamless
                             news delivery.</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-4xl font-bold text-cyan-400 counter" data-target="5">0</div>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="5">0</div>
                         <div class="text-gray-300 font-semibold mt-2">Production Studios Managed</div>
-                        <p class="text-gray-500 text-sm mt-1">Including operational oversight of 4 video studios and key
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Including operational oversight of 4 video studios and key
                             design input for new facilities.</p>
                     </div>
                 </div>
@@ -877,17 +908,17 @@
         </section>
 
         <!-- Services Section -->
-        <section id="services" class="py-12 bg-gray-800 relative">
+        <section id="services" class="py-12 md:py-20 bg-gray-800 relative">
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div class="section-title-container">
                     <h2 class="section-title">What I Do</h2>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
 
                     <!-- Card 1: Video Production & Editing -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video" autoplay loop muted playsinline>
+                            <video class="service-video" autoplay loop muted playsinline data-lazy-video>
                                 <source src="assets/videos/media-production.mp4" type="video/mp4">
                                 <!-- Fallback icon -->
                                 <div class="flex justify-center p-4">
@@ -897,8 +928,8 @@
                                 </div>
                             </video>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">Video Production & Editing</h3>
-                        <p class="text-gray-400">Directing and editing compelling visual stories, from feature
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Video Production & Editing</h3>
+                        <p class="text-sm md:text-base text-gray-400">Directing and editing compelling visual stories, from feature
                             documentaries to dynamic motion graphics. Specializing in narrative development and
                             post-production.</p>
                     </div>
@@ -906,7 +937,7 @@
                     <!-- Card 2: 3D Graphics & Animation -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video" autoplay loop muted playsinline>
+                            <video class="service-video" autoplay loop muted playsinline data-lazy-video>
                                 <source src="assets/videos/3d-graphics.mp4" type="video/mp4">
                                 <!-- Fallback icon -->
                                 <div class="flex justify-center p-4">
@@ -916,59 +947,53 @@
                                 </div>
                             </video>
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
-                        <p class="text-gray-400">Expert in Blender for modeling, sculpting, and animation. Creating
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
+                        <p class="text-sm md:text-base text-gray-400">Expert in Blender for modeling, sculpting, and animation. Creating
                             award-winning educational segments and distinctive 2.5D visual techniques.</p>
                     </div>
 
-                    <!-- Card 3: Broadcast & Technical Ops (with Image) -->
+                    <!-- Card 3: Broadcast & Technical Ops -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
                             <img src="assets/images/broadcast-operations.jpg" alt="Broadcast & Technical Ops"
-                                class="w-full h-auto object-cover">
+                                class="w-full h-auto object-cover" loading="lazy">
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">Broadcast & Technical Ops</h3>
-                        <p class="text-gray-400">Overseeing radio station operations, from studio renovations to
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Broadcast & Technical Ops</h3>
+                        <p class="text-sm md:text-base text-gray-400">Overseeing radio station operations, from studio renovations to
                             developing AI-powered automation scripts that ensure seamless content delivery and workflow
                             efficiency.</p>
                     </div>
 
-                    <!-- Card 4: Audio & Photography (with Image) -->
+                    <!-- Card 4: Audio & Photography -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
                             <img src="assets/images/audio-photo.jpg" alt="Audio & Photography"
-                                class="w-full h-auto object-cover">
+                                class="w-full h-auto object-cover" loading="lazy">
                         </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">Audio & Photography</h3>
-                        <p class="text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
+                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Audio & Photography</h3>
+                        <p class="text-sm md:text-base text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
                             capturing professional-quality images for portraits, landscapes, and commissions.</p>
                     </div>
-                    </video>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">Audio & Photography</h3>
-                <p class="text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
-                    capturing professional-quality images for portraits, landscapes, and commissions.</p>
-            </div>
-            </div>
             </div>
         </section>
 
         <!-- Skills Section -->
-        <section id="skills" class="py-20 relative overflow-hidden">
+        <section id="skills" class="py-12 md:py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center">
                     <div class="section-title-container">
                         <h2 class="section-title">Technical Expertise</h2>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
                     <div>
-                        <h3 class="text-xl font-semibold text-cyan-400 mb-6">Creative Tools</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-cyan-400 mb-4 md:mb-6">Creative Tools</h3>
                         <div class="space-y-4">
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Adobe Creative Suite</span>
-                                    <span class="text-cyan-400">95%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Adobe Creative Suite</span>
+                                    <span class="text-sm md:text-base text-cyan-400">95%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="95"></div>
@@ -976,8 +1001,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Blender 3D</span>
-                                    <span class="text-cyan-400">90%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Blender 3D</span>
+                                    <span class="text-sm md:text-base text-cyan-400">90%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="90"></div>
@@ -985,8 +1010,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Audio Production</span>
-                                    <span class="text-cyan-400">85%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Audio Production</span>
+                                    <span class="text-sm md:text-base text-cyan-400">85%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="85"></div>
@@ -994,8 +1019,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Motion Graphics</span>
-                                    <span class="text-cyan-400">88%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Motion Graphics</span>
+                                    <span class="text-sm md:text-base text-cyan-400">88%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="88"></div>
@@ -1004,12 +1029,12 @@
                         </div>
                     </div>
                     <div>
-                        <h3 class="text-xl font-semibold text-cyan-400 mb-6">Technical Skills</h3>
+                        <h3 class="text-lg md:text-xl font-semibold text-cyan-400 mb-4 md:mb-6">Technical Skills</h3>
                         <div class="space-y-4">
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">AI Integration & Automation</span>
-                                    <span class="text-cyan-400">92%</span>
+                                    <span class="text-sm md:text-base text-gray-300">AI Integration & Automation</span>
+                                    <span class="text-sm md:text-base text-cyan-400">92%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="92"></div>
@@ -1017,8 +1042,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Broadcast Systems</span>
-                                    <span class="text-cyan-400">87%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Broadcast Systems</span>
+                                    <span class="text-sm md:text-base text-cyan-400">87%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="87"></div>
@@ -1026,8 +1051,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">IT Infrastructure (CompTIA A+)</span>
-                                    <span class="text-cyan-400">83%</span>
+                                    <span class="text-sm md:text-base text-gray-300">IT Infrastructure (CompTIA A+)</span>
+                                    <span class="text-sm md:text-base text-cyan-400">83%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="83"></div>
@@ -1035,8 +1060,8 @@
                             </div>
                             <div>
                                 <div class="flex justify-between mb-2">
-                                    <span class="text-gray-300">Studio Management</span>
-                                    <span class="text-cyan-400">89%</span>
+                                    <span class="text-sm md:text-base text-gray-300">Studio Management</span>
+                                    <span class="text-sm md:text-base text-cyan-400">89%</span>
                                 </div>
                                 <div class="skill-bar">
                                     <div class="skill-fill" data-width="89"></div>
@@ -1049,29 +1074,29 @@
         </section>
 
         <!-- Portfolio Section -->
-        <section id="portfolio" class="py-20 relative">
+        <section id="portfolio" class="py-12 md:py-20 relative">
             <div class="container mx-auto px-6 text-center">
                 <div class="section-title-container">
                     <h2 class="section-title">Featured Work</h2>
                 </div>
 
                 <!-- Filter Buttons -->
-                <div class="flex justify-center gap-4 mb-12 flex-wrap">
+                <div class="flex justify-center gap-2 md:gap-4 mb-8 md:mb-12 flex-wrap">
                     <button
-                        class="filter-btn px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30 transition-all duration-300 active"
+                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30 transition-all duration-300 active text-sm md:text-base"
                         data-filter="all">All</button>
                     <button
-                        class="filter-btn px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
+                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="video">Video</button>
                     <button
-                        class="filter-btn px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
+                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="photo">Photography</button>
                     <button
-                        class="filter-btn px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300"
+                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="3d">3D/Graphics</button>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                     <!-- Project 1 - WCTS Documentary -->
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
@@ -1079,12 +1104,12 @@
                         data-modal-text="A comprehensive documentary celebrating 60 years of sustained growth. Implementing innovative AI-assisted workflows for interview management and narrative development. Currently in production with expected completion in 2025.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                loading="lazy">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">WCTS 60th Anniversary</h3>
-                                    <p class="text-cyan-400">Documentary (In Production)</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS 60th Anniversary</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">Documentary (In Production)</p>
                                 </div>
                             </div>
                         </div>
@@ -1096,15 +1121,14 @@
                         data-modal-title="Melton 50-Year Celebration Video"
                         data-modal-text="Created commemorative video celebrating 50 years of missionary work in Japan. Developed 2.5D visual techniques to animate historical photographs and designed 3D recreations of significant historical moments from primary source accounts.">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline
+                            <video autoplay loop muted playsinline data-lazy-video
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                 <source src="assets/videos/Melton_50.mp4" type="video/mp4">
                             </video>
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">Melton 50-Year</h3>
-                                    <p class="text-cyan-400">Celebration Video</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">Melton 50-Year</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">Celebration Video</p>
                                 </div>
                             </div>
                         </div>
@@ -1115,15 +1139,14 @@
                         <a href="assets/images/photography/full/Black_and_White_Portrait.jpg"
                             data-fancybox="gallery-photography" data-caption="Black and white closeup portrait.">
                             <div class="relative overflow-hidden h-64">
-                                <video autoplay loop muted playsinline
+                                <video autoplay loop muted playsinline data-lazy-video
                                     class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                     <source src="assets/videos/photography-reel.mp4" type="video/mp4">
                                 </video>
-                                <div
-                                    class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                <div class="portfolio-overlay">
                                     <div class="text-left">
-                                        <h3 class="font-heading text-2xl text-white">Professional Photography</h3>
-                                        <p class="text-cyan-400">View Gallery</p>
+                                        <h3 class="font-heading text-xl md:text-2xl text-white">Professional Photography</h3>
+                                        <p class="text-cyan-400 text-sm md:text-base">View Gallery</p>
                                     </div>
                                 </div>
                             </div>
@@ -1147,37 +1170,37 @@
                         </div>
                     </div>
 
-                    <!-- Project 4 - Clone Trooper Animation (NEW) -->
+                    <!-- Project 4 - Clone Trooper Animation -->
                     <div class="portfolio-item" data-category="3d" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
                         data-modal-title="Clone Trooper vs. Alien Animation"
                         data-modal-text="This was a video I made for fun, with the side objective of making it for a Star Wars podcast I was on. Models were not made by me, but I did assemble and re-texture some to fit the character. Animation was from Mixamo and some hand animating with the Xenomorph.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper vs. Alien Animation"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                loading="lazy">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">Clone Trooper Animation</h3>
-                                    <p class="text-cyan-400">Personal Project</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">Clone Trooper Animation</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">Personal Project</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Project 5 - Studio Renovation (UPDATED) -->
+                    <!-- Project 5 - Studio Renovation -->
                     <div class="portfolio-item" data-category="3d" data-modal-type="image"
                         data-modal-image="assets/images/studio-design-featured.jpg"
                         data-modal-title="Podcast Studio Renovation"
                         data-modal-text="Currently overseeing renovation of studio facilities for podcast production at WCTS Radio. Applying expertise in studio design, audio equipment integration, and workflow optimization to create a state-of-the-art production environment.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/studio-renovation-featured.jpg" alt="Studio Renovation"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                            <div
-                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                loading="lazy">
+                            <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-2xl text-white">Studio Renovation</h3>
-                                    <p class="text-cyan-400">Podcast Production</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">Studio Renovation</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">Podcast Production</p>
                                 </div>
                             </div>
                         </div>
@@ -1192,56 +1215,56 @@
                 <span id="close-portfolio-modal" class="close-modal">&times;</span>
                 <div class="modal-body">
                     <div id="modal-media-content" class="mb-6 rounded-lg overflow-hidden"></div>
-                    <h3 id="modal-title" class="font-heading text-3xl text-white mb-3"></h3>
-                    <p id="modal-text" class="text-gray-300 text-lg"></p>
+                    <h3 id="modal-title" class="font-heading text-2xl md:text-3xl text-white mb-3"></h3>
+                    <p id="modal-text" class="text-gray-300 text-base md:text-lg"></p>
                 </div>
             </div>
         </div>
 
         <!-- Testimonials Section -->
-        <section id="testimonials" class="py-20 relative overflow-hidden">
+        <section id="testimonials" class="py-12 md:py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center">
                     <div class="section-title-container">
                         <h2 class="section-title">Client Testimonials</h2>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
                     <div class="testimonial-card">
-                        <p class="text-gray-300 mb-4">This Testimonial could be you!</p>
+                        <p class="text-sm md:text-base text-gray-300 mb-4">This Testimonial could be you!</p>
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-12 h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold">
+                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                                 JD</div>
                             <div>
-                                <div class="font-semibold text-white">Professional</div>
-                                <div class="text-sm text-gray-400">Hot Shot</div>
+                                <div class="font-semibold text-white text-sm md:text-base">Professional</div>
+                                <div class="text-xs md:text-sm text-gray-400">Hot Shot</div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="text-gray-300 mb-4">This testimonial could also be you, saying something about how
+                        <p class="text-sm md:text-base text-gray-300 mb-4">This testimonial could also be you, saying something about how
                             awesome I am! hopefully</p>
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
+                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                                 MS</div>
                             <div>
-                                <div class="font-semibold text-white">Content Manager</div>
-                                <div class="text-sm text-gray-400">BJ2 Press</div>
+                                <div class="font-semibold text-white text-sm md:text-base">Content Manager</div>
+                                <div class="text-xs md:text-sm text-gray-400">BJ2 Press</div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="text-gray-300 mb-4">How cool would it be to be enshrined on my portfolio page? Well,
+                        <p class="text-sm md:text-base text-gray-300 mb-4">How cool would it be to be enshrined on my portfolio page? Well,
                             now is your chance. Use my fancy form at the bottom to submit a testimonial!</p>
                         <div class="flex items-center gap-3">
                             <div
-                                class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
+                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                                 TL</div>
                             <div>
-                                <div class="font-semibold text-white">You</div>
-                                <div class="text-sm text-gray-400">Professional Human</div>
+                                <div class="font-semibold text-white text-sm md:text-base">You</div>
+                                <div class="text-xs md:text-sm text-gray-400">Professional Human</div>
                             </div>
                         </div>
                     </div>
@@ -1250,39 +1273,38 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 relative">
+        <section id="contact" class="py-12 md:py-20 relative">
             <div class="container mx-auto px-6 text-center">
                 <div class="section-title-container">
                     <h2 class="section-title">Let's Create Together</h2>
                 </div>
-                <p class="max-w-2xl mx-auto text-lg text-gray-300 mb-12">
+                <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-8 md:mb-12">
                     Ready to bring your creative vision to life? I'm available for freelance projects and
                     collaborations.
                 </p>
 
                 <!-- Contact Form -->
                 <form id="contact-form" class="max-w-xl mx-auto">
-                    <div class="mb-6">
+                    <div class="mb-4 md:mb-6">
                         <input type="text" name="name" placeholder="Your Name" required
-                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
+                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-4 md:mb-6">
                         <input type="email" name="email" placeholder="Your Email" required
-                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
+                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
                     </div>
-                    <div class="mb-6">
+                    <div class="mb-4 md:mb-6">
                         <textarea name="message" placeholder="Your Message" rows="5" required
-                            class="w-full px-6 py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
+                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
                     </div>
                     <button type="submit"
-                        class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
+                        class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
                         Send Message
                     </button>
                     <p id="form-status" class="mt-4 text-cyan-400 hidden"></p>
                 </form>
 
-                <div class="mt-12 flex flex-col md:flex-row justify-center items-center gap-6">
-                    <!-- REMINDER: Update this href to your final, simplified resume filename -->
+                <div class="mt-8 md:mt-12 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
                     <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf"
                         onclick="gtag('event', 'download_resume', {'event_category': 'engagement', 'event_label': 'resume_pdf'});"
                         class="text-gray-400 hover:text-cyan-400 transition-colors">
@@ -1292,16 +1314,16 @@
                 </div>
 
                 <!-- Social Links -->
-                <div class="flex justify-center items-center gap-6 mt-8">
+                <div class="flex justify-center items-center gap-4 md:gap-6 mt-6 md:mt-8">
                     <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank"
                         onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'linkedin'});"
                         class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
-                        <i data-lucide="linkedin" class="w-6 h-6"></i>
+                        <i data-lucide="linkedin" class="w-5 md:w-6 h-5 md:h-6"></i>
                     </a>
                     <a href="https://www.youtube.com/@SBasalMedia"
                         onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'youtube'});"
                         class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
-                        <i data-lucide="youtube" class="w-6 h-6"></i>
+                        <i data-lucide="youtube" class="w-5 md:w-6 h-5 md:h-6"></i>
                     </a>
                 </div>
             </div>
@@ -1309,9 +1331,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="py-8 border-t border-gray-800">
+    <footer class="py-6 md:py-8 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-500">&copy; <span id="year"></span> Sebastian Basaldua. Crafted with passion and
+            <p class="text-gray-500 text-sm md:text-base">&copy; <span id="year"></span> Sebastian Basaldua. Crafted with passion and
                 precision.</p>
         </div>
     </footer>
@@ -1321,18 +1343,20 @@
         <i data-lucide="arrow-up" class="w-6 h-6 text-white"></i>
     </button>
 
-    <!-- Fancybox JS - MUST be loaded before your main script -->
+    <!-- Fancybox JS -->
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
-    <!-- Your Main Site Script -->
+    <!-- Main Site Script -->
     <script>
         // Initialize Lucide icons
         lucide.createIcons();
 
         // Initialize Fancybox
-        Fancybox.bind("[data-fancybox]", {
-            // Your custom options can go here if you want
-        });
+        Fancybox.bind("[data-fancybox]", {});
+
+        // Check if device is mobile/touch
+        const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+        const hasHover = window.matchMedia('(hover: hover)').matches;
 
         // Loading Screen
         window.addEventListener('load', () => {
@@ -1356,7 +1380,7 @@
             }, 100);
         });
 
-        // Hero Canvas Particles
+        // Hero Canvas Particles - Optimized for mobile
         const initHeroCanvas = () => {
             const heroCanvas = document.querySelector('#hero-canvas');
             if (heroCanvas) {
@@ -1365,15 +1389,15 @@
                 const renderer = new THREE.WebGLRenderer({
                     canvas: heroCanvas,
                     alpha: true,
-                    antialias: true
+                    antialias: !isMobile // Disable antialiasing on mobile for performance
                 });
 
-                renderer.setPixelRatio(window.devicePixelRatio);
+                renderer.setPixelRatio(isMobile ? 1 : window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 camera.position.setZ(5);
 
-                // Create particles
-                const particleCount = 1000;
+                // Reduce particle count on mobile
+                const particleCount = isMobile ? 300 : 1000;
                 const particleGeometry = new THREE.BufferGeometry();
                 const particlePositions = new Float32Array(particleCount * 3);
 
@@ -1384,7 +1408,7 @@
                 particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
                 const particleMaterial = new THREE.PointsMaterial({
-                    size: 0.015,
+                    size: isMobile ? 0.02 : 0.015,
                     color: 0x06b6d4,
                     transparent: true,
                     opacity: 0.6,
@@ -1397,10 +1421,12 @@
                 let mouseX = 0;
                 let mouseY = 0;
 
-                document.addEventListener('mousemove', (event) => {
-                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-                });
+                if (!isMobile) {
+                    document.addEventListener('mousemove', (event) => {
+                        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                    });
+                }
 
                 const clock = new THREE.Clock();
 
@@ -1409,8 +1435,11 @@
                     const elapsedTime = clock.getElapsedTime();
 
                     particleMesh.rotation.y = elapsedTime * 0.02;
-                    particleMesh.rotation.x = mouseY * 0.5;
-                    particleMesh.rotation.z = mouseX * 0.5;
+                    
+                    if (!isMobile) {
+                        particleMesh.rotation.x = mouseY * 0.5;
+                        particleMesh.rotation.z = mouseX * 0.5;
+                    }
 
                     renderer.render(scene, camera);
                 };
@@ -1432,12 +1461,42 @@
             initHeroCanvas();
         }
 
+        // Video Intersection Observer - Pause/play videos when in/out of view
+        const setupVideoObserver = () => {
+            const videos = document.querySelectorAll('video[data-lazy-video]');
+            
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    if (entry.isIntersecting) {
+                        video.play().catch(e => console.log('Video play failed:', e));
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, {
+                threshold: 0.25
+            });
+
+            videos.forEach(video => {
+                videoObserver.observe(video);
+                // Pause all videos initially
+                video.pause();
+            });
+        };
+
+        // Initialize video observer after DOM loads
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', setupVideoObserver);
+        } else {
+            setupVideoObserver();
+        }
+
         // Contact Form Handler with EmailJS
         const contactForm = document.getElementById('contact-form');
         const formStatus = document.getElementById('form-status');
 
         if (contactForm) {
-            // Initialize EmailJS with your Public Key
             emailjs.init("BP2BigTLAntfpaGg1");
 
             contactForm.addEventListener('submit', (e) => {
@@ -1447,7 +1506,6 @@
                 formStatus.classList.remove('hidden', 'text-cyan-400', 'text-red-500');
                 formStatus.classList.add('text-yellow-400');
 
-                // REMINDER: Fill in your Service ID and Template ID from EmailJS
                 emailjs.sendForm('service_g7kbu63', 'template_shv139p', contactForm)
                     .then(() => {
                         gtag('event', 'contact_form_submit', { 'event_category': 'engagement', 'event_label': 'success' });
@@ -1469,30 +1527,34 @@
             });
         }
 
-        // Custom Cursor
-        const cursor = document.querySelector('.cursor');
-        const cursorFollower = document.querySelector('.cursor-follower');
+        // Custom Cursor - Desktop only
+        if (!isMobile && hasHover) {
+            const cursor = document.querySelector('.cursor');
+            const cursorFollower = document.querySelector('.cursor-follower');
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
+            if (cursor && cursorFollower) {
+                document.addEventListener('mousemove', (e) => {
+                    cursor.style.left = e.clientX + 'px';
+                    cursor.style.top = e.clientY + 'px';
 
-            setTimeout(() => {
-                cursorFollower.style.left = e.clientX - 10 + 'px';
-                cursorFollower.style.top = e.clientY - 10 + 'px';
-            }, 100);
-        });
+                    setTimeout(() => {
+                        cursorFollower.style.left = e.clientX - 10 + 'px';
+                        cursorFollower.style.top = e.clientY - 10 + 'px';
+                    }, 100);
+                });
 
-        document.querySelectorAll('a, button, .portfolio-item').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                cursor.classList.add('cursor-hover');
-                cursorFollower.classList.add('cursor-hover');
-            });
-            el.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-hover');
-                cursorFollower.classList.remove('cursor-hover');
-            });
-        });
+                document.querySelectorAll('a, button, .portfolio-item').forEach(el => {
+                    el.addEventListener('mouseenter', () => {
+                        cursor.classList.add('cursor-hover');
+                        cursorFollower.classList.add('cursor-hover');
+                    });
+                    el.addEventListener('mouseleave', () => {
+                        cursor.classList.remove('cursor-hover');
+                        cursorFollower.classList.remove('cursor-hover');
+                    });
+                });
+            }
+        }
 
         // Typewriter Effect
         const phrases = [
@@ -1643,12 +1705,11 @@
                 // If the clicked item is a link for a Fancybox gallery, stop our script.
                 if (e.target.closest('[data-fancybox]')) {
                     gtag('event', 'view_project', { 'event_category': 'portfolio', 'event_label': 'Photography Gallery' });
-                    return; // Let Fancybox handle it.
+                    return;
                 }
 
-                e.preventDefault(); // Prevent default action for non-gallery items.
+                e.preventDefault();
 
-                // If it's not a gallery, run our modal code.
                 const type = item.dataset.modalType;
                 const title = item.dataset.modalTitle;
                 const text = item.dataset.modalText;
