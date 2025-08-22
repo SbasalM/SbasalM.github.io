@@ -5,6 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sebastian Basaldua | Media & Operations Specialist</title>
+    <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
+    <meta property="og:title" content="Sebastian Basaldua | Media & Operations Specialist">
+    <meta property="og:description"
+        content="A portfolio showcasing expertise in video production, 3D graphics, and broadcast operations.">
+    <meta property="og:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
+    <meta property="og:url" content="https://sbasalm.github.io/">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sebastian Basaldua | Media & Operations Specialist">
+    <meta name="twitter:description"
+        content="A portfolio showcasing expertise in video production, 3D graphics, and broadcast operations.">
+    <meta name="twitter:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
     <link rel="icon"
         href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -497,7 +511,8 @@
             top: 0;
             width: 100%;
             height: 100%;
-            overflow: auto; /* This allows scrolling for the whole modal overlay if content overflows */
+            overflow: auto;
+            /* This allows scrolling for the whole modal overlay if content overflows */
             background-color: rgba(0, 0, 0, 0.95);
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
@@ -505,24 +520,26 @@
 
         .modal-content {
             position: relative;
-            margin: 5% auto; /* Centers the content box */
+            margin: 5% auto;
+            /* Centers the content box */
             padding: 20px;
             width: 90%;
             max-width: 900px;
             animation: modalSlideIn 0.3s ease;
         }
-        
+
         @keyframes modalSlideIn {
             from {
                 transform: translateY(-50px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
             }
         }
-        
+
         .modal-body {
             background: linear-gradient(135deg, #1a1a2e, #0f0f0f);
             border: 1px solid rgba(6, 182, 212, 0.3);
@@ -768,16 +785,17 @@
                     </div>
 
                     <!-- Latest Project 2 - Audiobook -->
-                    <div class="portfolio-item" data-category="radio"
-                        data-modal-type="image"
+                    <div class="portfolio-item" data-category="radio" data-modal-type="image"
                         data-modal-image="assets/images/book-cover.jpg"
                         data-modal-title="Audiobook - Breathless Haste (Coming Soon)"
                         data-modal-text="I just finished assembling my second audiobook for the publisher Hope*Books. This project involved cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and formatting the final master to meet strict ACX standards.<br><br><a href='https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0' target='_blank' class='text-cyan-400 font-bold hover:underline'>Purchase the book on Amazon &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                            <video autoplay loop muted playsinline
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                 <source src="assets/videos/breathless-haste.mp4" type="video/mp4">
                             </video>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                 <div class="text-left">
                                     <h3 class="font-heading text-2xl text-white">Breathless Haste</h3>
                                     <p class="text-cyan-400">Audiobook (Coming Soon)</p>
@@ -787,16 +805,17 @@
                     </div>
 
                     <!-- Latest Project 3 - TRFF Website -->
-                    <div class="portfolio-item" data-category="video"
-                        data-modal-type="vimeo"
+                    <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
                         data-modal-title="TRFF Website Remake"
                         data-modal-text="I was asked to completely remake the Teresa Rosalind French Foundation's website from the ground up. Using WordPress and the Divi Theme, I built a new, modern site to support their mission. My role also included providing much of the video and some of the photos featured on the site.<br><br><a href='https://teressarosalindfrenchfoundation.org/' target='_blank' class='text-cyan-400 font-bold hover:underline'>Visit the live website and support their cause! &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
+                            <video autoplay loop muted playsinline
+                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                                 <source src="assets/videos/trff-web.mp4" type="video/mp4">
                             </video>
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                            <div
+                                class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
                                 <div class="text-left">
                                     <h3 class="font-heading text-2xl text-white">TRFF Website</h3>
                                     <p class="text-cyan-400">WordPress & Divi</p>
@@ -905,27 +924,32 @@
                     <!-- Card 3: Broadcast & Technical Ops (with Image) -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <img src="assets/images/broadcast-operations.jpg" alt="Broadcast & Technical Ops" class="w-full h-auto object-cover">
+                            <img src="assets/images/broadcast-operations.jpg" alt="Broadcast & Technical Ops"
+                                class="w-full h-auto object-cover">
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Broadcast & Technical Ops</h3>
-                        <p class="text-gray-400">Overseeing radio station operations, from studio renovations to developing AI-powered automation scripts that ensure seamless content delivery and workflow efficiency.</p>
+                        <p class="text-gray-400">Overseeing radio station operations, from studio renovations to
+                            developing AI-powered automation scripts that ensure seamless content delivery and workflow
+                            efficiency.</p>
                     </div>
 
                     <!-- Card 4: Audio & Photography (with Image) -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <img src="assets/images/audio-photo.jpg" alt="Audio & Photography" class="w-full h-auto object-cover">
-                        </div>
-                        <h3 class="text-xl font-bold mb-3 text-white">Audio & Photography</h3>
-                        <p class="text-gray-400">Producing and engineering crisp audio for podcasts and radio, and capturing professional-quality images for portraits, landscapes, and commissions.</p>
-                    </div>
-                            </video>
+                            <img src="assets/images/audio-photo.jpg" alt="Audio & Photography"
+                                class="w-full h-auto object-cover">
                         </div>
                         <h3 class="text-xl font-bold mb-3 text-white">Audio & Photography</h3>
                         <p class="text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
                             capturing professional-quality images for portraits, landscapes, and commissions.</p>
                     </div>
+                    </video>
                 </div>
+                <h3 class="text-xl font-bold mb-3 text-white">Audio & Photography</h3>
+                <p class="text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
+                    capturing professional-quality images for portraits, landscapes, and commissions.</p>
+            </div>
+            </div>
             </div>
         </section>
 
@@ -1196,7 +1220,8 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="text-gray-300 mb-4">This testimonial could also be you, saying something about how awesome I am! hopefully</p>
+                        <p class="text-gray-300 mb-4">This testimonial could also be you, saying something about how
+                            awesome I am! hopefully</p>
                         <div class="flex items-center gap-3">
                             <div
                                 class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -1208,7 +1233,8 @@
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="text-gray-300 mb-4">How cool would it be to be enshrined on my portfolio page? Well, now is your chance. Use my fancy form at the bottom to submit a testimonial!</p>
+                        <p class="text-gray-300 mb-4">How cool would it be to be enshrined on my portfolio page? Well,
+                            now is your chance. Use my fancy form at the bottom to submit a testimonial!</p>
                         <div class="flex items-center gap-3">
                             <div
                                 class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold">
@@ -1412,7 +1438,7 @@
 
         if (contactForm) {
             // Initialize EmailJS with your Public Key
-            emailjs.init("BP2BigTLAntfpaGg1"); 
+            emailjs.init("BP2BigTLAntfpaGg1");
 
             contactForm.addEventListener('submit', (e) => {
                 e.preventDefault();
