@@ -965,8 +965,8 @@
                     <!-- Card 1: Video Production & Editing -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video lazy-video" autoplay loop muted playsinline data-src="assets/videos/media-production.mp4">
-                                <source src="" type="video/mp4">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="assets/videos/media-production.mp4" type="video/mp4">
                             </video>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Video Production & Editing</h3>
@@ -976,8 +976,8 @@
                     <!-- Card 2: 3D Graphics & Animation -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video lazy-video" autoplay loop muted playsinline data-src="assets/videos/3d-graphics.mp4">
-                                <source src="" type="video/mp4">
+                            <video class="service-video" autoplay loop muted playsinline>
+                                <source src="assets/videos/3d-graphics.mp4" type="video/mp4">
                             </video>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
@@ -1449,7 +1449,7 @@
             initHeroCanvas();
         }
 
-        // Lazy Loading for Videos
+        // Lazy Loading for Videos with pause/resume
         const setupLazyVideos = () => {
             const lazyVideos = document.querySelectorAll('.lazy-video');
             
@@ -1466,6 +1466,8 @@
                         }
                     } else if (!entry.isIntersecting && video.classList.contains('loaded')) {
                         video.pause();
+                    } else if (entry.isIntersecting && video.classList.contains('loaded')) {
+                        video.play().catch(e => console.log('Video resume failed:', e));
                     }
                 });
             }, {
@@ -1477,12 +1479,29 @@
                 videoObserver.observe(video);
             });
         };
+        
+        // Keep service videos always playing
+        const setupServiceVideos = () => {
+            const serviceVideos = document.querySelectorAll('.service-video');
+            serviceVideos.forEach(video => {
+                // Force continuous playback
+                video.play().catch(e => console.log('Service video play failed:', e));
+                video.addEventListener('pause', () => {
+                    // Restart if browser pauses it
+                    video.play().catch(e => console.log('Service video restart failed:', e));
+                });
+            });
+        };
 
         // Initialize lazy loading after DOM loads
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setupLazyVideos);
+            document.addEventListener('DOMContentLoaded', () => {
+                setupLazyVideos();
+                setupServiceVideos();
+            });
         } else {
             setupLazyVideos();
+            setupServiceVideos();
         }
 
         // Contact Form Handler with EmailJS
