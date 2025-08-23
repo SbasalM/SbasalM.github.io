@@ -4,33 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebastian Basaldua | Media & Operations Specialist</title>
+    <title>Sebastian Basaldua | Technical Creative Director</title>
+    <meta name="description" content="Technical Creative Director specializing in broadcast media, 3D animation, and AI-powered production workflows. Serving 3.6M+ listeners across the Twin Cities.">
+    
     <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
-    <meta property="og:title" content="Sebastian Basaldua | Media & Operations Specialist">
-    <meta property="og:description"
-        content="A portfolio showcasing expertise in video production, 3D graphics, and broadcast operations.">
+    <meta property="og:title" content="Sebastian Basaldua | Technical Creative Director">
+    <meta property="og:description" content="Bridging creative vision with technical innovation. Award-winning motion graphics, broadcast operations, and AI-powered workflows.">
     <meta property="og:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
     <meta property="og:url" content="https://sbasalm.github.io/">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sebastian Basaldua | Media & Operations Specialist">
-    <meta name="twitter:description"
-        content="A portfolio showcasing expertise in video production, 3D graphics, and broadcast operations.">
+    <meta name="twitter:title" content="Sebastian Basaldua | Technical Creative Director">
+    <meta name="twitter:description" content="Bridging creative vision with technical innovation. Award-winning motion graphics, broadcast operations, and AI-powered workflows.">
     <meta name="twitter:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
     <style>
         /* Base styles */
         body {
@@ -267,6 +268,13 @@
             z-index: -50;
         }
 
+        /* Hide canvas on mobile for performance */
+        @media (max-width: 768px) {
+            #hero-canvas {
+                display: none;
+            }
+        }
+
         .hero-overlay {
             position: absolute;
             top: 0;
@@ -481,6 +489,34 @@
             }
         }
 
+        /* Process cards */
+        .process-card {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(34, 211, 238, 0.05));
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .process-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(6, 182, 212, 0.5);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .process-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #06b6d4, #22d3ee);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
         /* Floating animation */
         @keyframes float {
             0%, 100% {
@@ -643,6 +679,18 @@
             font-family: Georgia, serif;
         }
 
+        /* Award badge */
+        .award-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #1f2937;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 1rem 0;
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
+        }
+
         /* Mobile-specific adjustments */
         @media (max-width: 768px) {
             .section-title {
@@ -666,11 +714,6 @@
                 -webkit-backdrop-filter: blur(20px);
                 backdrop-filter: blur(20px);
             }
-
-            /* Reduce particle count on mobile */
-            #hero-canvas {
-                opacity: 0.5;
-            }
         }
 
         /* Video optimization */
@@ -678,6 +721,15 @@
             width: 100%;
             height: auto;
             object-fit: cover;
+        }
+
+        .lazy-video {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-video.loaded {
+            opacity: 1;
         }
 
         /* Touch-friendly tap highlights */
@@ -692,6 +744,7 @@
             }
         }
     </style>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZNXJ7ZCK"></script>
     <script>
@@ -729,7 +782,7 @@
             <nav class="hidden md:flex items-center space-x-2 lg:space-x-4">
                 <a href="#about" class="nav-link text-sm lg:text-base">About</a>
                 <a href="#services" class="nav-link text-sm lg:text-base">Services</a>
-                <a href="#skills" class="nav-link text-sm lg:text-base">Skills</a>
+                <a href="#process" class="nav-link text-sm lg:text-base">Process</a>
                 <a href="#portfolio" class="nav-link text-sm lg:text-base">Portfolio</a>
                 <a href="#testimonials" class="nav-link text-sm lg:text-base">Testimonials</a>
                 <a href="#contact" class="nav-link text-sm lg:text-base">Contact</a>
@@ -740,18 +793,12 @@
         </div>
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-lg">
-            <a href="#about"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">About</a>
-            <a href="#services"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Services</a>
-            <a href="#skills"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Skills</a>
-            <a href="#portfolio"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Portfolio</a>
-            <a href="#testimonials"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Testimonials</a>
-            <a href="#contact"
-                class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Contact</a>
+            <a href="#about" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">About</a>
+            <a href="#services" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Services</a>
+            <a href="#process" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Process</a>
+            <a href="#portfolio" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Portfolio</a>
+            <a href="#testimonials" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Testimonials</a>
+            <a href="#contact" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Contact</a>
         </div>
     </header>
 
@@ -763,14 +810,17 @@
             </video>
             <canvas id="hero-canvas"></canvas>
             <div class="hero-overlay"></div>
-            <div
-                class="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
+            <div class="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
                 <h1 class="glitch mb-4 md:mb-6" data-text="SEBASTIAN BASALDUA">SEBASTIAN BASALDUA</h1>
                 <div class="reveal-text">
                     <p class="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 md:mb-8 px-4">
                         <span id="typewriter"></span>
                     </p>
                 </div>
+                <p class="text-base md:text-lg text-gray-400 max-w-2xl mb-8 px-4">
+                    Bridging creative vision with technical innovation. Award-winning motion graphics artist turned operations leader, 
+                    serving 3.6M+ listeners across the Twin Cities.
+                </p>
                 <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
                     <a href="#latest-projects"
                         onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'view_my_work'});"
@@ -801,15 +851,15 @@
                     <!-- Latest Project 1 - WCTS Documentary -->
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
-                        data-modal-title="WCTS 60th Anniversary Documentary"
-                        data-modal-text="Currently directing and producing a comprehensive documentary celebrating WCTS Radio's 60 years of growth, utilizing AI-assisted workflows for interview management.">
+                        data-modal-title="WCTS Short Documentary - The Bible Station"
+                        data-modal-text="Completed short-form documentary showcasing WCTS Radio's mission and impact. Implemented AI-assisted workflow that reduced 30 hours of interview sorting to just 2 hours, enabling faster narrative development.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
                             <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS 60th Anniversary</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">In Production</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS Documentary</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">AI-Enhanced Production</p>
                                 </div>
                             </div>
                         </div>
@@ -818,17 +868,17 @@
                     <!-- Latest Project 2 - Audiobook -->
                     <div class="portfolio-item" data-category="radio" data-modal-type="image"
                         data-modal-image="assets/images/book-cover.jpg"
-                        data-modal-title="Audiobook - Breathless Haste (Coming Soon)"
-                        data-modal-text="I just finished assembling my second audiobook for the publisher Hope*Books. This project involved cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and formatting the final master to meet strict ACX standards.<br><br><a href='https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0' target='_blank' class='text-cyan-400 font-bold hover:underline'>Purchase the book on Amazon &rarr;</a>">
+                        data-modal-title="Audiobook - Breathless Haste"
+                        data-modal-text="My second audiobook production for Hope*Books. This project involved cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and formatting the final master to meet strict ACX standards. Currently in final review.<br><br><a href='https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0' target='_blank' class='text-cyan-400 font-bold hover:underline'>Purchase the book on Amazon &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline data-lazy-video
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                                <source src="assets/videos/breathless-haste.mp4" type="video/mp4">
+                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                   autoplay loop muted playsinline data-src="assets/videos/breathless-haste.mp4">
+                                <source src="" type="video/mp4">
                             </video>
                             <div class="portfolio-overlay">
                                 <div class="text-left">
                                     <h3 class="font-heading text-xl md:text-2xl text-white">Breathless Haste</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Audiobook (Coming Soon)</p>
+                                    <p class="text-cyan-400 text-sm md:text-base">Audiobook (In Final Review)</p>
                                 </div>
                             </div>
                         </div>
@@ -838,16 +888,16 @@
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
                         data-modal-title="TRFF Website Remake"
-                        data-modal-text="I was asked to completely remake the Teresa Rosalind French Foundation's website from the ground up. Using WordPress and the Divi Theme, I built a new, modern site to support their mission. My role also included providing much of the video and some of the photos featured on the site.<br><br><a href='https://teressarosalindfrenchfoundation.org/' target='_blank' class='text-cyan-400 font-bold hover:underline'>Visit the live website and support their cause! &rarr;</a>">
+                        data-modal-text="Complete redesign and development of the Teresa Rosalind French Foundation's website using WordPress and Divi. Provided video production and photography for the site content, creating a cohesive visual narrative.<br><br><a href='https://teressarosalindfrenchfoundation.org/' target='_blank' class='text-cyan-400 font-bold hover:underline'>Visit the live website &rarr;</a>">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline data-lazy-video
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                                <source src="assets/videos/trff-web.mp4" type="video/mp4">
+                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                   autoplay loop muted playsinline data-src="assets/videos/trff-web.mp4">
+                                <source src="" type="video/mp4">
                             </video>
                             <div class="portfolio-overlay">
                                 <div class="text-left">
                                     <h3 class="font-heading text-xl md:text-2xl text-white">TRFF Website</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">WordPress & Divi</p>
+                                    <p class="text-cyan-400 text-sm md:text-base">WordPress & Media</p>
                                 </div>
                             </div>
                         </div>
@@ -860,48 +910,46 @@
         <section id="about" class="py-12 md:py-20 relative overflow-hidden">
             <div class="container mx-auto px-6 text-center relative z-10">
                 <div class="section-title-container">
-                    <h2 class="section-title">My Philosophy</h2>
+                    <h2 class="section-title">Why I'm Different</h2>
                 </div>
                 <div class="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed space-y-4 md:space-y-6">
                     <p class="transform hover:scale-105 transition-transform duration-300">
-                        I love where <span class="text-cyan-400 font-semibold">media and technology</span> intersect to
-                        make creative visions more achievable. The tools available now are incredible, and I believe in
-                        fully utilizing this tech to not only produce the best possible media but also to automate
-                        strenuous legwork, giving directors <span class="text-cyan-400">ultimate creative
-                            control</span>.
+                        I'm a <span class="text-cyan-400 font-semibold">Technical Creative Director</span> who bridges the gap between 
+                        ambitious creative visions and practical execution. Where others see technical limitations, I see opportunities 
+                        for innovation.
                     </p>
                     <p class="transform hover:scale-105 transition-transform duration-300">
-                        At the heart of it all, I love <span class="text-cyan-400 font-semibold">creative
-                            storytelling</span>. Every story has an objective: to make you think, to make you see, to
-                        make you <span class="text-cyan-400">feel</span>.
+                        My approach combines <span class="text-cyan-400 font-semibold">Hollywood-quality standards</span> with 
+                        real-world budgets through strategic automation and AI-powered workflows. I help production teams achieve 
+                        more by working smarter, not harder.
+                    </p>
+                    <p class="transform hover:scale-105 transition-transform duration-300">
+                        From managing broadcast operations reaching millions to creating award-winning motion graphics, I bring 
+                        both <span class="text-cyan-400 font-semibold">creative excellence and technical precision</span> to every project.
                     </p>
                 </div>
 
-                <!-- Stats Section -->
+                <!-- Stats Section - Updated with Real Numbers -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
                     <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="3">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">Million+ Metro Audience</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Serving the 7-county Twin Cities metro area via AM/FM
-                            broadcast.</p>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="3600000">0</div>
+                        <div class="text-gray-300 font-semibold mt-2">Broadcast Reach</div>
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Combined AM/FM audience across Twin Cities metro</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="10000">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">Media Assets Managed</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Processing and archiving thousands of syndicated shows,
-                            sermons, and daily productions.</p>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="130">0</div>
+                        <div class="text-gray-300 font-semibold mt-2">Motion Graphics Delivered</div>
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Complex 2D/3D animations and educational segments</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="900">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">On-Air Errors Prevented</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Through custom FTP automation scripts that ensure seamless
-                            news delivery.</p>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400">93%</div>
+                        <div class="text-gray-300 font-semibold mt-2">Error Reduction</div>
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">Automated workflows eliminating 5/7 daily broadcast errors</p>
                     </div>
                     <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="5">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">Production Studios Managed</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Including operational oversight of 4 video studios and key
-                            design input for new facilities.</p>
+                        <div class="text-3xl md:text-4xl font-bold text-cyan-400">15x</div>
+                        <div class="text-gray-300 font-semibold mt-2">Faster Workflow</div>
+                        <p class="text-gray-500 text-xs md:text-sm mt-1">30-hour tasks completed in 2 hours with AI integration</p>
                     </div>
                 </div>
             </div>
@@ -914,42 +962,26 @@
                     <h2 class="section-title">What I Do</h2>
                 </div>
                 <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-
                     <!-- Card 1: Video Production & Editing -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video" autoplay loop muted playsinline data-lazy-video>
-                                <source src="assets/videos/media-production.mp4" type="video/mp4">
-                                <!-- Fallback icon -->
-                                <div class="flex justify-center p-4">
-                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
-                                        <i data-lucide="film" class="w-12 h-12 text-cyan-400"></i>
-                                    </div>
-                                </div>
+                            <video class="service-video lazy-video" autoplay loop muted playsinline data-src="assets/videos/media-production.mp4">
+                                <source src="" type="video/mp4">
                             </video>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Video Production & Editing</h3>
-                        <p class="text-sm md:text-base text-gray-400">Directing and editing compelling visual stories, from feature
-                            documentaries to dynamic motion graphics. Specializing in narrative development and
-                            post-production.</p>
+                        <p class="text-sm md:text-base text-gray-400">Directing and editing compelling visual stories, from documentaries to motion graphics. Specializing in narrative development with AI-enhanced workflows.</p>
                     </div>
 
                     <!-- Card 2: 3D Graphics & Animation -->
                     <div class="card group">
                         <div class="mb-4 overflow-hidden rounded-lg">
-                            <video class="service-video" autoplay loop muted playsinline data-lazy-video>
-                                <source src="assets/videos/3d-graphics.mp4" type="video/mp4">
-                                <!-- Fallback icon -->
-                                <div class="flex justify-center p-4">
-                                    <div class="p-4 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full">
-                                        <i data-lucide="box" class="w-12 h-12 text-cyan-400"></i>
-                                    </div>
-                                </div>
+                            <video class="service-video lazy-video" autoplay loop muted playsinline data-src="assets/videos/3d-graphics.mp4">
+                                <source src="" type="video/mp4">
                             </video>
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
-                        <p class="text-sm md:text-base text-gray-400">Expert in Blender for modeling, sculpting, and animation. Creating
-                            award-winning educational segments and distinctive 2.5D visual techniques.</p>
+                        <p class="text-sm md:text-base text-gray-400">Expert Blender artist creating award-winning educational segments. Developed distinctive 2.5D techniques for historical recreations.</p>
                     </div>
 
                     <!-- Card 3: Broadcast & Technical Ops -->
@@ -959,9 +991,7 @@
                                 class="w-full h-auto object-cover" loading="lazy">
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Broadcast & Technical Ops</h3>
-                        <p class="text-sm md:text-base text-gray-400">Overseeing radio station operations, from studio renovations to
-                            developing AI-powered automation scripts that ensure seamless content delivery and workflow
-                            efficiency.</p>
+                        <p class="text-sm md:text-base text-gray-400">Managing radio operations serving 3.6M+ listeners. Developed automation systems preventing 900+ on-air errors annually.</p>
                     </div>
 
                     <!-- Card 4: Audio & Photography -->
@@ -971,110 +1001,50 @@
                                 class="w-full h-auto object-cover" loading="lazy">
                         </div>
                         <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Audio & Photography</h3>
-                        <p class="text-sm md:text-base text-gray-400">Producing and engineering crisp audio for podcasts and radio, and
-                            capturing professional-quality images for portraits, landscapes, and commissions.</p>
+                        <p class="text-sm md:text-base text-gray-400">Professional audiobook production meeting ACX standards. Commercial photography for portraits, products, and events.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-12 md:py-20 relative overflow-hidden">
+        <!-- Process Section -->
+        <section id="process" class="py-12 md:py-20 relative overflow-hidden">
             <div class="container mx-auto px-6">
                 <div class="text-center">
                     <div class="section-title-container">
-                        <h2 class="section-title">Technical Expertise</h2>
+                        <h2 class="section-title">How I Work</h2>
                     </div>
+                    <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-12">
+                        Every project follows a proven process designed to maximize creative impact while minimizing wasted time and resources.
+                    </p>
                 </div>
-                <div class="grid md:grid-cols-2 gap-8 md:gap-12 max-w-4xl mx-auto">
-                    <div>
-                        <h3 class="text-lg md:text-xl font-semibold text-cyan-400 mb-4 md:mb-6">Creative Tools</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Adobe Creative Suite</span>
-                                    <span class="text-sm md:text-base text-cyan-400">95%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="95"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Blender 3D</span>
-                                    <span class="text-sm md:text-base text-cyan-400">90%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="90"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Audio Production</span>
-                                    <span class="text-sm md:text-base text-cyan-400">85%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="85"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Motion Graphics</span>
-                                    <span class="text-sm md:text-base text-cyan-400">88%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="88"></div>
-                                </div>
-                            </div>
-                        </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
+                    <div class="process-card">
+                        <div class="process-number">1</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Discovery Call</h3>
+                        <p class="text-gray-400">Understanding your vision, goals, and constraints. We explore what success looks like for your project.</p>
                     </div>
-                    <div>
-                        <h3 class="text-lg md:text-xl font-semibold text-cyan-400 mb-4 md:mb-6">Technical Skills</h3>
-                        <div class="space-y-4">
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">AI Integration & Automation</span>
-                                    <span class="text-sm md:text-base text-cyan-400">92%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="92"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Broadcast Systems</span>
-                                    <span class="text-sm md:text-base text-cyan-400">87%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="87"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">IT Infrastructure (CompTIA A+)</span>
-                                    <span class="text-sm md:text-base text-cyan-400">83%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="83"></div>
-                                </div>
-                            </div>
-                            <div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-sm md:text-base text-gray-300">Studio Management</span>
-                                    <span class="text-sm md:text-base text-cyan-400">89%</span>
-                                </div>
-                                <div class="skill-bar">
-                                    <div class="skill-fill" data-width="89"></div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="process-card">
+                        <div class="process-number">2</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Technical Strategy</h3>
+                        <p class="text-gray-400">Identifying the smartest approach using AI and automation to achieve more with your budget.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="process-number">3</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Production</h3>
+                        <p class="text-gray-400">Executing with precision while maintaining open communication and regular progress updates.</p>
+                    </div>
+                    <div class="process-card">
+                        <div class="process-number">4</div>
+                        <h3 class="text-xl font-semibold text-white mb-3">Optimization</h3>
+                        <p class="text-gray-400">Ensuring maximum impact through strategic refinement and platform-specific optimization.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Portfolio Section -->
-        <section id="portfolio" class="py-12 md:py-20 relative">
+        <section id="portfolio" class="py-12 md:py-20 bg-gray-900 relative">
             <div class="container mx-auto px-6 text-center">
                 <div class="section-title-container">
                     <h2 class="section-title">Featured Work</h2>
@@ -1082,17 +1052,13 @@
 
                 <!-- Filter Buttons -->
                 <div class="flex justify-center gap-2 md:gap-4 mb-8 md:mb-12 flex-wrap">
-                    <button
-                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30 transition-all duration-300 active text-sm md:text-base"
+                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30 transition-all duration-300 active text-sm md:text-base"
                         data-filter="all">All</button>
-                    <button
-                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
+                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="video">Video</button>
-                    <button
-                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
+                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="photo">Photography</button>
-                    <button
-                        class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
+                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
                         data-filter="3d">3D/Graphics</button>
                 </div>
 
@@ -1100,16 +1066,16 @@
                     <!-- Project 1 - WCTS Documentary -->
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
-                        data-modal-title="WCTS 60th Anniversary Documentary"
-                        data-modal-text="A comprehensive documentary celebrating 60 years of sustained growth. Implementing innovative AI-assisted workflows for interview management and narrative development. Currently in production with expected completion in 2025.">
+                        data-modal-title="WCTS Documentary - The Bible Station"
+                        data-modal-text="Short-form documentary showcasing WCTS Radio's community impact. Implemented AI workflow that reduced 30 hours of interview processing to 2 hours, enabling rapid narrative development.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
                                 loading="lazy">
                             <div class="portfolio-overlay">
                                 <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS 60th Anniversary</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Documentary (In Production)</p>
+                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS Documentary</h3>
+                                    <p class="text-cyan-400 text-sm md:text-base">AI-Enhanced Production</p>
                                 </div>
                             </div>
                         </div>
@@ -1119,16 +1085,16 @@
                     <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Q19D_5Kon9c?si=x7b5Gm4EdKK-Lchu&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
                         data-modal-title="Melton 50-Year Celebration Video"
-                        data-modal-text="Created commemorative video celebrating 50 years of missionary work in Japan. Developed 2.5D visual techniques to animate historical photographs and designed 3D recreations of significant historical moments from primary source accounts.">
+                        data-modal-text="Commemorative video celebrating 50 years of missionary work in Japan. Developed innovative 2.5D techniques to animate historical photographs and created 3D recreations of significant moments.">
                         <div class="relative overflow-hidden h-64">
-                            <video autoplay loop muted playsinline data-lazy-video
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                                <source src="assets/videos/Melton_50.mp4" type="video/mp4">
+                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                   autoplay loop muted playsinline data-src="assets/videos/Melton_50.mp4">
+                                <source src="" type="video/mp4">
                             </video>
                             <div class="portfolio-overlay">
                                 <div class="text-left">
                                     <h3 class="font-heading text-xl md:text-2xl text-white">Melton 50-Year</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Celebration Video</p>
+                                    <p class="text-cyan-400 text-sm md:text-base">Historical Recreation</p>
                                 </div>
                             </div>
                         </div>
@@ -1139,9 +1105,9 @@
                         <a href="assets/images/photography/full/Black_and_White_Portrait.jpg"
                             data-fancybox="gallery-photography" data-caption="Black and white closeup portrait.">
                             <div class="relative overflow-hidden h-64">
-                                <video autoplay loop muted playsinline data-lazy-video
-                                    class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                                    <source src="assets/videos/photography-reel.mp4" type="video/mp4">
+                                <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                                       autoplay loop muted playsinline data-src="assets/videos/photography-reel.mp4">
+                                    <source src="" type="video/mp4">
                                 </video>
                                 <div class="portfolio-overlay">
                                     <div class="text-left">
@@ -1152,8 +1118,7 @@
                             </div>
                         </a>
                         <div style="display: none;">
-                            <a href="assets/images/photography/full/Candid_Family.jpg"
-                                data-fancybox="gallery-photography"
+                            <a href="assets/images/photography/full/Candid_Family.jpg" data-fancybox="gallery-photography"
                                 data-caption="Family photo looking out at the beach"></a>
                             <a href="assets/images/photography/full/Family.jpg" data-fancybox="gallery-photography"
                                 data-caption="Family photo at an apple orchard"></a>
@@ -1174,7 +1139,7 @@
                     <div class="portfolio-item" data-category="3d" data-modal-type="vimeo"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
                         data-modal-title="Clone Trooper vs. Alien Animation"
-                        data-modal-text="This was a video I made for fun, with the side objective of making it for a Star Wars podcast I was on. Models were not made by me, but I did assemble and re-texture some to fit the character. Animation was from Mixamo and some hand animating with the Xenomorph.">
+                        data-modal-text="Personal 3D animation project showcasing character animation and compositing skills. Combined Mixamo animations with custom hand-animated sequences in Blender.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper vs. Alien Animation"
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
@@ -1182,7 +1147,7 @@
                             <div class="portfolio-overlay">
                                 <div class="text-left">
                                     <h3 class="font-heading text-xl md:text-2xl text-white">Clone Trooper Animation</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Personal Project</p>
+                                    <p class="text-cyan-400 text-sm md:text-base">3D Character Animation</p>
                                 </div>
                             </div>
                         </div>
@@ -1192,7 +1157,7 @@
                     <div class="portfolio-item" data-category="3d" data-modal-type="image"
                         data-modal-image="assets/images/studio-design-featured.jpg"
                         data-modal-title="Podcast Studio Renovation"
-                        data-modal-text="Currently overseeing renovation of studio facilities for podcast production at WCTS Radio. Applying expertise in studio design, audio equipment integration, and workflow optimization to create a state-of-the-art production environment.">
+                        data-modal-text="Leading renovation of studio facilities for podcast production at WCTS Radio. Applied expertise in studio design, audio equipment integration, and workflow optimization to create a state-of-the-art production environment.">
                         <div class="relative overflow-hidden h-64">
                             <img src="assets/images/studio-renovation-featured.jpg" alt="Studio Renovation"
                                 class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
@@ -1200,7 +1165,7 @@
                             <div class="portfolio-overlay">
                                 <div class="text-left">
                                     <h3 class="font-heading text-xl md:text-2xl text-white">Studio Renovation</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Podcast Production</p>
+                                    <p class="text-cyan-400 text-sm md:text-base">Technical Design</p>
                                 </div>
                             </div>
                         </div>
@@ -1229,42 +1194,37 @@
                         <h2 class="section-title">Client Testimonials</h2>
                     </div>
                 </div>
-                <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
                     <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">This Testimonial could be you!</p>
+                        <p class="text-sm md:text-base text-gray-300 mb-4">"Thank you to SB Media for the wonderful video you created for The EZ Sit, it is very effective on social media. We especially love the 3-d images. You were very communicative, helpful, and prompt with everything."</p>
                         <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                                JD</div>
-                            <div>
-                                <div class="font-semibold text-white text-sm md:text-base">Professional</div>
-                                <div class="text-xs md:text-sm text-gray-400">Hot Shot</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">This testimonial could also be you, saying something about how
-                            awesome I am! hopefully</p>
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
+                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
                                 MS</div>
                             <div>
-                                <div class="font-semibold text-white text-sm md:text-base">Content Manager</div>
-                                <div class="text-xs md:text-sm text-gray-400">BJ2 Press</div>
+                                <div class="font-semibold text-white text-sm md:text-base">Mary A. Schroeder</div>
+                                <div class="text-xs md:text-sm text-gray-400">The EZ Sit</div>
                             </div>
                         </div>
                     </div>
                     <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">How cool would it be to be enshrined on my portfolio page? Well,
-                            now is your chance. Use my fancy form at the bottom to submit a testimonial!</p>
+                        <p class="text-sm md:text-base text-gray-300 mb-4">"I applaud his excellent work ethic and skill, and was grateful to partner with him on this project. Sebastian served as my sound engineer for the Astounding Truths audiobook."</p>
                         <div class="flex items-center gap-3">
-                            <div
-                                class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                                TL</div>
+                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
+                                AW</div>
                             <div>
-                                <div class="font-semibold text-white text-sm md:text-base">You</div>
-                                <div class="text-xs md:text-sm text-gray-400">Professional Human</div>
+                                <div class="font-semibold text-white text-sm md:text-base">Annie Weber</div>
+                                <div class="text-xs md:text-sm text-gray-400">Author</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="text-sm md:text-base text-gray-300 mb-4">"Excellent visual representation! Outstanding understanding of the clients requirements and your insight to deliver a user friendly interface. Impressive!"</p>
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
+                                HS</div>
+                            <div>
+                                <div class="font-semibold text-white text-sm md:text-base">Helga Severin</div>
+                                <div class="text-xs md:text-sm text-gray-400">TRFF</div>
                             </div>
                         </div>
                     </div>
@@ -1279,8 +1239,8 @@
                     <h2 class="section-title">Let's Create Together</h2>
                 </div>
                 <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-8 md:mb-12">
-                    Ready to bring your creative vision to life? I'm available for freelance projects and
-                    collaborations.
+                    Available for freelance projects, consulting, and creative collaborations. 
+                    Let's discuss how I can help achieve your vision with technical innovation.
                 </p>
 
                 <!-- Contact Form -->
@@ -1294,12 +1254,12 @@
                             class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
                     </div>
                     <div class="mb-4 md:mb-6">
-                        <textarea name="message" placeholder="Your Message" rows="5" required
+                        <textarea name="message" placeholder="Tell me about your project..." rows="5" required
                             class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
                     </div>
                     <button type="submit"
                         class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
-                        Send Message
+                        Start a Conversation
                     </button>
                     <p id="form-status" class="mt-4 text-cyan-400 hidden"></p>
                 </form>
@@ -1320,7 +1280,7 @@
                         class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="linkedin" class="w-5 md:w-6 h-5 md:h-6"></i>
                     </a>
-                    <a href="https://www.youtube.com/@SBasalMedia"
+                    <a href="https://www.youtube.com/@SBasalMedia" target="_blank"
                         onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'youtube'});"
                         class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
                         <i data-lucide="youtube" class="w-5 md:w-6 h-5 md:h-6"></i>
@@ -1333,8 +1293,7 @@
     <!-- Footer -->
     <footer class="py-6 md:py-8 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-500 text-sm md:text-base">&copy; <span id="year"></span> Sebastian Basaldua. Crafted with passion and
-                precision.</p>
+            <p class="text-gray-500 text-sm md:text-base">&copy; <span id="year"></span> Sebastian Basaldua. Technical Creative Director.</p>
         </div>
     </footer>
 
@@ -1411,8 +1370,11 @@
             }, 100);
         });
 
-        // Hero Canvas Particles - Optimized for mobile
+        // Hero Canvas Particles - Desktop only
         const initHeroCanvas = () => {
+            // Skip particles on mobile for performance
+            if (isMobile) return;
+            
             const heroCanvas = document.querySelector('#hero-canvas');
             if (heroCanvas) {
                 const scene = new THREE.Scene();
@@ -1420,15 +1382,15 @@
                 const renderer = new THREE.WebGLRenderer({
                     canvas: heroCanvas,
                     alpha: true,
-                    antialias: !isMobile // Disable antialiasing on mobile for performance
+                    antialias: true
                 });
 
-                renderer.setPixelRatio(isMobile ? 1 : window.devicePixelRatio);
+                renderer.setPixelRatio(window.devicePixelRatio);
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 camera.position.setZ(5);
 
-                // Reduce particle count on mobile
-                const particleCount = isMobile ? 300 : 1000;
+                // Create particles
+                const particleCount = 1000;
                 const particleGeometry = new THREE.BufferGeometry();
                 const particlePositions = new Float32Array(particleCount * 3);
 
@@ -1439,7 +1401,7 @@
                 particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
 
                 const particleMaterial = new THREE.PointsMaterial({
-                    size: isMobile ? 0.02 : 0.015,
+                    size: 0.015,
                     color: 0x06b6d4,
                     transparent: true,
                     opacity: 0.6,
@@ -1452,12 +1414,10 @@
                 let mouseX = 0;
                 let mouseY = 0;
 
-                if (!isMobile) {
-                    document.addEventListener('mousemove', (event) => {
-                        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-                    });
-                }
+                document.addEventListener('mousemove', (event) => {
+                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+                });
 
                 const clock = new THREE.Clock();
 
@@ -1466,11 +1426,8 @@
                     const elapsedTime = clock.getElapsedTime();
 
                     particleMesh.rotation.y = elapsedTime * 0.02;
-                    
-                    if (!isMobile) {
-                        particleMesh.rotation.x = mouseY * 0.5;
-                        particleMesh.rotation.z = mouseX * 0.5;
-                    }
+                    particleMesh.rotation.x = mouseY * 0.5;
+                    particleMesh.rotation.z = mouseX * 0.5;
 
                     renderer.render(scene, camera);
                 };
@@ -1492,35 +1449,40 @@
             initHeroCanvas();
         }
 
-        // Video Intersection Observer - Pause/play videos when in/out of view
-        const setupVideoObserver = () => {
-            const videos = document.querySelectorAll('video[data-lazy-video]');
+        // Lazy Loading for Videos
+        const setupLazyVideos = () => {
+            const lazyVideos = document.querySelectorAll('.lazy-video');
             
             const videoObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     const video = entry.target;
-                    if (entry.isIntersecting) {
-                        video.play().catch(e => console.log('Video play failed:', e));
-                    } else {
+                    if (entry.isIntersecting && !video.classList.contains('loaded')) {
+                        const source = video.querySelector('source');
+                        if (source && video.dataset.src) {
+                            source.src = video.dataset.src;
+                            video.load();
+                            video.classList.add('loaded');
+                            video.play().catch(e => console.log('Video play failed:', e));
+                        }
+                    } else if (!entry.isIntersecting && video.classList.contains('loaded')) {
                         video.pause();
                     }
                 });
             }, {
-                threshold: 0.25
+                threshold: 0.25,
+                rootMargin: '50px'
             });
 
-            videos.forEach(video => {
+            lazyVideos.forEach(video => {
                 videoObserver.observe(video);
-                // Pause all videos initially
-                video.pause();
             });
         };
 
-        // Initialize video observer after DOM loads
+        // Initialize lazy loading after DOM loads
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', setupVideoObserver);
+            document.addEventListener('DOMContentLoaded', setupLazyVideos);
         } else {
-            setupVideoObserver();
+            setupLazyVideos();
         }
 
         // Contact Form Handler with EmailJS
@@ -1587,14 +1549,14 @@
             }
         }
 
-        // Typewriter Effect
+        // Typewriter Effect - Updated with better titles
         const phrases = [
+            "Technical Creative Director",
             "Operations Manager at WCTS Radio",
-            "Media Production Specialist",
-            "3D Graphics & Motion Designer",
+            "Award-Winning Motion Graphics Artist",
             "AI Workflow Pioneer",
-            "Creative Storyteller",
-            "Technical Innovation Leader"
+            "Broadcast Systems Architect",
+            "Creative Problem Solver"
         ];
         let phraseIndex = 0;
         let charIndex = 0;
@@ -1627,22 +1589,28 @@
 
         setTimeout(type, 1000);
 
-        // Counter Animation
+        // Counter Animation - Updated for large numbers
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
+        let countersAnimated = false;
 
         const animateCounters = () => {
+            if (countersAnimated) return;
+            countersAnimated = true;
+            
             counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                let current = 0;
 
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 10);
+                const updateCount = () => {
+                    current += increment;
+                    if (current < target) {
+                        // Format large numbers with commas
+                        counter.innerText = Math.floor(current).toLocaleString();
+                        requestAnimationFrame(updateCount);
                     } else {
-                        counter.innerText = target;
+                        counter.innerText = target.toLocaleString();
                     }
                 };
                 updateCount();
@@ -1667,7 +1635,7 @@
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    if (entry.target.classList.contains('counter')) {
+                    if (entry.target.querySelector('.counter')) {
                         animateCounters();
                     }
                     if (entry.target.id === 'skills') {
@@ -1686,9 +1654,8 @@
             observer.observe(section);
         });
 
-        counters.forEach(counter => observer.observe(counter));
-        const skillsSection = document.getElementById('skills');
-        if (skillsSection) observer.observe(skillsSection);
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) observer.observe(aboutSection);
 
         // Portfolio Filter
         const filterBtns = document.querySelectorAll('.filter-btn');
