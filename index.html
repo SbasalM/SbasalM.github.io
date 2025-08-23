@@ -759,7 +759,6 @@
         <!-- Hero Section -->
         <section class="hero-video-container">
             <video autoplay muted loop playsinline id="heroVideo" poster="assets/images/photography-showcase.jpg">
-                <source media="(max-width: 768px)" src="assets/videos/Hero_Video_Mobile.mp4" type="video/mp4">
                 <source src="assets/videos/Hero_Video.mp4" type="video/mp4">
             </video>
             <canvas id="hero-canvas"></canvas>
@@ -1359,6 +1358,37 @@
         const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
         const hasHover = window.matchMedia('(hover: hover)').matches;
 
+        // Dynamic hero video source based on device
+        const setupHeroVideo = () => {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo && isMobile) {
+                // Check if screen is portrait (typical mobile orientation)
+                if (window.innerHeight > window.innerWidth) {
+                    heroVideo.src = 'assets/videos/Hero_Video_Mobile.mp4';
+                    heroVideo.load(); // Force reload with new source
+                }
+            }
+        };
+
+        // Run hero video setup on page load
+        setupHeroVideo();
+
+        // Handle orientation changes for video
+        window.addEventListener('orientationchange', () => {
+            const heroVideo = document.getElementById('heroVideo');
+            if (heroVideo) {
+                setTimeout(() => { // Small delay for orientation to settle
+                    if (window.innerHeight > window.innerWidth) {
+                        heroVideo.src = 'assets/videos/Hero_Video_Mobile.mp4';
+                    } else {
+                        heroVideo.src = 'assets/videos/Hero_Video.mp4';
+                    }
+                    heroVideo.load();
+                    heroVideo.play();
+                }, 100);
+            }
+        });
+
         // Loading Screen
         window.addEventListener('load', () => {
             let progress = 0;
@@ -1794,4 +1824,3 @@
 </body>
 
 </html>
-
