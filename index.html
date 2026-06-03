@@ -434,7 +434,6 @@
         .cap .tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
         .cap h3 { font-size: 1.28rem; }
         .cap p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
-        .cap.lead { outline: 2px solid var(--accent); outline-offset: -2px; }
 
         /* ---------- Process ---------- */
         .process-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: step; }
@@ -812,7 +811,7 @@
                     <p class="lede" style="margin-top:1rem;">The value I bring leads with automation and building — the creative craft is the supporting strength that lets me speak both languages.</p>
                 </div>
                 <div class="cap-grid">
-                    <article class="cap lead reveal">
+                    <article class="cap reveal">
                         <div class="thumb"><img src="assets/images/broadcast-operations.jpg" alt="Broadcast operations dashboard and equipment" loading="lazy"></div>
                         <div class="body">
                             <span class="tag">Automation</span>
@@ -853,7 +852,7 @@
             <div class="container">
                 <div class="section-head">
                     <p class="eyebrow">How I work</p>
-                    <h2 class="section-title">I don't just flag problems — <em>I engineer them away.</em></h2>
+                    <h2 class="section-title">I don't just flag problems — <em>I build the fix.</em></h2>
                     <p class="lede" style="margin-top:1rem;">How I turn a manual, error-prone process into a reliable system.</p>
                 </div>
                 <div class="process-grid">
@@ -891,6 +890,7 @@
 
                 <div class="filters" role="group" aria-label="Filter work by type">
                     <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="software">Software</button>
                     <button class="filter-btn" data-filter="video">Video</button>
                     <button class="filter-btn" data-filter="audio">Audio</button>
                     <button class="filter-btn" data-filter="photo">Photography</button>
@@ -898,6 +898,36 @@
                 </div>
 
                 <div class="work-grid">
+                    <!-- AudioPipe (full write-up in Software & Automation section) -->
+                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: AudioPipe"
+                        data-modal-image="assets/images/audiopipe.png"
+                        data-modal-title="AudioPipe — Radio File-Management Automation"
+                        data-modal-text="An internal tool I designed and built end-to-end with Claude Code. It runs scheduled FTP ingest, a configurable audio-processing pipeline that writes normalized metadata, a release/hold system that feeds radio-automation watchfolders, and smart promo tagging via a waveform editor — cutting weekly file prep from roughly an hour to minutes.">
+                        <div class="work-media">
+                            <img src="assets/images/audiopipe.png" alt="AudioPipe app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Internal tool · Built with AI</span>
+                            <h3>AudioPipe</h3>
+                        </div>
+                    </div>
+
+                    <!-- CheckSpree (full write-up in Software & Automation section) -->
+                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: CheckSpree"
+                        data-modal-image="assets/images/checkspree.png"
+                        data-modal-title="CheckSpree — Open-Source Check Printing &amp; Ledger"
+                        data-modal-text="A free, open-source tool I built and shipped publicly: digital check entry that prints cleanly onto check stock, plus a ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles. Actively developed — the core is solid, with a few features still being hardened.<br><br><a href=&quot;https://github.com/luminary-craft/CheckSpree&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>View on GitHub →</a>">
+                        <div class="work-media">
+                            <img src="assets/images/checkspree.png" alt="CheckSpree app — digital check preview with a ledger sidebar tracking running balances" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Open source</span>
+                            <h3>CheckSpree</h3>
+                        </div>
+                    </div>
+
                     <!-- WCTS 60th Documentary -->
                     <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: WCTS 60th-Anniversary Documentary"
                         data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
