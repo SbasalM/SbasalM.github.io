@@ -25,7 +25,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Fancybox CSS (photography gallery) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
@@ -44,8 +44,8 @@
             --line-strong: rgba(26, 23, 20, 0.22);
             --shadow: 0 18px 50px -24px rgba(26, 23, 20, 0.45);
             --maxw: 1140px;
-            --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
-            --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            --display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
         *, *::before, *::after { box-sizing: border-box; }
@@ -110,7 +110,7 @@
         }
 
         /* ---------- Typography ---------- */
-        h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.05; margin: 0; }
+        h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.05; margin: 0; }
 
         .eyebrow {
             font-family: var(--sans);
@@ -134,7 +134,7 @@
             font-size: clamp(2.1rem, 5vw, 3.3rem);
             letter-spacing: -0.015em;
         }
-        .section-title em { font-style: italic; color: var(--accent-ink); }
+        .section-title em { font-style: normal; color: var(--accent-ink); }
 
         .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--ink-soft); }
 
@@ -183,7 +183,7 @@
             margin: 0 auto;
         }
         .wordmark {
-            font-family: var(--serif);
+            font-family: var(--display);
             font-weight: 600;
             font-size: 1.15rem;
             letter-spacing: -0.01em;
@@ -277,10 +277,11 @@
             margin-bottom: 0.4rem;
         }
         .hero .rotator {
-            font-family: var(--serif);
-            font-style: italic;
+            font-family: var(--display);
+            font-style: normal;
             font-weight: 500;
-            font-size: clamp(1.2rem, 3.2vw, 1.9rem);
+            font-size: clamp(1.15rem, 3vw, 1.75rem);
+            letter-spacing: -0.01em;
             color: #aef0f3;
             min-height: 1.6em;
             margin-bottom: 1.4rem;
@@ -348,7 +349,7 @@
         .stat { background: var(--paper); padding: 1.8rem 1.4rem; }
         .alt .stat { background: var(--paper-2); }
         .stat .num {
-            font-family: var(--serif);
+            font-family: var(--display);
             font-weight: 600;
             font-size: clamp(2.4rem, 5vw, 3.4rem);
             color: var(--accent-ink);
@@ -358,6 +359,55 @@
         .stat .label { font-weight: 600; margin-top: 0.6rem; font-size: 0.98rem; }
         .stat .desc { color: var(--ink-faint); font-size: 0.85rem; margin-top: 0.25rem; line-height: 1.45; }
         @media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+
+        /* ---------- Software & Automation (case studies) ---------- */
+        .case-list { display: flex; flex-direction: column; gap: clamp(2.5rem, 6vw, 4.5rem); }
+        .case {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.6rem;
+            align-items: center;
+        }
+        .case-shot {
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            box-shadow: var(--shadow);
+            background: #0c0e0e;
+            line-height: 0;
+        }
+        .case-shot img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .case:hover .case-shot img { transform: scale(1.02); }
+        .case-body .tagrow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+        .pill {
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+            padding: 0.3rem 0.7rem; border-radius: 999px;
+        }
+        .pill.solid { background: var(--accent); color: var(--paper); }
+        .pill.ghost { background: transparent; color: var(--accent-ink); border: 1.5px solid var(--line-strong); }
+        .case-body h3 { font-size: clamp(1.5rem, 3vw, 2rem); letter-spacing: -0.01em; margin-bottom: 0.7rem; }
+        .case-body > p { color: var(--ink-soft); margin: 0 0 1.1rem; font-size: 1rem; }
+        .case-feats { list-style: none; padding: 0; margin: 0 0 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; }
+        .case-feats li { position: relative; padding-left: 1.6rem; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.5; }
+        .case-feats li::before {
+            content: ''; position: absolute; left: 0; top: 0.5em;
+            width: 8px; height: 8px; border-radius: 2px; background: var(--accent);
+        }
+        .case-impact {
+            border-left: 3px solid var(--accent);
+            padding: 0.2rem 0 0.2rem 1rem;
+            margin: 0 0 1.3rem;
+            color: var(--ink);
+            font-weight: 500;
+        }
+        .case-impact strong { color: var(--accent-ink); }
+        .case-tech { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+        .case-tech span { font-size: 0.78rem; color: var(--ink-faint); border: 1px solid var(--line); border-radius: 6px; padding: 0.2rem 0.55rem; }
+        @media (min-width: 900px) {
+            .case { grid-template-columns: 1.05fr 1fr; gap: 3rem; }
+            .case.flip .case-shot { order: 2; }
+            .case.flip .case-body { order: 1; }
+        }
 
         /* ---------- Capabilities ---------- */
         .cap-grid {
@@ -395,7 +445,7 @@
             padding-top: 1.3rem;
         }
         .step .n {
-            font-family: var(--serif);
+            font-family: var(--display);
             font-size: 2.4rem;
             font-weight: 600;
             color: #7fd8dd;
@@ -502,7 +552,7 @@
             padding: 1.8rem;
             display: flex; flex-direction: column;
         }
-        .quote .mark { font-family: var(--serif); font-size: 3rem; line-height: 0.6; color: var(--accent); height: 1.4rem; }
+        .quote .mark { font-family: var(--display); font-size: 3rem; line-height: 0.6; color: var(--accent); height: 1.4rem; }
         .quote p { color: var(--ink-soft); font-size: 0.97rem; margin: 0.4rem 0 1.4rem; flex: 1; }
         .quote .who { display: flex; align-items: center; gap: 0.8rem; }
         .quote .avatar {
@@ -515,45 +565,19 @@
         .quote .role { color: var(--ink-faint); font-size: 0.85rem; }
 
         /* ---------- Contact ---------- */
-        .contact-grid { display: grid; gap: 3rem; }
-        @media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
-        .contact-aside .lede { margin-bottom: 1.8rem; }
-        .direct { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.8rem; }
-        .direct a {
-            display: inline-flex; align-items: center; gap: 0.7rem;
+        .contact-simple { max-width: 720px; margin: 0 auto; text-align: center; }
+        .contact-simple .eyebrow { justify-content: center; }
+        .contact-simple .lede { margin-left: auto; margin-right: auto; }
+        .contact-links { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; margin-top: 2rem; }
+        .clink {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.72rem 1.25rem; border-radius: 999px;
+            border: 1.5px solid rgba(255,255,255,0.22);
             color: #fff; font-weight: 500;
+            transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
         }
-        .ink-section .direct a:hover { color: #7fd8dd; }
-        .direct a svg { width: 20px; height: 20px; color: #7fd8dd; }
-        .socials { display: flex; gap: 0.8rem; }
-        .socials a {
-            width: 46px; height: 46px; border-radius: 999px;
-            border: 1.5px solid rgba(255,255,255,0.25);
-            display: flex; align-items: center; justify-content: center;
-            color: #fff; transition: all 0.25s ease;
-        }
-        .socials a:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
-        .socials a svg { width: 20px; height: 20px; }
-
-        form .field { margin-bottom: 1rem; }
-        form input, form textarea {
-            width: 100%;
-            font-family: var(--sans);
-            font-size: 1rem;
-            padding: 0.85rem 1rem;
-            border-radius: 10px;
-            border: 1.5px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            transition: border-color 0.25s ease, background 0.25s ease;
-        }
-        form input::placeholder, form textarea::placeholder { color: rgba(246,244,239,0.5); }
-        form input:focus, form textarea:focus { outline: none; border-color: #7fd8dd; background: rgba(255,255,255,0.09); }
-        form textarea { resize: vertical; min-height: 130px; }
-        #form-status { margin-top: 0.9rem; font-weight: 600; font-size: 0.95rem; }
-        #form-status.ok { color: #7fd8dd; }
-        #form-status.err { color: #ffb4a8; }
-        #form-status.pending { color: rgba(246,244,239,0.7); }
+        .clink:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-2px); }
+        .clink svg, .clink i { width: 20px; height: 20px; }
 
         /* ---------- Footer ---------- */
         footer.site { padding: 2.2rem 0; border-top: 1px solid var(--line); }
@@ -605,6 +629,7 @@
             <a href="#" class="wordmark" aria-label="Sebastian Basaldua — home">Sebastian Basaldua<span class="dot">.</span></a>
             <nav class="nav-links" aria-label="Primary">
                 <a href="#about">About</a>
+                <a href="#software">Software</a>
                 <a href="#capabilities">What I Do</a>
                 <a href="#process">How I Work</a>
                 <a href="#work">Work</a>
@@ -617,6 +642,7 @@
         </div>
         <div id="mobile-menu">
             <a href="#about">About</a>
+            <a href="#software">Software</a>
             <a href="#capabilities">What I Do</a>
             <a href="#process">How I Work</a>
             <a href="#work">Work</a>
@@ -706,6 +732,73 @@
                         <div class="label">Audience reach</div>
                         <p class="desc">Combined AM/FM listeners across the Twin Cities metro</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software & Automation -->
+        <section id="software">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Software &amp; automation</p>
+                    <h2 class="section-title">Tools I've built to <em>erase manual work</em>.</h2>
+                    <p class="lede" style="margin-top:1rem;">I find painful, repetitive processes and build real software to eliminate them — working with AI to ship fast. Two I built and use:</p>
+                </div>
+
+                <div class="case-list">
+                    <!-- AudioPipe -->
+                    <article class="case reveal">
+                        <div class="case-shot">
+                            <img src="assets/images/audiopipe.png" loading="lazy" decoding="async"
+                                alt="AudioPipe desktop app showing a weekly show calendar, a list of promos awaiting verification, and a waveform editor for tagging promos.">
+                        </div>
+                        <div class="case-body">
+                            <div class="tagrow">
+                                <span class="pill solid">Internal tool</span>
+                                <span class="pill ghost">Built with Claude Code</span>
+                            </div>
+                            <h3>AudioPipe — Radio File-Management Automation</h3>
+                            <p>A tool I designed and built end-to-end with Claude Code to erase the weekly grind of broadcast file prep. It handles the whole pipeline so the automation system — and I — don't have to:</p>
+                            <ul class="case-feats">
+                                <li>Scheduled FTP ingest of program and promo files</li>
+                                <li>A configurable audio-processing pipeline on arrival (normalization plus other processing), with clean, normalized metadata written to every file</li>
+                                <li>A release/hold system that drops files under generic names at the right moment, so radio-automation watchfolders pick them up automatically</li>
+                                <li>Smart promo tagging — incoming promos are auto-tagged by detecting the trailing "tail" and mixing in a show-specific air-time clip (mixed into the audio, not replacing it), or tagged in one click via a waveform editor</li>
+                                <li>A calendar view of everything downloaded and released</li>
+                            </ul>
+                            <p class="case-impact"><strong>Impact:</strong> cut weekly file management from roughly an hour across several programs down to minutes. Built solo with AI — a working example of how I ship real systems fast.</p>
+                            <div class="case-tech">
+                                <span>Scheduled FTP</span><span>Audio DSP / normalization</span><span>Metadata</span><span>Watchfolder release</span><span>Waveform editor</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CheckSpree -->
+                    <article class="case flip reveal">
+                        <div class="case-shot">
+                            <img src="assets/images/checkspree.png" loading="lazy" decoding="async"
+                                alt="CheckSpree desktop app showing a digital check preview ready to print, with a ledger sidebar tracking running balances.">
+                        </div>
+                        <div class="case-body">
+                            <div class="tagrow">
+                                <span class="pill solid">Open source</span>
+                                <span class="pill ghost">Actively developed</span>
+                            </div>
+                            <h3>CheckSpree — Open-Source Check Printing &amp; Ledger</h3>
+                            <p>A free, open-source tool I built and shipped publicly. It started as a simple way to fill in a check digitally and print it onto check paper, and grew into a full ledger:</p>
+                            <ul class="case-feats">
+                                <li>Digital check entry that prints cleanly onto pre-loaded check stock</li>
+                                <li>A ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles</li>
+                                <li>Free for anyone to use and extend</li>
+                            </ul>
+                            <p class="case-impact">Actively developed — the core is solid, with a few features still being hardened.</p>
+                            <a class="btn btn-ghost" href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener"
+                                onclick="gtag('event', 'click_project_link', {'event_category':'software','event_label':'checkspree_github'});">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -980,49 +1073,33 @@
         <!-- Contact -->
         <section id="contact" class="ink-section">
             <div class="container">
-                <div class="contact-grid">
-                    <div class="contact-aside">
-                        <p class="eyebrow">Get in touch</p>
-                        <h2 class="section-title">Let's talk.</h2>
-                        <p class="lede" style="margin-top:1rem;">
-                            I'm looking for full-time <strong style="color:#fff;">Solutions Engineer, Implementation, and Automation</strong>
-                            roles where I can find slow processes and engineer them away. If that's the kind of person your team needs,
-                            I'd love to hear from you.
-                        </p>
-                        <div class="direct">
-                            <a href="mailto:sbasalmedia@gmail.com"><i data-lucide="mail"></i> sbasalmedia@gmail.com</a>
-                            <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf"
-                                onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_contact'});">
-                                <i data-lucide="download"></i> Download résumé (PDF)
-                            </a>
-                        </div>
-                        <div class="socials">
-                            <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" rel="noopener" aria-label="LinkedIn"
-                                onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'linkedin'});">
-                                <i data-lucide="linkedin"></i>
-                            </a>
-                            <a href="https://www.youtube.com/@SBasalMedia" target="_blank" rel="noopener" aria-label="YouTube"
-                                onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'youtube'});">
-                                <i data-lucide="youtube"></i>
-                            </a>
-                        </div>
+                <div class="contact-simple">
+                    <p class="eyebrow">Get in touch</p>
+                    <h2 class="section-title">Let's connect.</h2>
+                    <p class="lede" style="margin-top:1rem;">
+                        I build automation and internal tools that erase manual, error-prone work — and I'm always glad to
+                        talk shop, compare notes, or walk through how something was built. The best ways to reach me:
+                    </p>
+                    <div class="contact-links">
+                        <a class="clink" href="mailto:sbasalmedia@gmail.com"
+                            onclick="gtag('event', 'click_contact', {'event_category':'contact','event_label':'email'});">
+                            <i data-lucide="mail"></i> Email
+                        </a>
+                        <a class="clink" href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" rel="noopener"
+                            onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'linkedin'});">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.27c-.97 0-1.75-.79-1.75-1.76s.78-1.75 1.75-1.75 1.75.78 1.75 1.75-.78 1.76-1.75 1.76zm12.5 11.27h-3v-5.6c0-1.34-.03-3.06-1.87-3.06-1.87 0-2.16 1.46-2.16 2.96v5.7h-3v-10h2.88v1.37h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.59v5.6z"/></svg>
+                            LinkedIn
+                        </a>
+                        <a class="clink" href="https://www.youtube.com/@SBasalMedia" target="_blank" rel="noopener"
+                            onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'youtube'});">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.51A3.02 3.02 0 0 0 .5 6.2 31.5 31.5 0 0 0 0 12a31.5 31.5 0 0 0 .5 5.8 3.02 3.02 0 0 0 2.12 2.14C4.5 20.45 12 20.45 12 20.45s7.5 0 9.38-.51a3.02 3.02 0 0 0 2.12-2.14A31.5 31.5 0 0 0 24 12a31.5 31.5 0 0 0-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>
+                            YouTube
+                        </a>
+                        <a class="clink" href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf"
+                            onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_contact'});">
+                            <i data-lucide="download"></i> Résumé (PDF)
+                        </a>
                     </div>
-                    <form id="contact-form" aria-label="Contact form">
-                        <div class="field">
-                            <label class="sr-only" for="cf-name">Your name</label>
-                            <input id="cf-name" type="text" name="name" placeholder="Your name" autocomplete="name" required>
-                        </div>
-                        <div class="field">
-                            <label class="sr-only" for="cf-email">Your email</label>
-                            <input id="cf-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
-                        </div>
-                        <div class="field">
-                            <label class="sr-only" for="cf-message">Message</label>
-                            <textarea id="cf-message" name="message" placeholder="Tell me about the role or your team…" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send message <i data-lucide="arrow-right"></i></button>
-                        <p id="form-status" hidden></p>
-                    </form>
                 </div>
             </div>
         </section>
@@ -1042,7 +1119,6 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         // Icons + gallery
         if (window.lucide) lucide.createIcons();
@@ -1218,30 +1294,6 @@
                 item.style.display = show ? '' : 'none';
             });
         }));
-
-        // Contact form (EmailJS)
-        const form = document.getElementById('contact-form');
-        const status = document.getElementById('form-status');
-        if (form) {
-            emailjs.init('BP2BigTLAntfpaGg1');
-            form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                status.hidden = false;
-                status.className = 'pending';
-                status.textContent = 'Sending…';
-                emailjs.sendForm('service_g7kbu63', 'template_shv139p', form).then(() => {
-                    gtag('event', 'contact_form_submit', { 'event_category': 'engagement', 'event_label': 'success' });
-                    status.className = 'ok';
-                    status.textContent = 'Thanks — your message was sent.';
-                    form.reset();
-                    setTimeout(() => { status.hidden = true; }, 6000);
-                }, (err) => {
-                    status.className = 'err';
-                    status.textContent = 'Something went wrong. Please email sbasalmedia@gmail.com directly.';
-                    console.error('EmailJS failed:', err);
-                });
-            });
-        }
     </script>
 </body>
 
