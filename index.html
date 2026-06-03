@@ -260,7 +260,10 @@
             width: 100%; height: 100%;
             object-fit: cover;
             z-index: 0;
+            opacity: 0;
+            transition: opacity 0.7s ease;
         }
+        #heroVideo.is-ready { opacity: 1; }
         .hero-overlay {
             position: absolute; inset: 0; z-index: 1;
             background:
@@ -653,7 +656,7 @@
     <main id="main">
         <!-- Hero -->
         <section class="hero" aria-label="Introduction">
-            <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/images/social-share-image.jpg">
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata">
                 <source src="assets/videos/Hero_Video.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -1160,8 +1163,13 @@
         // Year
         document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Hero video: swap to portrait source on mobile
+        // Hero video: fade in only once it can actually play (avoids a poster/first-frame flash)
         const heroVideo = document.getElementById('heroVideo');
+        if (heroVideo) {
+            const showHero = () => heroVideo.classList.add('is-ready');
+            if (heroVideo.readyState >= 2) showHero();
+            ['playing', 'canplay', 'loadeddata'].forEach(ev => heroVideo.addEventListener(ev, showHero, { once: true }));
+        }
         const setHeroSource = () => {
             if (!heroVideo || !isMobile) return;
             const wantMobile = window.innerHeight > window.innerWidth;
