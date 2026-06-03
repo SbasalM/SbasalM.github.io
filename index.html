@@ -1,750 +1,591 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="js">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebastian Basaldua | Technical Creative Director</title>
-    <meta name="description" content="Technical Creative Director specializing in broadcast media, 3D animation, and AI-powered production workflows. Serving 3.6M+ listeners across the Twin Cities.">
-    
+    <title>Sebastian Basaldua | Operations &amp; Automation Builder</title>
+    <meta name="description" content="Operations and media-technology specialist who finds slow, manual processes and engineers them away with AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
+
     <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
-    <meta property="og:title" content="Sebastian Basaldua | Technical Creative Director">
-    <meta property="og:description" content="Bridging creative vision with technical innovation. Award-winning motion graphics, broadcast operations, and AI-powered workflows.">
+    <meta property="og:title" content="Sebastian Basaldua | Operations &amp; Automation Builder">
+    <meta property="og:description" content="A systems thinker who engineers away slow, manual work using AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
     <meta property="og:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
     <meta property="og:url" content="https://sbasalm.github.io/">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sebastian Basaldua | Technical Creative Director">
-    <meta name="twitter:description" content="Bridging creative vision with technical innovation. Award-winning motion graphics, broadcast operations, and AI-powered workflows.">
+    <meta name="twitter:title" content="Sebastian Basaldua | Operations &amp; Automation Builder">
+    <meta name="twitter:description" content="A systems thinker who engineers away slow, manual work using AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
     <meta name="twitter:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
-    
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
+
+    <meta name="theme-color" content="#0e7a80">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230e7a80%22/><text x=%2250%22 y=%2272%22 font-size=%2256%22 font-family=%22Georgia,serif%22 fill=%22%23f6f4ef%22 text-anchor=%22middle%22>SB</text></svg>">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Three.js will be conditionally loaded via JavaScript for desktop only -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fancybox CSS (photography gallery) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+
     <style>
-        /* Base styles */
+        :root {
+            --paper: #f6f4ef;
+            --paper-2: #efece4;
+            --ink: #1a1714;
+            --ink-soft: #544e45;
+            --ink-faint: #8a8378;
+            --accent: #0e7a80;
+            --accent-ink: #0a5257;
+            --accent-wash: #e4efee;
+            --line: rgba(26, 23, 20, 0.12);
+            --line-strong: rgba(26, 23, 20, 0.22);
+            --shadow: 0 18px 50px -24px rgba(26, 23, 20, 0.45);
+            --maxw: 1140px;
+            --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+            --sans: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a0a0a;
-            color: #E5E7EB;
+            margin: 0;
+            font-family: var(--sans);
+            background-color: var(--paper);
+            color: var(--ink);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
             overflow-x: hidden;
         }
 
-        /* Desktop-only cursor styles */
-        @media (pointer: fine) {
-            * {
-                cursor: none;
-            }
-
-            .cursor {
-                width: 20px;
-                height: 20px;
-                border: 2px solid #06b6d4;
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9999;
-                transition: transform 0.1s ease;
-                mix-blend-mode: difference;
-            }
-
-            .cursor-follower {
-                width: 40px;
-                height: 40px;
-                background: rgba(6, 182, 212, 0.1);
-                border-radius: 50%;
-                position: fixed;
-                pointer-events: none;
-                z-index: 9998;
-                transition: transform 0.3s ease;
-            }
-
-            .cursor-hover {
-                transform: scale(2);
-                background: rgba(6, 182, 212, 0.2);
-                border-color: #22d3ee;
-            }
-        }
-
-        /* Hide cursor on touch devices */
-        @media (pointer: coarse) {
-            * {
-                cursor: auto !important;
-            }
-
-            .cursor,
-            .cursor-follower {
-                display: none !important;
-            }
-        }
-
-        /* Loading Screen */
-        #loader {
+        /* Subtle paper grain */
+        body::before {
+            content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0a0a0a;
-            z-index: 10000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        .loader-content {
-            text-align: center;
-        }
+        img, video { max-width: 100%; display: block; }
 
-        .loader-text {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(2rem, 8vw, 4rem);
-            background: linear-gradient(90deg, #06b6d4, #22d3ee, #06b6d4);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 2s linear infinite;
-        }
+        a { color: var(--accent-ink); text-decoration: none; }
 
-        @keyframes shimmer {
-            to {
-                background-position: 200% center;
-            }
-        }
+        ::selection { background: var(--accent); color: var(--paper); }
 
-        .progress-bar {
-            width: 200px;
-            height: 2px;
-            background: rgba(6, 182, 212, 0.2);
-            margin: 20px auto;
+        :focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
             border-radius: 2px;
-            overflow: hidden;
         }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #06b6d4, #22d3ee);
-            width: 0%;
-            transition: width 0.3s ease;
+        .sr-only {
+            position: absolute; width: 1px; height: 1px;
+            padding: 0; margin: -1px; overflow: hidden;
+            clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
         }
 
-        .font-heading {
-            font-family: 'Bebas Neue', sans-serif;
-            letter-spacing: 1.5px;
+        .skip-link {
+            position: absolute; left: 1rem; top: -3rem;
+            background: var(--ink); color: var(--paper);
+            padding: 0.6rem 1rem; border-radius: 8px; z-index: 200;
+            transition: top 0.2s ease;
         }
+        .skip-link:focus { top: 1rem; }
 
-        /* Responsive Glitch Effect */
-        .glitch {
-            position: relative;
-            color: white;
-            font-size: clamp(3rem, 10vw, 6rem);
-            animation: glitch-skew 1s infinite linear alternate-reverse;
-        }
-
-        .glitch::before,
-        .glitch::after {
-            content: attr(data-text);
-            position: absolute;
-            top: 0;
-            left: 0;
+        .container {
             width: 100%;
-            height: 100%;
-        }
-
-        .glitch::before {
-            animation: glitch-1 0.5s infinite;
-            color: #00ffff;
-            z-index: -1;
-        }
-
-        .glitch::after {
-            animation: glitch-2 0.5s infinite;
-            color: #ff00ff;
-            z-index: -2;
-        }
-
-        @keyframes glitch-1 {
-            0%, 100% {
-                clip-path: inset(0 0 0 0);
-                transform: translate(0);
-            }
-            20% {
-                clip-path: inset(33% 0 40% 0);
-                transform: translate(-2px, 2px);
-            }
-            40% {
-                clip-path: inset(20% 0 30% 0);
-                transform: translate(2px, -2px);
-            }
-            60% {
-                clip-path: inset(70% 0 10% 0);
-                transform: translate(-2px, 2px);
-            }
-            80% {
-                clip-path: inset(10% 0 80% 0);
-                transform: translate(2px, -2px);
-            }
-        }
-
-        @keyframes glitch-2 {
-            0%, 100% {
-                clip-path: inset(0 0 0 0);
-                transform: translate(0);
-            }
-            20% {
-                clip-path: inset(60% 0 20% 0);
-                transform: translate(2px, 2px);
-            }
-            40% {
-                clip-path: inset(10% 0 70% 0);
-                transform: translate(-2px, -2px);
-            }
-            60% {
-                clip-path: inset(40% 0 40% 0);
-                transform: translate(2px, 2px);
-            }
-            80% {
-                clip-path: inset(80% 0 10% 0);
-                transform: translate(-2px, -2px);
-            }
-        }
-
-        @keyframes glitch-skew {
-            0%, 100% {
-                transform: skew(0deg);
-            }
-            20% {
-                transform: skew(1deg);
-            }
-            40% {
-                transform: skew(-1deg);
-            }
-            60% {
-                transform: skew(0.5deg);
-            }
-            80% {
-                transform: skew(-0.5deg);
-            }
-        }
-
-        /* Hero Section */
-        .hero-video-container {
+            max-width: var(--maxw);
+            margin: 0 auto;
+            padding: 0 1.5rem;
             position: relative;
-            height: 100vh;
-            overflow: hidden;
+            z-index: 2;
         }
 
-        #heroVideo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -100;
-            transform: translateX(-50%) translateY(-50%);
-            filter: brightness(0.7);
-        }
+        /* ---------- Typography ---------- */
+        h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.05; margin: 0; }
 
-        #hero-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -50;
+        .eyebrow {
+            font-family: var(--sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent-ink);
+            margin: 0 0 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
         }
-
-        /* Hide canvas on mobile for performance */
-        @media (max-width: 768px) {
-            #hero-canvas {
-                display: none;
-            }
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 0, 0, 0.5) 0%, rgba(6, 182, 212, 0.1) 100%);
-            z-index: -40;
-        }
-
-        /* Animated gradient background */
-        .gradient-bg {
-            background: linear-gradient(-45deg, #0a0a0a, #1a1a2e, #16213e, #0f3460);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
-
-        @keyframes gradientShift {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        /* Enhanced Section Titles */
-        .section-title-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 3rem;
+        .eyebrow::before {
+            content: '';
+            width: 26px; height: 1px;
+            background: var(--accent);
         }
 
         .section-title {
-            font-size: clamp(2.5rem, 7vw, 4rem);
-            font-family: 'Bebas Neue', sans-serif;
-            background: linear-gradient(90deg, #06b6d4, #22d3ee, #06b6d4);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s linear infinite;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+            font-size: clamp(2.1rem, 5vw, 3.3rem);
+            letter-spacing: -0.015em;
         }
+        .section-title em { font-style: italic; color: var(--accent-ink); }
 
-        .section-title-container::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #22d3ee, transparent);
-            border-radius: 2px;
-            animation: pulse 2s ease-in-out infinite;
+        .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--ink-soft); }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.98rem;
+            padding: 0.85rem 1.5rem;
+            border-radius: 999px;
+            border: 1.5px solid transparent;
+            cursor: pointer;
+            transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
         }
+        .btn svg { width: 18px; height: 18px; }
+        .btn-primary { background: var(--accent); color: var(--paper); }
+        .btn-primary:hover { background: var(--accent-ink); transform: translateY(-2px); }
+        .btn-ghost { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+        .btn-ghost:hover { border-color: var(--accent); color: var(--accent-ink); transform: translateY(-2px); }
+        .btn-light { border-color: rgba(255,255,255,0.6); color: #fff; background: transparent; }
+        .btn-light:hover { background: rgba(255,255,255,0.12); transform: translateY(-2px); }
 
-        @keyframes pulse {
-            0%, 100% {
-                width: 60px;
-                opacity: 0.6;
-            }
-            50% {
-                width: 100px;
-                opacity: 1;
-            }
+        /* ---------- Header ---------- */
+        header.site {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            border-bottom: 1px solid transparent;
         }
-
-        /* Enhanced Header */
-        #header {
-            background: rgba(10, 10, 10, 0.5);
-            -webkit-backdrop-filter: blur(20px);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-            transition: all 0.3s ease;
+        header.site.scrolled {
+            background: rgba(246, 244, 239, 0.88);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom-color: var(--line);
         }
-
-        #header.scrolled {
-            background: rgba(10, 10, 10, 0.95);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.1);
+        .nav-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.05rem 1.5rem;
+            max-width: var(--maxw);
+            margin: 0 auto;
         }
+        .wordmark {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: 1.15rem;
+            letter-spacing: -0.01em;
+            color: var(--ink);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.4rem;
+        }
+        .wordmark .dot { color: var(--accent); }
+        /* On the hero (before scroll) the header sits over dark video */
+        header.site:not(.scrolled) .wordmark,
+        header.site:not(.scrolled) .nav-links a,
+        header.site:not(.scrolled) .menu-toggle { color: #fff; }
+        header.site:not(.scrolled) .nav-links a::after { background: #fff; }
 
-        .nav-link {
+        .nav-links { display: none; gap: 0.4rem; align-items: center; }
+        .nav-links a {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--ink-soft);
+            padding: 0.4rem 0.7rem;
             position: relative;
-            padding: 0.5rem 1rem;
-            color: #9CA3AF;
-            transition: color 0.3s ease;
-            overflow: hidden;
         }
-
-        .nav-link::before {
+        .nav-links a::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #06b6d4, #22d3ee);
-            transform: translateX(-50%);
-            transition: width 0.3s ease;
+            position: absolute; left: 0.7rem; right: 0.7rem; bottom: 0.15rem;
+            height: 1.5px;
+            background: var(--accent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.25s ease;
+        }
+        .nav-links a:hover::after { transform: scaleX(1); }
+
+        .menu-toggle {
+            display: inline-flex;
+            background: none; border: none; cursor: pointer;
+            color: var(--ink); padding: 0.35rem;
+        }
+        .menu-toggle svg { width: 26px; height: 26px; }
+
+        #mobile-menu {
+            display: none;
+            flex-direction: column;
+            background: var(--paper);
+            border-bottom: 1px solid var(--line);
+            padding: 0.5rem 0 1rem;
+        }
+        #mobile-menu.open { display: flex; }
+        #mobile-menu a {
+            color: var(--ink);
+            font-weight: 500;
+            padding: 0.85rem 1.5rem;
+        }
+        #mobile-menu a:hover { background: var(--accent-wash); color: var(--accent-ink); }
+
+        @media (min-width: 880px) {
+            .nav-links { display: flex; }
+            .menu-toggle { display: none; }
         }
 
-        .nav-link:hover {
-            color: #22d3ee;
-        }
-
-        .nav-link:hover::before {
-            width: 80%;
-        }
-
-        /* Enhanced Cards */
-        .card {
-            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8), rgba(17, 24, 39, 0.8));
-            border: 1px solid rgba(6, 182, 212, 0.1);
-            padding: 2rem;
-            border-radius: 20px;
+        /* ---------- Hero ---------- */
+        .hero {
             position: relative;
+            min-height: 100svh;
+            display: flex;
+            align-items: center;
             overflow: hidden;
-            transition: all 0.3s ease;
+            background: #0c0e0e;
         }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #06b6d4, #22d3ee, #06b6d4);
-            border-radius: 20px;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 0.3s ease;
-            animation: rotate 3s linear infinite;
-        }
-
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
-            }
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(6, 182, 212, 0.3);
-        }
-
-        /* Portfolio Items - Mobile Optimized */
-        .portfolio-item {
-            position: relative;
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(6, 182, 212, 0.2);
-        }
-
-        .portfolio-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, transparent, rgba(6, 182, 212, 0.3), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-
-        .portfolio-item:hover::before {
-            transform: translateX(100%);
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.4);
-        }
-
-        /* Mobile-specific portfolio overlay */
-        .portfolio-overlay {
+        #heroVideo {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 50%);
-            display: flex;
-            align-items: flex-end;
-            padding: 1.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        @media (hover: hover) {
-            .portfolio-item:hover .portfolio-overlay {
-                opacity: 1;
-            }
-        }
-
-        @media (hover: none) {
-            .portfolio-overlay {
-                opacity: 1;
-                background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
-            }
-        }
-
-        /* Process cards */
-        .process-card {
-            background: linear-gradient(135deg, rgba(6, 182, 212, 0.05), rgba(34, 211, 238, 0.05));
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            padding: 2rem;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-        }
-
-        .process-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(6, 182, 212, 0.5);
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
-        }
-
-        .process-number {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #06b6d4, #22d3ee);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-        }
-
-        /* Floating animation */
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        .float {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Modal Enhancements */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.95);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            position: relative;
-            margin: 5% auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 900px;
-            animation: modalSlideIn 0.3s ease;
-        }
-
-        @media (max-width: 768px) {
-            .modal-content {
-                margin: 2% auto;
-                width: 95%;
-            }
-        }
-
-        @keyframes modalSlideIn {
-            from {
-                transform: translateY(-50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-body {
-            background: linear-gradient(135deg, #1a1a2e, #0f0f0f);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            font-size: 40px;
-            font-weight: bold;
-            color: #9CA3AF;
-            cursor: pointer;
-            transition: color 0.3s ease;
-        }
-
-        .close-modal:hover {
-            color: #ffffff;
-        }
-
-        /* Back to top button */
-        #to-top-btn {
-            display: none;
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 99;
-            background: linear-gradient(135deg, #06b6d4, #22d3ee);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
-            transition: all 0.3s ease;
-            animation: float 3s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        #to-top-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
-        }
-
-        /* Skill bars */
-        .skill-bar {
-            background: rgba(6, 182, 212, 0.1);
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            margin: 10px 0;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #06b6d4, #22d3ee);
-            border-radius: 10px;
-            width: 0;
-            transition: width 2s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .skill-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 2s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                transform: translateX(-100%);
-            }
-            100% {
-                transform: translateX(100%);
-            }
-        }
-
-        /* Testimonial cards */
-        .testimonial-card {
-            background: linear-gradient(135deg, rgba(31, 41, 55, 0.5), rgba(17, 24, 39, 0.5));
-            border: 1px solid rgba(6, 182, 212, 0.2);
-            border-radius: 20px;
-            padding: 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 100px;
-            color: rgba(6, 182, 212, 0.1);
-            font-family: Georgia, serif;
-        }
-
-        /* Award badge */
-        .award-badge {
-            background: linear-gradient(135deg, #fbbf24, #f59e0b);
-            color: #1f2937;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: bold;
-            display: inline-block;
-            margin: 1rem 0;
-            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.3);
-        }
-
-        /* Mobile-specific adjustments */
-        @media (max-width: 768px) {
-            .section-title {
-                letter-spacing: 2px;
-            }
-
-            .card {
-                padding: 1.5rem;
-            }
-
-            .testimonial-card {
-                padding: 1.5rem;
-            }
-
-            .testimonial-card::before {
-                font-size: 60px;
-                top: -10px;
-            }
-
-            #mobile-menu {
-                -webkit-backdrop-filter: blur(20px);
-                backdrop-filter: blur(20px);
-            }
-        }
-
-        /* Video optimization */
-        .service-video {
-            width: 100%;
-            height: auto;
+            width: 100%; height: 100%;
             object-fit: cover;
+            z-index: 0;
         }
-
-        .lazy-video {
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .hero-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background:
+                linear-gradient(180deg, rgba(8,10,10,0.55) 0%, rgba(8,10,10,0.35) 40%, rgba(8,10,10,0.78) 100%),
+                linear-gradient(90deg, rgba(8,10,10,0.65) 0%, rgba(8,10,10,0.1) 60%);
         }
+        .hero .container { z-index: 2; padding-top: 7rem; padding-bottom: 5rem; }
+        .hero-inner { max-width: 760px; color: #fff; }
+        .hero-eyebrow { color: #7fd8dd; }
+        .hero-eyebrow::before { background: #7fd8dd; }
+        .hero h1 {
+            font-size: clamp(2.7rem, 8vw, 5.3rem);
+            letter-spacing: -0.02em;
+            margin-bottom: 0.4rem;
+        }
+        .hero .rotator {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 500;
+            font-size: clamp(1.2rem, 3.2vw, 1.9rem);
+            color: #aef0f3;
+            min-height: 1.6em;
+            margin-bottom: 1.4rem;
+            display: block;
+        }
+        .rotator .caret {
+            display: inline-block;
+            width: 2px;
+            background: #aef0f3;
+            margin-left: 2px;
+            animation: blink 1s step-end infinite;
+            align-self: stretch;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+        .hero p.intro {
+            font-size: clamp(1.05rem, 1.9vw, 1.35rem);
+            color: rgba(255,255,255,0.86);
+            max-width: 620px;
+            margin: 0 0 2.2rem;
+            line-height: 1.6;
+        }
+        .hero-cta { display: flex; flex-wrap: wrap; gap: 0.9rem; }
+        .scroll-cue {
+            position: absolute;
+            bottom: 1.6rem; left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            color: rgba(255,255,255,0.65);
+            animation: bob 2.4s ease-in-out infinite;
+        }
+        .scroll-cue svg { width: 26px; height: 26px; }
+        @keyframes bob { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
 
-        .lazy-video.loaded {
+        /* ---------- Section frame ---------- */
+        section { padding: clamp(4rem, 9vw, 7.5rem) 0; position: relative; }
+        .section-head { max-width: 720px; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+        .section-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+        .section-head.center .eyebrow { justify-content: center; }
+
+        .alt { background: var(--paper-2); }
+        .ink-section { background: var(--ink); color: var(--paper); }
+        .ink-section .section-title,
+        .ink-section h3 { color: #fff; }
+        .ink-section .lede { color: rgba(246,244,239,0.72); }
+        .ink-section .eyebrow { color: #7fd8dd; }
+        .ink-section .eyebrow::before { background: #7fd8dd; }
+
+        /* ---------- About + Stats ---------- */
+        .about-grid { display: grid; gap: 2.5rem; }
+        .about-copy p { font-size: clamp(1.05rem, 1.6vw, 1.2rem); color: var(--ink-soft); margin: 0 0 1.3rem; }
+        .about-copy p:last-child { margin-bottom: 0; }
+        .about-copy strong { color: var(--ink); font-weight: 600; }
+        .about-copy .accent { color: var(--accent-ink); font-weight: 600; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--line);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: clamp(2.5rem, 5vw, 3.5rem);
+        }
+        .stat { background: var(--paper); padding: 1.8rem 1.4rem; }
+        .alt .stat { background: var(--paper-2); }
+        .stat .num {
+            font-family: var(--serif);
+            font-weight: 600;
+            font-size: clamp(2.4rem, 5vw, 3.4rem);
+            color: var(--accent-ink);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        .stat .label { font-weight: 600; margin-top: 0.6rem; font-size: 0.98rem; }
+        .stat .desc { color: var(--ink-faint); font-size: 0.85rem; margin-top: 0.25rem; line-height: 1.45; }
+        @media (min-width: 720px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+
+        /* ---------- Capabilities ---------- */
+        .cap-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .cap-grid { grid-template-columns: repeat(4, 1fr); } }
+        .cap {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .cap:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+        .cap .thumb { aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-2); }
+        .cap .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+        .cap:hover .thumb img { transform: scale(1.05); }
+        .cap .body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+        .cap .tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+        .cap h3 { font-size: 1.28rem; }
+        .cap p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+        .cap.lead { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+        /* ---------- Process ---------- */
+        .process-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: step; }
+        @media (min-width: 640px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1000px) { .process-grid { grid-template-columns: repeat(4, 1fr); } }
+        .step {
+            border-top: 2px solid rgba(127, 216, 221, 0.4);
+            padding-top: 1.3rem;
+        }
+        .step .n {
+            font-family: var(--serif);
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: #7fd8dd;
+            line-height: 1;
+            display: block;
+            margin-bottom: 0.7rem;
+        }
+        .step h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .step p { margin: 0; color: rgba(246,244,239,0.72); font-size: 0.95rem; }
+
+        /* ---------- Work ---------- */
+        .filters { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-bottom: 2.5rem; }
+        .filter-btn {
+            font-family: var(--sans);
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 0.5rem 1.1rem;
+            border-radius: 999px;
+            border: 1.5px solid var(--line-strong);
+            background: transparent;
+            color: var(--ink-soft);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .filter-btn:hover { border-color: var(--accent); color: var(--accent-ink); }
+        .filter-btn.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .work-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 980px) { .work-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .work-item {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            cursor: pointer;
+            background: var(--ink);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             opacity: 1;
         }
+        .work-item:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+        .work-media { position: relative; aspect-ratio: 4 / 3; overflow: hidden; }
+        .work-media img, .work-media video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .work-item:hover .work-media img, .work-item:hover .work-media video { transform: scale(1.06); }
+        .work-overlay {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; justify-content: flex-end;
+            padding: 1.25rem;
+            background: linear-gradient(to top, rgba(10,12,12,0.92) 0%, rgba(10,12,12,0.15) 55%, transparent 80%);
+            color: #fff;
+        }
+        .work-overlay .kind { font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #7fd8dd; margin-bottom: 0.25rem; }
+        .work-overlay h3 { font-size: 1.3rem; color: #fff; }
+        .work-overlay .cue { position: absolute; top: 1rem; right: 1rem; opacity: 0; transition: opacity 0.3s ease; color: #fff; }
+        .work-item:hover .work-overlay .cue { opacity: 1; }
+        .work-overlay .cue svg { width: 20px; height: 20px; }
 
-        /* Touch-friendly tap highlights */
-        @media (hover: none) {
-            .portfolio-item:active {
-                transform: scale(0.98);
-            }
+        /* ---------- Modal ---------- */
+        .modal {
+            display: none;
+            position: fixed; inset: 0; z-index: 1000;
+            background: rgba(12, 12, 12, 0.86);
+            -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+            overflow-y: auto;
+            padding: 5vh 1rem;
+        }
+        .modal.open { display: block; }
+        .modal-content {
+            max-width: 880px; margin: 0 auto;
+            background: var(--paper);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            position: relative;
+        }
+        .modal-media { background: #000; }
+        .modal-media img { width: 100%; }
+        .modal-body { padding: 1.8rem; }
+        .modal-body h3 { font-size: 1.7rem; margin-bottom: 0.6rem; }
+        .modal-body p { color: var(--ink-soft); margin: 0; }
+        .modal-body a { font-weight: 600; }
+        .close-modal {
+            position: absolute; top: 0.8rem; right: 0.8rem;
+            width: 40px; height: 40px; border-radius: 999px;
+            background: rgba(0,0,0,0.55); color: #fff;
+            border: none; cursor: pointer; font-size: 1.5rem; line-height: 1;
+            display: flex; align-items: center; justify-content: center;
+            z-index: 3;
+        }
+        .close-modal:hover { background: var(--accent); }
 
-            button:active,
-            a:active {
-                transform: scale(0.95);
-            }
+        /* ---------- Testimonials ---------- */
+        .quote-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; }
+        @media (min-width: 700px) { .quote-grid { grid-template-columns: repeat(3, 1fr); } }
+        .quote {
+            background: var(--paper);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 1.8rem;
+            display: flex; flex-direction: column;
+        }
+        .quote .mark { font-family: var(--serif); font-size: 3rem; line-height: 0.6; color: var(--accent); height: 1.4rem; }
+        .quote p { color: var(--ink-soft); font-size: 0.97rem; margin: 0.4rem 0 1.4rem; flex: 1; }
+        .quote .who { display: flex; align-items: center; gap: 0.8rem; }
+        .quote .avatar {
+            width: 44px; height: 44px; border-radius: 999px;
+            background: var(--accent); color: var(--paper);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.95rem; flex-shrink: 0;
+        }
+        .quote .name { font-weight: 600; font-size: 0.95rem; }
+        .quote .role { color: var(--ink-faint); font-size: 0.85rem; }
+
+        /* ---------- Contact ---------- */
+        .contact-grid { display: grid; gap: 3rem; }
+        @media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1fr; align-items: start; } }
+        .contact-aside .lede { margin-bottom: 1.8rem; }
+        .direct { display: flex; flex-direction: column; gap: 0.9rem; margin-bottom: 1.8rem; }
+        .direct a {
+            display: inline-flex; align-items: center; gap: 0.7rem;
+            color: #fff; font-weight: 500;
+        }
+        .ink-section .direct a:hover { color: #7fd8dd; }
+        .direct a svg { width: 20px; height: 20px; color: #7fd8dd; }
+        .socials { display: flex; gap: 0.8rem; }
+        .socials a {
+            width: 46px; height: 46px; border-radius: 999px;
+            border: 1.5px solid rgba(255,255,255,0.25);
+            display: flex; align-items: center; justify-content: center;
+            color: #fff; transition: all 0.25s ease;
+        }
+        .socials a:hover { background: var(--accent); border-color: var(--accent); transform: translateY(-3px); }
+        .socials a svg { width: 20px; height: 20px; }
+
+        form .field { margin-bottom: 1rem; }
+        form input, form textarea {
+            width: 100%;
+            font-family: var(--sans);
+            font-size: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 10px;
+            border: 1.5px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            transition: border-color 0.25s ease, background 0.25s ease;
+        }
+        form input::placeholder, form textarea::placeholder { color: rgba(246,244,239,0.5); }
+        form input:focus, form textarea:focus { outline: none; border-color: #7fd8dd; background: rgba(255,255,255,0.09); }
+        form textarea { resize: vertical; min-height: 130px; }
+        #form-status { margin-top: 0.9rem; font-weight: 600; font-size: 0.95rem; }
+        #form-status.ok { color: #7fd8dd; }
+        #form-status.err { color: #ffb4a8; }
+        #form-status.pending { color: rgba(246,244,239,0.7); }
+
+        /* ---------- Footer ---------- */
+        footer.site { padding: 2.2rem 0; border-top: 1px solid var(--line); }
+        footer.site .row { display: flex; flex-direction: column; gap: 0.6rem; align-items: center; text-align: center; }
+        footer.site p { margin: 0; color: var(--ink-faint); font-size: 0.9rem; }
+        @media (min-width: 640px) { footer.site .row { flex-direction: row; justify-content: space-between; } }
+
+        /* ---------- Back to top ---------- */
+        #to-top {
+            position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 90;
+            width: 46px; height: 46px; border-radius: 999px;
+            background: var(--ink); color: var(--paper);
+            border: none; cursor: pointer;
+            display: none; align-items: center; justify-content: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+        #to-top.show { display: flex; }
+        #to-top:hover { background: var(--accent); transform: translateY(-3px); }
+        #to-top svg { width: 20px; height: 20px; }
+
+        /* ---------- Reveal animation ---------- */
+        .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .js .reveal.in-view { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+            .js .reveal { opacity: 1; transform: none; }
+            .rotator .caret { display: none; }
         }
     </style>
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZNXJ7ZCK"></script>
     <script>
@@ -753,445 +594,335 @@
         gtag('js', new Date());
         gtag('config', 'G-1JZNXJ7ZCK');
     </script>
-
-    <!-- Fancybox CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
 </head>
 
-<body class="gradient-bg">
-    <!-- Loading Screen -->
-    <div id="loader">
-        <div class="loader-content">
-            <div class="loader-text">LOADING</div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress"></div>
-            </div>
-        </div>
-    </div>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Custom Cursor (Desktop Only) -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
-
-    <!-- Header & Navigation -->
-    <header id="header" class="fixed top-0 left-0 right-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl md:text-2xl font-bold text-white font-heading hover:text-cyan-400 transition-colors">
-                <span style="display: inline-block; animation: float 3s ease-in-out infinite;">SB</span> MEDIA
-            </a>
-            <nav class="hidden md:flex items-center space-x-2 lg:space-x-4">
-                <a href="#about" class="nav-link text-sm lg:text-base">About</a>
-                <a href="#services" class="nav-link text-sm lg:text-base">Services</a>
-                <a href="#process" class="nav-link text-sm lg:text-base">Process</a>
-                <a href="#portfolio" class="nav-link text-sm lg:text-base">Portfolio</a>
-                <a href="#testimonials" class="nav-link text-sm lg:text-base">Testimonials</a>
-                <a href="#contact" class="nav-link text-sm lg:text-base">Contact</a>
+    <!-- Header -->
+    <header class="site" id="header">
+        <div class="nav-row">
+            <a href="#" class="wordmark" aria-label="Sebastian Basaldua — home">Sebastian Basaldua<span class="dot">.</span></a>
+            <nav class="nav-links" aria-label="Primary">
+                <a href="#about">About</a>
+                <a href="#capabilities">What I Do</a>
+                <a href="#process">How I Work</a>
+                <a href="#work">Work</a>
+                <a href="#testimonials">Testimonials</a>
+                <a href="#contact">Contact</a>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden text-white p-2">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
                 <i data-lucide="menu"></i>
             </button>
         </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-lg">
-            <a href="#about" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">About</a>
-            <a href="#services" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Services</a>
-            <a href="#process" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Process</a>
-            <a href="#portfolio" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Portfolio</a>
-            <a href="#testimonials" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Testimonials</a>
-            <a href="#contact" class="block text-center py-3 px-4 text-sm hover:bg-cyan-500/20 hover:text-cyan-400 transition-all">Contact</a>
+        <div id="mobile-menu">
+            <a href="#about">About</a>
+            <a href="#capabilities">What I Do</a>
+            <a href="#process">How I Work</a>
+            <a href="#work">Work</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
         </div>
     </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-video-container">
-            <video autoplay muted loop playsinline id="heroVideo" poster="assets/images/photography-showcase.jpg">
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" aria-label="Introduction">
+            <video id="heroVideo" autoplay muted loop playsinline preload="metadata" poster="assets/images/social-share-image.jpg">
                 <source src="assets/videos/Hero_Video.mp4" type="video/mp4">
             </video>
-            <canvas id="hero-canvas"></canvas>
             <div class="hero-overlay"></div>
-            <div class="container relative z-10 mx-auto px-6 h-full flex flex-col justify-center items-center text-center text-white">
-                <h1 class="glitch mb-4 md:mb-6" data-text="SEBASTIAN BASALDUA">SEBASTIAN BASALDUA</h1>
-                <div class="reveal-text">
-                    <p class="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-6 md:mb-8 px-4">
-                        <span id="typewriter"></span>
+            <div class="container">
+                <div class="hero-inner">
+                    <p class="eyebrow hero-eyebrow">Operations &amp; Media-Technology · Automation Builder</p>
+                    <h1>Sebastian Basaldua</h1>
+                    <span class="rotator" aria-hidden="true"><span id="typewriter"></span><span class="caret">&nbsp;</span></span>
+                    <p class="intro">
+                        I find the slow, manual process and engineer it away — using AI, automation, and custom tooling
+                        to build systems that make teams faster and more reliable. I bridge creative media and the
+                        technical systems behind it.
                     </p>
-                </div>
-                <p class="text-base md:text-lg text-gray-400 max-w-2xl mb-8 px-4">
-                    Bridging creative vision with technical innovation. Award-winning motion graphics artist turned operations leader, 
-                    serving 3.6M+ listeners across the Twin Cities.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 mt-6 md:mt-8">
-                    <a href="#latest-projects"
-                        onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'view_my_work'});"
-                        class="px-6 md:px-8 py-3 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-semibold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
-                        View My Work
-                    </a>
-                    <a href="#contact"
-                        onclick="gtag('event', 'click_hero_button', {'event_category': 'navigation', 'event_label': 'get_in_touch'});"
-                        class="px-6 md:px-8 py-3 border-2 border-cyan-500 rounded-full font-semibold hover:bg-cyan-500/20 transform hover:scale-105 transition-all duration-300">
-                        Get In Touch
-                    </a>
-                </div>
-            </div>
-            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <i data-lucide="chevron-down" class="w-8 h-8 text-cyan-400"></i>
-            </div>
-        </section>
-
-        <!-- Latest Projects Section -->
-        <section id="latest-projects" class="py-12 md:py-20 bg-gray-900 relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <div class="section-title-container">
-                        <h2 class="section-title">Latest Projects</h2>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <!-- Latest Project 1 - WCTS Documentary -->
-                    <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
-                        data-modal-title="WCTS Short Documentary - The Bible Station"
-                        data-modal-text="Completed short-form documentary showcasing WCTS Radio's mission and impact. Implemented AI-assisted workflow that reduced 30 hours of interview sorting to just 2 hours, enabling faster narrative development.">
-                        <div class="relative overflow-hidden h-64">
-                            <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500">
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS Documentary</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">AI-Enhanced Production</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Latest Project 2 - Audiobook -->
-                    <div class="portfolio-item" data-category="radio" data-modal-type="image"
-                        data-modal-image="assets/images/book-cover.jpg"
-                        data-modal-title="Audiobook - Breathless Haste"
-                        data-modal-text="My second audiobook production for Hope*Books. This project involved cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and formatting the final master to meet strict ACX standards. Currently in final review.<br><br><a href='https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0' target='_blank' class='text-cyan-400 font-bold hover:underline'>Purchase the book on Amazon &rarr;</a>">
-                        <div class="relative overflow-hidden h-64">
-                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                   autoplay loop muted playsinline 
-                                   data-src="assets/videos/breathless-haste.mp4"
-                                   data-poster="assets/images/breathless-haste-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">Breathless Haste</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Audiobook (In Final Review)</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Latest Project 3 - TRFF Website -->
-                    <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="TRFF Website Remake"
-                        data-modal-text="Complete redesign and development of the Teresa Rosalind French Foundation's website using WordPress and Divi. Provided video production and photography for the site content, creating a cohesive visual narrative.<br><br><a href='https://teressarosalindfrenchfoundation.org/' target='_blank' class='text-cyan-400 font-bold hover:underline'>Visit the live website &rarr;</a>">
-                        <div class="relative overflow-hidden h-64">
-                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                   autoplay loop muted playsinline 
-                                   data-src="assets/videos/trff-web.mp4"
-                                   data-poster="assets/images/trff-web-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">TRFF Website</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">WordPress & Media</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about" class="py-12 md:py-20 relative overflow-hidden">
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <div class="section-title-container">
-                    <h2 class="section-title">Why I'm Different</h2>
-                </div>
-                <div class="max-w-3xl mx-auto text-gray-300 text-base md:text-lg leading-relaxed space-y-4 md:space-y-6">
-                    <p class="transform hover:scale-105 transition-transform duration-300">
-                        I'm a <span class="text-cyan-400 font-semibold">Technical Creative Director</span> who bridges the gap between 
-                        ambitious creative visions and practical execution. Where others see technical limitations, I see opportunities 
-                        for innovation.
-                    </p>
-                    <p class="transform hover:scale-105 transition-transform duration-300">
-                        My approach combines <span class="text-cyan-400 font-semibold">Hollywood-quality standards</span> with 
-                        real-world budgets through strategic automation and AI-powered workflows. I help production teams achieve 
-                        more by working smarter, not harder.
-                    </p>
-                    <p class="transform hover:scale-105 transition-transform duration-300">
-                        From managing broadcast operations reaching millions to creating award-winning motion graphics, I bring 
-                        both <span class="text-cyan-400 font-semibold">creative excellence and technical precision</span> to every project.
-                    </p>
-                </div>
-
-                <!-- Stats Section - Updated with Real Numbers -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mt-12 md:mt-16">
-                    <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="3600000">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">Broadcast Reach</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Combined AM/FM audience across Twin Cities metro</p>
-                    </div>
-                    <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400 counter" data-target="130">0</div>
-                        <div class="text-gray-300 font-semibold mt-2">Motion Graphics Delivered</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Complex 2D/3D animations and educational segments</p>
-                    </div>
-                    <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400">93%</div>
-                        <div class="text-gray-300 font-semibold mt-2">Error Reduction</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">Automated workflows eliminating 5/7 daily broadcast errors</p>
-                    </div>
-                    <div class="text-center p-4">
-                        <div class="text-3xl md:text-4xl font-bold text-cyan-400">15x</div>
-                        <div class="text-gray-300 font-semibold mt-2">Faster Workflow</div>
-                        <p class="text-gray-500 text-xs md:text-sm mt-1">30-hour tasks completed in 2 hours with AI integration</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services" class="py-12 md:py-20 bg-gray-800 relative">
-            <div class="container mx-auto px-6 text-center relative z-10">
-                <div class="section-title-container">
-                    <h2 class="section-title">What I Do</h2>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                    <!-- Card 1: Video Production & Editing -->
-                    <div class="card group">
-                        <div class="mb-4 overflow-hidden rounded-lg">
-                            <!-- Mobile: Static Image -->
-                            <picture class="block md:hidden">
-                                <img src="assets/images/media-production-thumb.jpg" 
-                                     alt="Video Production & Editing Demo" 
-                                     loading="lazy"
-                                     class="w-full h-auto object-cover">
-                            </picture>
-                            <!-- Desktop: Video -->
-                            <video class="service-video hidden md:block" autoplay loop muted playsinline>
-                                <source src="assets/videos/media-production.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Video Production & Editing</h3>
-                        <p class="text-sm md:text-base text-gray-400">Directing and editing compelling visual stories, from documentaries to motion graphics. Specializing in narrative development with AI-enhanced workflows.</p>
-                    </div>
-
-                    <!-- Card 2: 3D Graphics & Animation -->
-                    <div class="card group">
-                        <div class="mb-4 overflow-hidden rounded-lg">
-                            <!-- Mobile: Static Image -->
-                            <picture class="block md:hidden">
-                                <img src="assets/images/3d-graphics-thumb.jpg" 
-                                     alt="3D Graphics & Animation Demo" 
-                                     loading="lazy"
-                                     class="w-full h-auto object-cover">
-                            </picture>
-                            <!-- Desktop: Video -->
-                            <video class="service-video hidden md:block" autoplay loop muted playsinline>
-                                <source src="assets/videos/3d-graphics.mp4" type="video/mp4">
-                            </video>
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">3D Graphics & Animation</h3>
-                        <p class="text-sm md:text-base text-gray-400">Expert Blender artist creating award-winning educational segments. Developed distinctive 2.5D techniques for historical recreations.</p>
-                    </div>
-
-                    <!-- Card 3: Broadcast & Technical Ops -->
-                    <div class="card group">
-                        <div class="mb-4 overflow-hidden rounded-lg">
-                            <img src="assets/images/broadcast-operations.jpg" alt="Broadcast & Technical Ops"
-                                class="w-full h-auto object-cover" loading="lazy">
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Broadcast & Technical Ops</h3>
-                        <p class="text-sm md:text-base text-gray-400">Managing radio operations serving 3.6M+ listeners. Developed automation systems preventing 900+ on-air errors annually.</p>
-                    </div>
-
-                    <!-- Card 4: Audio & Photography -->
-                    <div class="card group">
-                        <div class="mb-4 overflow-hidden rounded-lg">
-                            <img src="assets/images/audio-photo.jpg" alt="Audio & Photography"
-                                class="w-full h-auto object-cover" loading="lazy">
-                        </div>
-                        <h3 class="text-lg md:text-xl font-bold mb-3 text-white">Audio & Photography</h3>
-                        <p class="text-sm md:text-base text-gray-400">Professional audiobook production meeting ACX standards. Commercial photography for portraits, products, and events.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Process Section -->
-        <section id="process" class="py-12 md:py-20 relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <div class="section-title-container">
-                        <h2 class="section-title">How I Work</h2>
-                    </div>
-                    <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-12">
-                        Every project follows a proven process designed to maximize creative impact while minimizing wasted time and resources.
-                    </p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 max-w-6xl mx-auto">
-                    <div class="process-card">
-                        <div class="process-number">1</div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Discovery Call</h3>
-                        <p class="text-gray-400">Understanding your vision, goals, and constraints. We explore what success looks like for your project.</p>
-                    </div>
-                    <div class="process-card">
-                        <div class="process-number">2</div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Technical Strategy</h3>
-                        <p class="text-gray-400">Identifying the smartest approach using AI and automation when applicable to achieve more with your budget</p>
-                    </div>
-                    <div class="process-card">
-                        <div class="process-number">3</div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Production</h3>
-                        <p class="text-gray-400">Executing with precision while maintaining open communication and regular progress updates.</p>
-                    </div>
-                    <div class="process-card">
-                        <div class="process-number">4</div>
-                        <h3 class="text-xl font-semibold text-white mb-3">Optimization</h3>
-                        <p class="text-gray-400">Ensuring maximum impact through strategic refinement and platform-specific optimization.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Portfolio Section -->
-        <section id="portfolio" class="py-12 md:py-20 bg-gray-900 relative">
-            <div class="container mx-auto px-6 text-center">
-                <div class="section-title-container">
-                    <h2 class="section-title">Featured Work</h2>
-                </div>
-
-                <!-- Filter Buttons -->
-                <div class="flex justify-center gap-2 md:gap-4 mb-8 md:mb-12 flex-wrap">
-                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 hover:bg-cyan-500/30 transition-all duration-300 active text-sm md:text-base"
-                        data-filter="all">All</button>
-                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
-                        data-filter="video">Video</button>
-                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
-                        data-filter="photo">Photography</button>
-                    <button class="filter-btn px-4 md:px-6 py-2 rounded-full bg-gray-800/50 text-gray-400 border border-gray-600/30 hover:bg-cyan-500/20 hover:text-cyan-400 hover:border-cyan-500/30 transition-all duration-300 text-sm md:text-base"
-                        data-filter="3d">3D/Graphics</button>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                    <!-- Project 1 - WCTS Documentary -->
-                    <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
-                        data-modal-title="WCTS Documentary - The Bible Station"
-                        data-modal-text="Short-form documentary showcasing WCTS Radio's community impact. Implemented AI workflow that reduced 30 hours of interview processing to 2 hours, enabling rapid narrative development.">
-                        <div class="relative overflow-hidden h-64">
-                            <img src="assets/images/The_Bible_Station.jpg" alt="WCTS Documentary"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">WCTS Documentary</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">AI-Enhanced Production</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 - Melton Video -->
-                    <div class="portfolio-item" data-category="video" data-modal-type="vimeo"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Q19D_5Kon9c?si=x7b5Gm4EdKK-Lchu&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="Melton 50-Year Celebration Video"
-                        data-modal-text="Commemorative video celebrating 50 years of missionary work in Japan. Developed innovative 2.5D techniques to animate historical photographs and created 3D recreations of significant moments.">
-                        <div class="relative overflow-hidden h-64">
-                            <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                   autoplay loop muted playsinline 
-                                   data-src="assets/videos/Melton_50.mp4"
-                                   data-poster="assets/images/melton-50-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">Melton 50-Year</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Historical Recreation</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 3 - Photography Gallery -->
-                    <div class="portfolio-item" data-category="photo">
-                        <a href="assets/images/photography/full/Black_and_White_Portrait.jpg"
-                            data-fancybox="gallery-photography" data-caption="Black and white closeup portrait.">
-                            <div class="relative overflow-hidden h-64">
-                                <video class="lazy-video w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                       autoplay loop muted playsinline 
-                                       data-src="assets/videos/photography-reel.mp4"
-                                       data-poster="assets/images/photography-reel-thumb.jpg">
-                                    <source src="" type="video/mp4">
-                                </video>
-                                <div class="portfolio-overlay">
-                                    <div class="text-left">
-                                        <h3 class="font-heading text-xl md:text-2xl text-white">Professional Photography</h3>
-                                        <p class="text-cyan-400 text-sm md:text-base">View Gallery</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="hero-cta">
+                        <a href="#work" class="btn btn-primary"
+                            onclick="gtag('event', 'click_hero_button', {'event_category':'navigation','event_label':'view_my_work'});">
+                            View my work <i data-lucide="arrow-down"></i>
                         </a>
-                        <div style="display: none;">
-                            <a href="assets/images/photography/full/Candid_Family.jpg" data-fancybox="gallery-photography"
-                                data-caption="Family photo looking out at the beach"></a>
-                            <a href="assets/images/photography/full/Family.jpg" data-fancybox="gallery-photography"
-                                data-caption="Family photo at an apple orchard"></a>
-                            <a href="assets/images/photography/full/Food.jpg" data-fancybox="gallery-photography"
-                                data-caption="Burger from Select"></a>
-                            <a href="assets/images/photography/full/Hibiscus.jpg" data-fancybox="gallery-photography"
-                                data-caption="Hibiscus flower on Guam"></a>
-                            <a href="assets/images/photography/full/Landscape.jpg" data-fancybox="gallery-photography"
-                                data-caption="Ocean Landscape"></a>
-                            <a href="assets/images/photography/full/Pregnancy.jpg" data-fancybox="gallery-photography"
-                                data-caption="Pregnancy photo on the rocks"></a>
-                            <a href="assets/images/photography/full/Sunset.jpg" data-fancybox="gallery-photography"
-                                data-caption="Sunset over a lake"></a>
+                        <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf" class="btn btn-light"
+                            onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_hero'});">
+                            <i data-lucide="download"></i> Download résumé
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <a href="#about" class="scroll-cue" aria-label="Scroll to about">
+                <i data-lucide="chevron-down"></i>
+            </a>
+        </section>
+
+        <!-- About / Why I'm Different -->
+        <section id="about">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">Why I'm different</p>
+                    <h2 class="section-title">I find the work that <em>shouldn't be manual</em> — and engineer it away.</h2>
+                </div>
+                <div class="about-copy reveal" style="max-width: 760px;">
+                    <p>
+                        I'm a <strong>systems thinker and a force-multiplier</strong>. I find the slow, manual processes
+                        that quietly drain a team — the recurring errors, the 30-hour tasks, the steps everyone dreads —
+                        and I engineer them away with AI, automation, and custom tooling.
+                    </p>
+                    <p>
+                        My method is <span class="accent">building</span>. I'm not a traditional software engineer and I
+                        don't pretend to be — I use AI as a force-multiplier to design and ship working systems:
+                        compliance reporting built from scratch, file-sync automation that removed recurring broadcast
+                        failures, and AI-assisted workflows that turn 30 hours of work into two.
+                    </p>
+                    <p>
+                        What makes that combination rare is the <span class="accent">bridge</span>. I came up through
+                        creative media — broadcast, motion graphics, audio, 3D — so I speak fluently with the creative
+                        teams I support and understand the technical systems behind their work. I sit exactly between the two.
+                    </p>
+                </div>
+
+                <div class="stats reveal" role="list">
+                    <div class="stat" role="listitem">
+                        <div class="num">93%</div>
+                        <div class="label">Fewer broadcast errors</div>
+                        <p class="desc">Automated compliance eliminating 5 of 7 daily on-air errors</p>
+                    </div>
+                    <div class="stat" role="listitem">
+                        <div class="num">15×</div>
+                        <div class="label">Faster workflows</div>
+                        <p class="desc">30-hour tasks completed in ~2 hours with AI-assisted process</p>
+                    </div>
+                    <div class="stat" role="listitem">
+                        <div class="num">900+</div>
+                        <div class="label">Errors prevented / yr</div>
+                        <p class="desc">On-air mistakes caught before broadcast by automation</p>
+                    </div>
+                    <div class="stat" role="listitem">
+                        <div class="num">3.6M</div>
+                        <div class="label">Audience reach</div>
+                        <p class="desc">Combined AM/FM listeners across the Twin Cities metro</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Capabilities / What I Do -->
+        <section id="capabilities" class="alt">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">What I do</p>
+                    <h2 class="section-title">Systems first. <em>Media is the bridge.</em></h2>
+                    <p class="lede" style="margin-top:1rem;">The value I bring leads with automation and building — the creative craft is the supporting strength that lets me speak both languages.</p>
+                </div>
+                <div class="cap-grid">
+                    <article class="cap lead reveal">
+                        <div class="thumb"><img src="assets/images/broadcast-operations.jpg" alt="Broadcast operations dashboard and equipment" loading="lazy"></div>
+                        <div class="body">
+                            <span class="tag">Automation</span>
+                            <h3>Automation &amp; Workflow Engineering</h3>
+                            <p>Custom scripts, FTP/file-sync automation, and compliance reporting that remove recurring manual steps — and the errors that come with them.</p>
+                        </div>
+                    </article>
+                    <article class="cap reveal">
+                        <div class="thumb"><img src="assets/images/trff-web-thumb.jpg" alt="Website built and launched for a client" loading="lazy"></div>
+                        <div class="body">
+                            <span class="tag">AI-assisted</span>
+                            <h3>AI-Assisted Building</h3>
+                            <p>AI as my method — designing and shipping working tools, websites, and media applications, and collapsing 30-hour tasks into about two.</p>
+                        </div>
+                    </article>
+                    <article class="cap reveal">
+                        <div class="thumb"><img src="assets/images/studio-renovation-featured.jpg" alt="Production studio and technical equipment" loading="lazy"></div>
+                        <div class="body">
+                            <span class="tag">Operations</span>
+                            <h3>Media-Technology Operations</h3>
+                            <p>Broadcast &amp; studio operations, equipment configuration, and NAS &amp; digital asset management — keeping the systems behind production running reliably.</p>
+                        </div>
+                    </article>
+                    <article class="cap reveal">
+                        <div class="thumb"><img src="assets/images/media-production-thumb.jpg" alt="Video, motion graphics and 3D production work" loading="lazy"></div>
+                        <div class="body">
+                            <span class="tag">Supporting craft</span>
+                            <h3>Creative Production</h3>
+                            <p>Video, motion graphics, 3D in Blender, audiobook &amp; broadcast audio, and photography — the craft I support, automate, and understand from the inside.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process / How I Work -->
+        <section id="process" class="ink-section">
+            <div class="container">
+                <div class="section-head">
+                    <p class="eyebrow">How I work</p>
+                    <h2 class="section-title">I don't just flag problems — <em>I engineer them away.</em></h2>
+                    <p class="lede" style="margin-top:1rem;">How I turn a manual, error-prone process into a reliable system.</p>
+                </div>
+                <div class="process-grid">
+                    <div class="step reveal">
+                        <span class="n">01</span>
+                        <h3>Find the friction</h3>
+                        <p>Spot the slow, manual, error-prone process everyone has quietly learned to tolerate.</p>
+                    </div>
+                    <div class="step reveal">
+                        <span class="n">02</span>
+                        <h3>Design the system</h3>
+                        <p>Map the workflow and pick the smartest path — automation, custom scripting, or AI.</p>
+                    </div>
+                    <div class="step reveal">
+                        <span class="n">03</span>
+                        <h3>Build &amp; ship</h3>
+                        <p>Build the working system with AI as a force-multiplier, test it against real conditions, and put it into daily use.</p>
+                    </div>
+                    <div class="step reveal">
+                        <span class="n">04</span>
+                        <h3>Measure &amp; refine</h3>
+                        <p>Track errors prevented and hours saved, then tighten it until it's reliable and self-sustaining.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work -->
+        <section id="work">
+            <div class="container">
+                <div class="section-head center">
+                    <p class="eyebrow">Selected work</p>
+                    <h2 class="section-title">Things I've built &amp; produced</h2>
+                </div>
+
+                <div class="filters" role="group" aria-label="Filter work by type">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="video">Video</button>
+                    <button class="filter-btn" data-filter="audio">Audio</button>
+                    <button class="filter-btn" data-filter="photo">Photography</button>
+                    <button class="filter-btn" data-filter="3d">3D / Graphics</button>
+                </div>
+
+                <div class="work-grid">
+                    <!-- WCTS 60th Documentary -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: WCTS 60th-Anniversary Documentary"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
+                        data-modal-title="WCTS 60th-Anniversary Documentary"
+                        data-modal-text="A cinematic short-form documentary for WCTS Radio's 60th anniversary. I implemented an AI-assisted workflow for interview management and narrative development that reduced roughly 30 hours of interview sorting to about 2 hours — turning the slowest part of the edit into the fastest.">
+                        <div class="work-media">
+                            <img src="assets/images/The_Bible_Station.jpg" alt="WCTS 60th-anniversary documentary still" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">AI-assisted production</span>
+                            <h3>WCTS 60th Documentary</h3>
                         </div>
                     </div>
 
-                    <!-- Project 4 - Clone Trooper Animation -->
-                    <div class="portfolio-item" data-category="3d" data-modal-type="vimeo"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="Clone Trooper vs. Alien Animation"
-                        data-modal-text="Personal 3D animation project showcasing character animation and compositing skills. Combined Mixamo animations with custom hand-animated sequences in Blender.">
-                        <div class="relative overflow-hidden h-64">
-                            <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper vs. Alien Animation"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">Clone Trooper Animation</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">3D Character Animation</p>
-                                </div>
-                            </div>
+                    <!-- TRFF Website -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: TRFF website rebuild"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="TRFF Website Rebuild"
+                        data-modal-text="A full redesign and build of the Teresa Rosalind French Foundation website on WordPress and Divi, including the video production and photography for its content — one cohesive visual system from build to media.<br><br><a href=&quot;https://teressarosalindfrenchfoundation.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Visit the live website →</a>">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/trff-web.mp4" data-poster="assets/images/trff-web-thumb.jpg" poster="assets/images/trff-web-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">Web build &amp; media</span>
+                            <h3>TRFF Website</h3>
                         </div>
                     </div>
 
-                    <!-- Project 5 - Studio Renovation -->
-                    <div class="portfolio-item" data-category="3d" data-modal-type="image"
+                    <!-- Studio Renovation -->
+                    <div class="work-item reveal" data-category="3d" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: podcast studio renovation"
                         data-modal-image="assets/images/studio-design-featured.jpg"
                         data-modal-title="Podcast Studio Renovation"
-                        data-modal-text="Leading renovation of studio facilities for podcast production at WCTS Radio. Applied expertise in studio design, audio equipment integration, and workflow optimization to create a state-of-the-art production environment.">
-                        <div class="relative overflow-hidden h-64">
-                            <img src="assets/images/studio-renovation-featured.jpg" alt="Studio Renovation"
-                                class="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
-                                loading="lazy">
-                            <div class="portfolio-overlay">
-                                <div class="text-left">
-                                    <h3 class="font-heading text-xl md:text-2xl text-white">Studio Renovation</h3>
-                                    <p class="text-cyan-400 text-sm md:text-base">Technical Design</p>
-                                </div>
+                        data-modal-text="I authored the technical specs and design recommendations for a full studio renovation and oversaw the rollout of new production technologies — applying studio design, audio-equipment integration, and workflow optimization to build a reliable production environment.">
+                        <div class="work-media">
+                            <img src="assets/images/studio-renovation-featured.jpg" alt="Renovated podcast studio" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Technical design</span>
+                            <h3>Studio Renovation</h3>
+                        </div>
+                    </div>
+
+                    <!-- Melton 50-Year -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Melton 50-year video"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Q19D_5Kon9c?si=x7b5Gm4EdKK-Lchu&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="Melton 50-Year Celebration"
+                        data-modal-text="A commemorative video marking 50 years of missionary work in Japan. I developed 2.5D techniques to animate historical photographs and built 3D recreations of significant moments — making a static archive feel alive.">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/Melton_50.mp4" data-poster="assets/images/melton-50-thumb.jpg" poster="assets/images/melton-50-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">Historical recreation</span>
+                            <h3>Melton 50-Year</h3>
+                        </div>
+                    </div>
+
+                    <!-- Breathless Haste audiobook -->
+                    <div class="work-item reveal" data-category="audio" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: Breathless Haste audiobook"
+                        data-modal-image="assets/images/book-cover.jpg"
+                        data-modal-title="Breathless Haste — Audiobook"
+                        data-modal-text="My second audiobook production for Hope*Books: cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and mastering the final to strict ACX standards.<br><br><a href=&quot;https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>See the book on Amazon →</a>">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/breathless-haste.mp4" data-poster="assets/images/breathless-haste-thumb.jpg" poster="assets/images/breathless-haste-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Audio engineering</span>
+                            <h3>Breathless Haste</h3>
+                        </div>
+                    </div>
+
+                    <!-- Clone Trooper -->
+                    <div class="work-item reveal" data-category="3d" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Clone Trooper 3D animation"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="Clone Trooper vs. Alien"
+                        data-modal-text="A personal 3D animation project showcasing character animation and compositing — combining Mixamo animations with custom hand-animated sequences in Blender.">
+                        <div class="work-media">
+                            <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper 3D character animation still" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">3D character animation</span>
+                            <h3>Clone Trooper</h3>
+                        </div>
+                    </div>
+
+                    <!-- Photography Gallery -->
+                    <div class="work-item reveal" data-category="photo">
+                        <a href="assets/images/photography/full/Black_and_White_Portrait.jpg" data-fancybox="gallery-photography" data-caption="Black and white closeup portrait." aria-label="Open photography gallery">
+                            <div class="work-media">
+                                <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/photography-reel.mp4" data-poster="assets/images/photography-reel-thumb.jpg" poster="assets/images/photography-reel-thumb.jpg">
+                                    <source src="" type="video/mp4">
+                                </video>
                             </div>
+                            <div class="work-overlay">
+                                <span class="cue"><i data-lucide="images"></i></span>
+                                <span class="kind">Photography</span>
+                                <h3>Selected Photography</h3>
+                            </div>
+                        </a>
+                        <div hidden>
+                            <a href="assets/images/photography/full/Candid_Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo looking out at the beach"></a>
+                            <a href="assets/images/photography/full/Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo at an apple orchard"></a>
+                            <a href="assets/images/photography/full/Food.jpg" data-fancybox="gallery-photography" data-caption="Burger from Select"></a>
+                            <a href="assets/images/photography/full/Hibiscus.jpg" data-fancybox="gallery-photography" data-caption="Hibiscus flower on Guam"></a>
+                            <a href="assets/images/photography/full/Landscape.jpg" data-fancybox="gallery-photography" data-caption="Ocean Landscape"></a>
+                            <a href="assets/images/photography/full/Pregnancy.jpg" data-fancybox="gallery-photography" data-caption="Pregnancy photo on the rocks"></a>
+                            <a href="assets/images/photography/full/Sunset.jpg" data-fancybox="gallery-photography" data-caption="Sunset over a lake"></a>
                         </div>
                     </div>
                 </div>
@@ -1199,666 +930,318 @@
         </section>
 
         <!-- Portfolio Modal -->
-        <div id="portfolio-modal" class="modal">
+        <div id="portfolio-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <div class="modal-content">
-                <span id="close-portfolio-modal" class="close-modal">&times;</span>
+                <button id="close-portfolio-modal" class="close-modal" aria-label="Close">&times;</button>
+                <div id="modal-media-content" class="modal-media"></div>
                 <div class="modal-body">
-                    <div id="modal-media-content" class="mb-6 rounded-lg overflow-hidden"></div>
-                    <h3 id="modal-title" class="font-heading text-2xl md:text-3xl text-white mb-3"></h3>
-                    <p id="modal-text" class="text-gray-300 text-base md:text-lg"></p>
+                    <h3 id="modal-title"></h3>
+                    <p id="modal-text"></p>
                 </div>
             </div>
         </div>
 
-        <!-- Testimonials Section -->
-        <section id="testimonials" class="py-12 md:py-20 relative overflow-hidden">
-            <div class="container mx-auto px-6">
-                <div class="text-center">
-                    <div class="section-title-container">
-                        <h2 class="section-title">Client Testimonials</h2>
-                    </div>
+        <!-- Testimonials -->
+        <section id="testimonials" class="alt">
+            <div class="container">
+                <div class="section-head center">
+                    <p class="eyebrow">In their words</p>
+                    <h2 class="section-title">Testimonials</h2>
                 </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
-                    <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">"Thank you to SB Media for the wonderful video you created for The EZ Sit, it is very effective on social media. We especially love the 3-d images. You were very communicative, helpful, and prompt with everything."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                                MS</div>
-                            <div>
-                                <div class="font-semibold text-white text-sm md:text-base">Mary A. Schroeder</div>
-                                <div class="text-xs md:text-sm text-gray-400">The EZ Sit</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">"I applaud his excellent work ethic and skill, and was grateful to partner with him on this project. Sebastian served as my sound engineer for the Astounding Truths audiobook."</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                                AW</div>
-                            <div>
-                                <div class="font-semibold text-white text-sm md:text-base">Annie Weber</div>
-                                <div class="text-xs md:text-sm text-gray-400">Author</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <p class="text-sm md:text-base text-gray-300 mb-4">"Excellent visual representation! Outstanding understanding of the clients requirements and your insight to deliver a user friendly interface. Impressive!"</p>
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 md:w-12 h-10 md:h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center text-white font-bold text-sm md:text-base">
-                                HS</div>
-                            <div>
-                                <div class="font-semibold text-white text-sm md:text-base">TRFF</div>
-                                <div class="text-xs md:text-sm text-gray-400">Teressa Rosalind French Foundation</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="quote-grid">
+                    <figure class="quote reveal">
+                        <div class="mark">"</div>
+                        <blockquote><p>Thank you to SB Media for the wonderful video you created for The EZ Sit — it is very effective on social media. We especially love the 3-D images. You were very communicative, helpful, and prompt with everything.</p></blockquote>
+                        <figcaption class="who">
+                            <span class="avatar">MS</span>
+                            <span><span class="name">Mary A. Schroeder</span><br><span class="role">The EZ Sit</span></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="quote reveal">
+                        <div class="mark">"</div>
+                        <blockquote><p>I applaud his excellent work ethic and skill, and was grateful to partner with him on this project. Sebastian served as my sound engineer for the Astounding Truths audiobook.</p></blockquote>
+                        <figcaption class="who">
+                            <span class="avatar">AW</span>
+                            <span><span class="name">Annie Weber</span><br><span class="role">Author</span></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="quote reveal">
+                        <div class="mark">"</div>
+                        <blockquote><p>Excellent visual representation! Outstanding understanding of the client's requirements and your insight to deliver a user-friendly interface. Impressive!</p></blockquote>
+                        <figcaption class="who">
+                            <span class="avatar">HS</span>
+                            <span><span class="name">TRFF</span><br><span class="role">Teressa Rosalind French Foundation</span></span>
+                        </figcaption>
+                    </figure>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section id="contact" class="py-12 md:py-20 relative">
-            <div class="container mx-auto px-6 text-center">
-                <div class="section-title-container">
-                    <h2 class="section-title">Let's Create Together</h2>
-                </div>
-                <p class="max-w-2xl mx-auto text-base md:text-lg text-gray-300 mb-8 md:mb-12">
-                    Available for freelance projects, consulting, and creative collaborations. 
-                    Let's discuss how I can help achieve your vision with technical innovation.
-                </p>
-
-                <!-- Contact Form -->
-                <form id="contact-form" class="max-w-xl mx-auto">
-                    <div class="mb-4 md:mb-6">
-                        <input type="text" name="name" placeholder="Your Name" required
-                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
+        <!-- Contact -->
+        <section id="contact" class="ink-section">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-aside">
+                        <p class="eyebrow">Get in touch</p>
+                        <h2 class="section-title">Let's talk.</h2>
+                        <p class="lede" style="margin-top:1rem;">
+                            I'm looking for full-time <strong style="color:#fff;">Solutions Engineer, Implementation, and Automation</strong>
+                            roles where I can find slow processes and engineer them away. If that's the kind of person your team needs,
+                            I'd love to hear from you.
+                        </p>
+                        <div class="direct">
+                            <a href="mailto:sbasalmedia@gmail.com"><i data-lucide="mail"></i> sbasalmedia@gmail.com</a>
+                            <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf"
+                                onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_contact'});">
+                                <i data-lucide="download"></i> Download résumé (PDF)
+                            </a>
+                        </div>
+                        <div class="socials">
+                            <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank" rel="noopener" aria-label="LinkedIn"
+                                onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'linkedin'});">
+                                <i data-lucide="linkedin"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@SBasalMedia" target="_blank" rel="noopener" aria-label="YouTube"
+                                onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'youtube'});">
+                                <i data-lucide="youtube"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="mb-4 md:mb-6">
-                        <input type="email" name="email" placeholder="Your Email" required
-                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors">
-                    </div>
-                    <div class="mb-4 md:mb-6">
-                        <textarea name="message" placeholder="Tell me about your project..." rows="5" required
-                            class="w-full px-4 md:px-6 py-3 md:py-4 bg-gray-800/50 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-cyan-500 transition-colors resize-none"></textarea>
-                    </div>
-                    <button type="submit"
-                        class="px-6 md:px-8 py-3 md:py-4 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full font-bold hover:from-cyan-600 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50">
-                        Start a Conversation
-                    </button>
-                    <p id="form-status" class="mt-4 text-cyan-400 hidden"></p>
-                </form>
-
-                <div class="mt-8 md:mt-12 flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6">
-                    <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf"
-                        onclick="gtag('event', 'download_resume', {'event_category': 'engagement', 'event_label': 'resume_pdf'});"
-                        class="text-gray-400 hover:text-cyan-400 transition-colors">
-                        <i data-lucide="download" class="inline w-5 h-5 mr-2"></i>
-                        Download Resume
-                    </a>
-                </div>
-
-                <!-- Social Links -->
-                <div class="flex justify-center items-center gap-4 md:gap-6 mt-6 md:mt-8">
-                    <a href="https://www.linkedin.com/in/sebastian-basaldua/" target="_blank"
-                        onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'linkedin'});"
-                        class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
-                        <i data-lucide="linkedin" class="w-5 md:w-6 h-5 md:h-6"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@SBasalMedia" target="_blank"
-                        onclick="gtag('event', 'click_social', {'event_category': 'social', 'event_label': 'youtube'});"
-                        class="p-3 bg-gray-800/50 rounded-full text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/20 transform hover:scale-110 transition-all duration-300">
-                        <i data-lucide="youtube" class="w-5 md:w-6 h-5 md:h-6"></i>
-                    </a>
+                    <form id="contact-form" aria-label="Contact form">
+                        <div class="field">
+                            <label class="sr-only" for="cf-name">Your name</label>
+                            <input id="cf-name" type="text" name="name" placeholder="Your name" autocomplete="name" required>
+                        </div>
+                        <div class="field">
+                            <label class="sr-only" for="cf-email">Your email</label>
+                            <input id="cf-email" type="email" name="email" placeholder="Your email" autocomplete="email" required>
+                        </div>
+                        <div class="field">
+                            <label class="sr-only" for="cf-message">Message</label>
+                            <textarea id="cf-message" name="message" placeholder="Tell me about the role or your team…" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send message <i data-lucide="arrow-right"></i></button>
+                        <p id="form-status" hidden></p>
+                    </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer class="py-6 md:py-8 border-t border-gray-800">
-        <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-500 text-sm md:text-base">&copy; <span id="year"></span> Sebastian Basaldua. Technical Creative Director.</p>
+    <footer class="site">
+        <div class="container">
+            <div class="row">
+                <p>© <span id="year"></span> Sebastian Basaldua · Operations &amp; Automation Builder</p>
+                <p>Minneapolis, MN · Built and maintained with AI assistance.</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button id="to-top-btn" class="hidden" style="cursor: pointer;">
-        <i data-lucide="arrow-up" class="w-6 h-6 text-white"></i>
-    </button>
+    <button id="to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
 
-    <!-- Fancybox JS -->
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-
-    <!-- Main Site Script -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
-        // Initialize Lucide icons
-        lucide.createIcons();
+        // Icons + gallery
+        if (window.lucide) lucide.createIcons();
+        if (window.Fancybox) Fancybox.bind('[data-fancybox]', {});
 
-        // Initialize Fancybox
-        Fancybox.bind("[data-fancybox]", {});
-
-        // Check if device is mobile/touch
         const isMobile = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
-        const hasHover = window.matchMedia('(hover: hover)').matches;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Dynamic hero video source based on device
-        const setupHeroVideo = () => {
-            const heroVideo = document.getElementById('heroVideo');
-            if (heroVideo && isMobile) {
-                // Check if screen is portrait (typical mobile orientation)
-                if (window.innerHeight > window.innerWidth) {
-                    heroVideo.src = 'assets/videos/Hero_Video_Mobile.mp4';
-                    heroVideo.load(); // Force reload with new source
-                }
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Hero video: swap to portrait source on mobile
+        const heroVideo = document.getElementById('heroVideo');
+        const setHeroSource = () => {
+            if (!heroVideo || !isMobile) return;
+            const wantMobile = window.innerHeight > window.innerWidth;
+            const target = wantMobile ? 'assets/videos/Hero_Video_Mobile.mp4' : 'assets/videos/Hero_Video.mp4';
+            const current = heroVideo.querySelector('source');
+            if (current && current.getAttribute('src') !== target) {
+                current.setAttribute('src', target);
+                heroVideo.load();
+                heroVideo.play().catch(() => {});
             }
         };
-
-        // Run hero video setup on page load
-        setupHeroVideo();
-
-        // Handle orientation changes for video
-        window.addEventListener('orientationchange', () => {
-            const heroVideo = document.getElementById('heroVideo');
-            if (heroVideo) {
-                setTimeout(() => { // Small delay for orientation to settle
-                    if (window.innerHeight > window.innerWidth) {
-                        heroVideo.src = 'assets/videos/Hero_Video_Mobile.mp4';
-                    } else {
-                        heroVideo.src = 'assets/videos/Hero_Video.mp4';
-                    }
-                    heroVideo.load();
-                    heroVideo.play();
-                }, 100);
-            }
-        });
-
-        // Loading Screen
-        window.addEventListener('load', () => {
-            let progress = 0;
-            const progressBar = document.getElementById('progress');
-            const loader = document.getElementById('loader');
-
-            const interval = setInterval(() => {
-                progress += 10;
-                progressBar.style.width = progress + '%';
-
-                if (progress >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        loader.style.opacity = '0';
-                        setTimeout(() => {
-                            loader.style.display = 'none';
-                        }, 500);
-                    }, 300);
-                }
-            }, 100);
-        });
-
-        // Hero Canvas Particles - Desktop only with conditional Three.js loading
-        const initHeroCanvas = () => {
-            // Skip particles on mobile and smaller screens
-            if (isMobile || window.innerWidth < 1024) return;
-            
-            // Check if Three.js is already loaded
-            if (typeof THREE === 'undefined') {
-                // Dynamically load Three.js for desktop only
-                const script = document.createElement('script');
-                script.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-                script.onload = () => {
-                    setupParticles();
-                };
-                document.head.appendChild(script);
-            } else {
-                setupParticles();
-            }
-        };
-
-        const setupParticles = () => {
-            const heroCanvas = document.querySelector('#hero-canvas');
-            if (heroCanvas && typeof THREE !== 'undefined') {
-                const scene = new THREE.Scene();
-                const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-                const renderer = new THREE.WebGLRenderer({
-                    canvas: heroCanvas,
-                    alpha: true,
-                    antialias: true
-                });
-
-                renderer.setPixelRatio(window.devicePixelRatio);
-                renderer.setSize(window.innerWidth, window.innerHeight);
-                camera.position.setZ(5);
-
-                // Create particles
-                const particleCount = 1000;
-                const particleGeometry = new THREE.BufferGeometry();
-                const particlePositions = new Float32Array(particleCount * 3);
-
-                for (let i = 0; i < particleCount * 3; i++) {
-                    particlePositions[i] = (Math.random() - 0.5) * 10;
-                }
-
-                particleGeometry.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
-
-                const particleMaterial = new THREE.PointsMaterial({
-                    size: 0.015,
-                    color: 0x06b6d4,
-                    transparent: true,
-                    opacity: 0.6,
-                    blending: THREE.AdditiveBlending
-                });
-
-                const particleMesh = new THREE.Points(particleGeometry, particleMaterial);
-                scene.add(particleMesh);
-
-                let mouseX = 0;
-                let mouseY = 0;
-
-                document.addEventListener('mousemove', (event) => {
-                    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-                    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-                });
-
-                const clock = new THREE.Clock();
-
-                const animate = () => {
-                    requestAnimationFrame(animate);
-                    const elapsedTime = clock.getElapsedTime();
-
-                    particleMesh.rotation.y = elapsedTime * 0.02;
-                    particleMesh.rotation.x = mouseY * 0.5;
-                    particleMesh.rotation.z = mouseX * 0.5;
-
-                    renderer.render(scene, camera);
-                };
-
-                animate();
-
-                window.addEventListener('resize', () => {
-                    camera.aspect = window.innerWidth / window.innerHeight;
-                    camera.updateProjectionMatrix();
-                    renderer.setSize(window.innerWidth, window.innerHeight);
-                });
-            }
-        };
-
-        // Initialize hero canvas on load
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', initHeroCanvas);
-        } else {
-            initHeroCanvas();
+        if (isMobile && heroVideo) {
+            // mobile starts with no source set in markup via <source src>; ensure load
+            const s = heroVideo.querySelector('source');
+            if (window.innerHeight > window.innerWidth) { s.setAttribute('src', 'assets/videos/Hero_Video_Mobile.mp4'); heroVideo.load(); }
         }
+        window.addEventListener('orientationchange', () => setTimeout(setHeroSource, 150));
 
-        // Lazy Loading for Videos with pause/resume - More aggressive on mobile
-        const setupLazyVideos = () => {
-            const lazyVideos = document.querySelectorAll('.lazy-video');
-            
-            // More aggressive loading threshold for mobile
-            const threshold = isMobile ? 0.1 : 0.25;
-            const rootMargin = isMobile ? '100px' : '50px';
-            
-            const videoObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    const video = entry.target;
-                    if (entry.isIntersecting && !video.classList.contains('loaded')) {
-                        const source = video.querySelector('source');
-                        if (source && video.dataset.src) {
-                            source.src = video.dataset.src;
-                            video.load();
-                            video.classList.add('loaded');
-                            // Only autoplay on desktop, mobile users can tap to play
-                            if (!isMobile) {
-                                video.play().catch(e => console.log('Video play failed:', e));
-                            } else {
-                                // Add play button overlay for mobile
-                                video.setAttribute('controls', 'true');
-                            }
-                        }
-                    } else if (!entry.isIntersecting && video.classList.contains('loaded')) {
-                        video.pause();
-                    } else if (entry.isIntersecting && video.classList.contains('loaded') && !isMobile) {
-                        video.play().catch(e => console.log('Video resume failed:', e));
-                    }
-                });
-            }, {
-                threshold: threshold,
-                rootMargin: rootMargin
-            });
-
-            lazyVideos.forEach(video => {
-                videoObserver.observe(video);
-                // Add poster image for mobile
-                if (isMobile && !video.poster) {
-                    video.poster = video.dataset.poster || 'assets/images/video-placeholder.jpg';
-                }
-            });
+        // Header scroll state + back to top
+        const header = document.getElementById('header');
+        const toTop = document.getElementById('to-top');
+        const onScroll = () => {
+            header.classList.toggle('scrolled', window.scrollY > 40);
+            toTop.classList.toggle('show', window.scrollY > 400);
         };
-        
-        // Keep service videos always playing
-        const setupServiceVideos = () => {
-            const serviceVideos = document.querySelectorAll('.service-video');
-            serviceVideos.forEach(video => {
-                // Force continuous playback
-                video.play().catch(e => console.log('Service video play failed:', e));
-                video.addEventListener('pause', () => {
-                    // Restart if browser pauses it
-                    video.play().catch(e => console.log('Service video restart failed:', e));
-                });
-            });
-        };
-
-        // Initialize lazy loading after DOM loads
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => {
-                setupLazyVideos();
-                setupServiceVideos();
-            });
-        } else {
-            setupLazyVideos();
-            setupServiceVideos();
-        }
-
-        // Contact Form Handler with EmailJS
-        const contactForm = document.getElementById('contact-form');
-        const formStatus = document.getElementById('form-status');
-
-        if (contactForm) {
-            emailjs.init("BP2BigTLAntfpaGg1");
-
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-
-                formStatus.textContent = 'Sending...';
-                formStatus.classList.remove('hidden', 'text-cyan-400', 'text-red-500');
-                formStatus.classList.add('text-yellow-400');
-
-                emailjs.sendForm('service_g7kbu63', 'template_shv139p', contactForm)
-                    .then(() => {
-                        gtag('event', 'contact_form_submit', { 'event_category': 'engagement', 'event_label': 'success' });
-
-                        formStatus.textContent = 'Message sent successfully!';
-                        formStatus.classList.remove('text-yellow-400', 'text-red-500');
-                        formStatus.classList.add('text-cyan-400');
-                        contactForm.reset();
-
-                        setTimeout(() => {
-                            formStatus.classList.add('hidden');
-                        }, 5000);
-                    }, (error) => {
-                        formStatus.textContent = 'Failed to send. Please try again.';
-                        formStatus.classList.remove('text-yellow-400', 'text-cyan-400');
-                        formStatus.classList.add('text-red-500');
-                        console.error('FAILED TO SEND EMAIL...', error);
-                    });
-            });
-        }
-
-        // Custom Cursor - Desktop only
-        if (!isMobile && hasHover) {
-            const cursor = document.querySelector('.cursor');
-            const cursorFollower = document.querySelector('.cursor-follower');
-
-            if (cursor && cursorFollower) {
-                document.addEventListener('mousemove', (e) => {
-                    cursor.style.left = e.clientX + 'px';
-                    cursor.style.top = e.clientY + 'px';
-
-                    setTimeout(() => {
-                        cursorFollower.style.left = e.clientX - 10 + 'px';
-                        cursorFollower.style.top = e.clientY - 10 + 'px';
-                    }, 100);
-                });
-
-                document.querySelectorAll('a, button, .portfolio-item').forEach(el => {
-                    el.addEventListener('mouseenter', () => {
-                        cursor.classList.add('cursor-hover');
-                        cursorFollower.classList.add('cursor-hover');
-                    });
-                    el.addEventListener('mouseleave', () => {
-                        cursor.classList.remove('cursor-hover');
-                        cursorFollower.classList.remove('cursor-hover');
-                    });
-                });
-            }
-        }
-
-        // Typewriter Effect - Updated with better titles
-        const phrases = [
-            "Technical Creative Director",
-            "Operations Manager at WCTS Radio",
-            "Award-Winning Motion Graphics Artist",
-            "AI Workflow Pioneer",
-            "Broadcast Systems Architect",
-            "Creative Problem Solver"
-        ];
-        let phraseIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typewriter = document.getElementById('typewriter');
-
-        function type() {
-            const currentPhrase = phrases[phraseIndex];
-
-            if (isDeleting) {
-                typewriter.textContent = currentPhrase.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-                typewriter.textContent = currentPhrase.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            if (!isDeleting && charIndex === currentPhrase.length) {
-                setTimeout(() => {
-                    isDeleting = true;
-                }, 2000);
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-            }
-
-            const typingSpeed = isDeleting ? 50 : 100;
-            setTimeout(type, typingSpeed);
-        }
-
-        setTimeout(type, 1000);
-
-        // Counter Animation - Updated for large numbers
-        const counters = document.querySelectorAll('.counter');
-        let countersAnimated = false;
-
-        const animateCounters = () => {
-            if (countersAnimated) return;
-            countersAnimated = true;
-            
-            counters.forEach(counter => {
-                const target = +counter.getAttribute('data-target');
-                const duration = 2000; // 2 seconds
-                const increment = target / (duration / 16); // 60fps
-                let current = 0;
-
-                const updateCount = () => {
-                    current += increment;
-                    if (current < target) {
-                        // Format large numbers with commas
-                        counter.innerText = Math.floor(current).toLocaleString();
-                        requestAnimationFrame(updateCount);
-                    } else {
-                        counter.innerText = target.toLocaleString();
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        // Skill Bars Animation
-        const animateSkills = () => {
-            const skillFills = document.querySelectorAll('.skill-fill');
-            skillFills.forEach(fill => {
-                const width = fill.getAttribute('data-width');
-                fill.style.width = width + '%';
-            });
-        };
-
-        // Intersection Observer for animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    if (entry.target.querySelector('.counter')) {
-                        animateCounters();
-                    }
-                    if (entry.target.id === 'skills') {
-                        animateSkills();
-                    }
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(section);
-        });
-
-        const aboutSection = document.getElementById('about');
-        if (aboutSection) observer.observe(aboutSection);
-
-        // Portfolio Filter
-        const filterBtns = document.querySelectorAll('.filter-btn');
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
-
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-cyan-500/20', 'text-cyan-400', 'border-cyan-500/30');
-                    b.classList.add('bg-gray-800/50', 'text-gray-400', 'border-gray-600/30');
-                });
-
-                btn.classList.remove('bg-gray-800/50', 'text-gray-400', 'border-gray-600/30');
-                btn.classList.add('bg-cyan-500/20', 'text-cyan-400', 'border-cyan-500/30');
-
-                const filter = btn.getAttribute('data-filter');
-
-                portfolioItems.forEach(item => {
-                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                        item.style.display = 'block';
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 10);
-                    } else {
-                        item.style.opacity = '0';
-                        item.style.transform = 'scale(0.8)';
-                        setTimeout(() => {
-                            item.style.display = 'none';
-                        }, 300);
-                    }
-                });
-            });
-        });
-
-        // Portfolio Modal & Gallery Logic
-        const portfolioModal = document.getElementById('portfolio-modal');
-        const modalMediaContent = document.getElementById('modal-media-content');
-        const modalTitle = document.getElementById('modal-title');
-        const modalText = document.getElementById('modal-text');
-        const closePortfolioModal = document.getElementById('close-portfolio-modal');
-
-        portfolioItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                // If the clicked item is a link for a Fancybox gallery, stop our script.
-                if (e.target.closest('[data-fancybox]')) {
-                    gtag('event', 'view_project', { 'event_category': 'portfolio', 'event_label': 'Photography Gallery' });
-                    return;
-                }
-
-                e.preventDefault();
-
-                const type = item.dataset.modalType;
-                const title = item.dataset.modalTitle;
-                const text = item.dataset.modalText;
-
-                gtag('event', 'view_project', { 'event_category': 'portfolio', 'event_label': title });
-
-                modalTitle.textContent = title;
-                modalText.innerHTML = text;
-                modalMediaContent.innerHTML = '';
-
-                if (type === 'image') {
-                    const imageSrc = item.dataset.modalImage;
-                    const img = document.createElement('img');
-                    img.src = imageSrc;
-                    img.alt = title;
-                    img.className = 'w-full rounded-lg';
-                    modalMediaContent.appendChild(img);
-                } else if (type === 'vimeo') {
-                    const vimeoEmbed = item.dataset.modalVimeo;
-                    modalMediaContent.innerHTML = vimeoEmbed;
-                }
-
-                portfolioModal.style.display = "block";
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        const closePortfolio = () => {
-            portfolioModal.style.display = "none";
-            modalMediaContent.innerHTML = '';
-            document.body.style.overflow = 'auto';
-        }
-
-        closePortfolioModal.addEventListener('click', closePortfolio);
-
-        window.addEventListener('click', (event) => {
-            if (event.target == portfolioModal) {
-                closePortfolio();
-            }
-        });
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' }));
 
         // Mobile menu
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        menuToggle.addEventListener('click', () => {
+            const open = mobileMenu.classList.toggle('open');
+            menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+            menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+            menuToggle.querySelector('i, svg')?.setAttribute('data-lucide', open ? 'x' : 'menu');
+            if (window.lucide) lucide.createIcons();
         });
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded', 'false');
+        }));
 
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
+        // Typewriter rotator
+        const twEl = document.getElementById('typewriter');
+        const phrases = [
+            'Operations & Automation Builder',
+            'I engineer away manual work',
+            'Systems thinker & force-multiplier',
+            'AI-assisted builder',
+            'The media-technology bridge'
+        ];
+        if (twEl) {
+            if (reduceMotion) {
+                twEl.textContent = phrases[0];
+            } else {
+                let pi = 0, ci = 0, deleting = false;
+                const tick = () => {
+                    const p = phrases[pi];
+                    twEl.textContent = deleting ? p.substring(0, ci - 1) : p.substring(0, ci + 1);
+                    ci += deleting ? -1 : 1;
+                    let delay = deleting ? 45 : 75;
+                    if (!deleting && ci === p.length) { delay = 1900; deleting = true; }
+                    else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 350; }
+                    setTimeout(tick, delay);
+                };
+                setTimeout(tick, 700);
+            }
+        }
+
+        // Scroll reveal
+        const revealEls = document.querySelectorAll('.reveal');
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            revealEls.forEach(el => el.classList.add('in-view'));
+        } else {
+            const ro = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
+            }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+            revealEls.forEach(el => ro.observe(el));
+        }
+
+        // Lazy-load work videos
+        const lazyVideos = document.querySelectorAll('.lazy-video');
+        if (lazyVideos.length) {
+            const vo = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const video = entry.target;
+                    const source = video.querySelector('source');
+                    if (entry.isIntersecting) {
+                        if (source && !source.getAttribute('src') && video.dataset.src) {
+                            source.setAttribute('src', video.dataset.src);
+                            video.load();
+                            if (!isMobile) video.play().catch(() => {});
+                        } else if (!isMobile) {
+                            video.play().catch(() => {});
+                        }
+                    } else {
+                        video.pause();
+                    }
+                });
+            }, { threshold: 0.2, rootMargin: isMobile ? '150px' : '60px' });
+            lazyVideos.forEach(v => vo.observe(v));
+        }
+
+        // Portfolio modal
+        const modal = document.getElementById('portfolio-modal');
+        const modalMedia = document.getElementById('modal-media-content');
+        const modalTitle = document.getElementById('modal-title');
+        const modalText = document.getElementById('modal-text');
+        const closeBtn = document.getElementById('close-portfolio-modal');
+        let lastFocused = null;
+
+        const openModal = (item) => {
+            const type = item.dataset.modalType;
+            modalTitle.textContent = item.dataset.modalTitle || '';
+            modalText.innerHTML = item.dataset.modalText || '';
+            modalMedia.innerHTML = '';
+            if (type === 'image') {
+                const img = document.createElement('img');
+                img.src = item.dataset.modalImage;
+                img.alt = item.dataset.modalTitle || '';
+                modalMedia.appendChild(img);
+            } else if (type === 'vimeo') {
+                modalMedia.innerHTML = item.dataset.modalVimeo || '';
+            }
+            gtag('event', 'view_project', { 'event_category': 'portfolio', 'event_label': item.dataset.modalTitle });
+            lastFocused = document.activeElement;
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        };
+        const closeModal = () => {
+            modal.classList.remove('open');
+            modalMedia.innerHTML = '';
+            document.body.style.overflow = '';
+            if (lastFocused) lastFocused.focus();
+        };
+
+        document.querySelectorAll('.work-item').forEach(item => {
+            if (!item.dataset.modalType) return; // photography gallery uses Fancybox
+            item.addEventListener('click', () => openModal(item));
+            item.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(item); }
             });
         });
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
-        // Header scroll effect
-        const header = document.getElementById('header');
-        const toTopBtn = document.getElementById('to-top-btn');
+        // Work filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const workItems = document.querySelectorAll('.work-item');
+        filterBtns.forEach(btn => btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const f = btn.dataset.filter;
+            workItems.forEach(item => {
+                const show = f === 'all' || item.dataset.category === f;
+                item.style.display = show ? '' : 'none';
+            });
+        }));
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-
-            if (window.scrollY > 300) {
-                toTopBtn.style.display = 'flex';
-            } else {
-                toTopBtn.style.display = 'none';
-            }
-        });
-
-        toTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Dynamic year
-        document.getElementById('year').textContent = new Date().getFullYear();
+        // Contact form (EmailJS)
+        const form = document.getElementById('contact-form');
+        const status = document.getElementById('form-status');
+        if (form) {
+            emailjs.init('BP2BigTLAntfpaGg1');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                status.hidden = false;
+                status.className = 'pending';
+                status.textContent = 'Sending…';
+                emailjs.sendForm('service_g7kbu63', 'template_shv139p', form).then(() => {
+                    gtag('event', 'contact_form_submit', { 'event_category': 'engagement', 'event_label': 'success' });
+                    status.className = 'ok';
+                    status.textContent = 'Thanks — your message was sent.';
+                    form.reset();
+                    setTimeout(() => { status.hidden = true; }, 6000);
+                }, (err) => {
+                    status.className = 'err';
+                    status.textContent = 'Something went wrong. Please email sbasalmedia@gmail.com directly.';
+                    console.error('EmailJS failed:', err);
+                });
+            });
+        }
     </script>
 </body>
 
