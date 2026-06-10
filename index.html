@@ -20,11 +20,15 @@
     <meta name="twitter:description" content="A systems thinker who engineers away slow, manual work using AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
     <meta name="twitter:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
 
+    <link rel="canonical" href="https://sbasalm.github.io/">
+    <meta name="author" content="Sebastian Basaldua">
     <meta name="theme-color" content="#0e7a80">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230e7a80%22/><text x=%2250%22 y=%2272%22 font-size=%2256%22 font-family=%22Georgia,serif%22 fill=%22%23f6f4ef%22 text-anchor=%22middle%22>SB</text></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://unpkg.com">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Fancybox CSS (photography gallery) -->
@@ -133,10 +137,11 @@
         .section-title {
             font-size: clamp(2.1rem, 5vw, 3.3rem);
             letter-spacing: -0.015em;
+            text-wrap: balance;
         }
         .section-title em { font-style: normal; color: var(--accent-ink); }
 
-        .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--ink-soft); }
+        .lede { font-size: clamp(1.05rem, 1.8vw, 1.3rem); color: var(--ink-soft); text-wrap: pretty; }
 
         /* ---------- Buttons ---------- */
         .btn {
@@ -272,6 +277,17 @@
         }
         .hero .container { z-index: 2; padding-top: 7rem; padding-bottom: 5rem; }
         .hero-inner { max-width: 760px; color: #fff; }
+        /* One-time staggered entrance (globally disabled under prefers-reduced-motion) */
+        @keyframes hero-rise {
+            from { opacity: 0; transform: translateY(22px); }
+            to { opacity: 1; transform: none; }
+        }
+        .hero-inner > * { animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+        .hero-inner > *:nth-child(1) { animation-delay: 0.1s; }
+        .hero-inner > *:nth-child(2) { animation-delay: 0.22s; }
+        .hero-inner > *:nth-child(3) { animation-delay: 0.34s; }
+        .hero-inner > *:nth-child(4) { animation-delay: 0.46s; }
+        .hero-inner > *:nth-child(5) { animation-delay: 0.58s; }
         .hero-eyebrow { color: #7fd8dd; }
         .hero-eyebrow::before { background: #7fd8dd; }
         .hero h1 {
@@ -379,7 +395,8 @@
             background: #0c0e0e;
             line-height: 0;
         }
-        .case-shot img { width: 100%; height: auto; display: block; transition: transform 0.6s ease; }
+        .case-shot { aspect-ratio: 1920 / 1032; } /* reserve space pre-load: no layout shift */
+        .case-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
         .case:hover .case-shot img { transform: scale(1.02); }
         .case-body .tagrow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
         .pill {
@@ -612,6 +629,27 @@
         }
     </style>
 
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Sebastian Basaldua",
+        "url": "https://sbasalm.github.io/",
+        "image": "https://sbasalm.github.io/assets/images/social-share-image.jpg",
+        "jobTitle": "Operations Manager",
+        "worksFor": { "@type": "Organization", "name": "WCTS Radio" },
+        "description": "Operations and media-technology specialist who finds slow, manual processes and engineers them away with AI, automation, and custom tooling.",
+        "homeLocation": { "@type": "Place", "name": "Minneapolis, MN" },
+        "sameAs": [
+            "https://www.linkedin.com/in/sebastian-basaldua/",
+            "https://www.youtube.com/@SBasalMedia",
+            "https://github.com/luminary-craft"
+        ],
+        "knowsAbout": ["Workflow automation", "Broadcast operations", "AI-assisted software development", "Audio engineering", "Video production", "3D animation"]
+    }
+    </script>
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1JZNXJ7ZCK"></script>
     <script>
@@ -715,22 +753,22 @@
 
                 <div class="stats reveal" role="list">
                     <div class="stat" role="listitem">
-                        <div class="num">93%</div>
+                        <div class="num" data-count="93" data-suffix="%">93%</div>
                         <div class="label">Fewer broadcast errors</div>
                         <p class="desc">Automated compliance eliminating 5 of 7 daily on-air errors</p>
                     </div>
                     <div class="stat" role="listitem">
-                        <div class="num">15×</div>
+                        <div class="num" data-count="15" data-suffix="×">15×</div>
                         <div class="label">Faster workflows</div>
                         <p class="desc">30-hour tasks completed in ~2 hours with AI-assisted process</p>
                     </div>
                     <div class="stat" role="listitem">
-                        <div class="num">900+</div>
+                        <div class="num" data-count="900" data-suffix="+">900+</div>
                         <div class="label">Errors prevented / yr</div>
                         <p class="desc">On-air mistakes caught before broadcast by automation</p>
                     </div>
                     <div class="stat" role="listitem">
-                        <div class="num">3.6M</div>
+                        <div class="num" data-count="3.6" data-decimals="1" data-suffix="M">3.6M</div>
                         <div class="label">Audience reach</div>
                         <p class="desc">Combined AM/FM listeners across the Twin Cities metro</p>
                     </div>
@@ -751,7 +789,7 @@
                     <!-- AudioPipe -->
                     <article class="case reveal">
                         <div class="case-shot">
-                            <img src="assets/images/audiopipe.png" loading="lazy" decoding="async"
+                            <img src="assets/images/audiopipe.webp" loading="lazy" decoding="async"
                                 alt="AudioPipe desktop app showing a weekly show calendar, a list of promos awaiting verification, and a waveform editor for tagging promos.">
                         </div>
                         <div class="case-body">
@@ -778,7 +816,7 @@
                     <!-- CheckSpree -->
                     <article class="case flip reveal">
                         <div class="case-shot">
-                            <img src="assets/images/checkspree.png" loading="lazy" decoding="async"
+                            <img src="assets/images/checkspree.webp" loading="lazy" decoding="async"
                                 alt="CheckSpree desktop app showing a digital check preview ready to print, with a ledger sidebar tracking running balances.">
                         </div>
                         <div class="case-body">
@@ -903,11 +941,11 @@
                 <div class="work-grid">
                     <!-- AudioPipe (full write-up in Software & Automation section) -->
                     <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: AudioPipe"
-                        data-modal-image="assets/images/audiopipe.png"
+                        data-modal-image="assets/images/audiopipe.webp"
                         data-modal-title="AudioPipe — Radio File-Management Automation"
                         data-modal-text="An internal tool I designed and built end-to-end with Claude Code. It runs scheduled FTP ingest, a configurable audio-processing pipeline that writes normalized metadata, a release/hold system that feeds radio-automation watchfolders, and smart promo tagging via a waveform editor — cutting weekly file prep from roughly an hour to minutes.">
                         <div class="work-media">
-                            <img src="assets/images/audiopipe.png" alt="AudioPipe app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
+                            <img src="assets/images/audiopipe.webp" alt="AudioPipe app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
                         </div>
                         <div class="work-overlay">
                             <span class="cue"><i data-lucide="maximize-2"></i></span>
@@ -918,11 +956,11 @@
 
                     <!-- CheckSpree (full write-up in Software & Automation section) -->
                     <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: CheckSpree"
-                        data-modal-image="assets/images/checkspree.png"
+                        data-modal-image="assets/images/checkspree.webp"
                         data-modal-title="CheckSpree — Open-Source Check Printing &amp; Ledger"
                         data-modal-text="A free, open-source tool I built and shipped publicly: digital check entry that prints cleanly onto check stock, plus a ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles. Actively developed — the core is solid, with a few features still being hardened.<br><br><a href=&quot;https://github.com/luminary-craft/CheckSpree&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>View on GitHub →</a>">
                         <div class="work-media">
-                            <img src="assets/images/checkspree.png" alt="CheckSpree app — digital check preview with a ledger sidebar tracking running balances" loading="lazy">
+                            <img src="assets/images/checkspree.webp" alt="CheckSpree app — digital check preview with a ledger sidebar tracking running balances" loading="lazy">
                         </div>
                         <div class="work-overlay">
                             <span class="cue"><i data-lucide="maximize-2"></i></span>
@@ -1095,7 +1133,7 @@
                         <div class="mark">"</div>
                         <blockquote><p>Excellent visual representation! Outstanding understanding of the client's requirements and your insight to deliver a user-friendly interface. Impressive!</p></blockquote>
                         <figcaption class="who">
-                            <span class="avatar">HS</span>
+                            <span class="avatar">TR</span>
                             <span><span class="name">TRFF</span><br><span class="role">Teressa Rosalind French Foundation</span></span>
                         </figcaption>
                     </figure>
@@ -1142,7 +1180,8 @@
         <div class="container">
             <div class="row">
                 <p>© <span id="year"></span> Sebastian Basaldua · Operations &amp; Automation Builder</p>
-                <p>Minneapolis, MN · Built and maintained with AI assistance.</p>
+                <p>Minneapolis, MN · Built and maintained with AI assistance · <a href="https://github.com/SbasalM/SbasalM.github.io" target="_blank" rel="noopener"
+                    onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'site_source'});">View source</a></p>
             </div>
         </div>
     </footer>
@@ -1250,6 +1289,30 @@
                 entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); obs.unobserve(e.target); } });
             }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
             revealEls.forEach(el => ro.observe(el));
+        }
+
+        // Stat count-up (skipped under reduced motion — markup already holds the final values)
+        const statNums = document.querySelectorAll('.num[data-count]');
+        if (statNums.length && !reduceMotion && 'IntersectionObserver' in window) {
+            const easeOut = t => 1 - Math.pow(1 - t, 3);
+            const runCount = (el) => {
+                const target = parseFloat(el.dataset.count);
+                const decimals = parseInt(el.dataset.decimals || '0', 10);
+                const suffix = el.dataset.suffix || '';
+                const dur = 1300;
+                let start = null;
+                const frame = (ts) => {
+                    if (start === null) start = ts;
+                    const p = Math.min((ts - start) / dur, 1);
+                    el.textContent = (target * easeOut(p)).toFixed(decimals) + suffix;
+                    if (p < 1) requestAnimationFrame(frame);
+                };
+                requestAnimationFrame(frame);
+            };
+            const so = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => { if (e.isIntersecting) { runCount(e.target); obs.unobserve(e.target); } });
+            }, { threshold: 0.6 });
+            statNums.forEach(el => so.observe(el));
         }
 
         // Lazy-load work videos
