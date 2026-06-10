@@ -222,6 +222,9 @@
             transition: transform 0.25s ease;
         }
         .nav-links a:hover::after { transform: scaleX(1); }
+        .nav-links a.active { color: var(--accent-ink); }
+        header.site:not(.scrolled) .nav-links a.active { color: #7fd8dd; }
+        .nav-links a.active::after { transform: scaleX(1); }
 
         .menu-toggle {
             display: inline-flex;
@@ -287,34 +290,15 @@
         .hero-inner > *:nth-child(2) { animation-delay: 0.22s; }
         .hero-inner > *:nth-child(3) { animation-delay: 0.34s; }
         .hero-inner > *:nth-child(4) { animation-delay: 0.46s; }
-        .hero-inner > *:nth-child(5) { animation-delay: 0.58s; }
         .hero-eyebrow { color: #7fd8dd; }
         .hero-eyebrow::before { background: #7fd8dd; }
         .hero h1 {
-            font-size: clamp(2.7rem, 8vw, 5.3rem);
+            font-size: clamp(2.4rem, 6.4vw, 4.4rem);
             letter-spacing: -0.02em;
-            margin-bottom: 0.4rem;
+            margin-bottom: 1.2rem;
+            text-wrap: balance;
         }
-        .hero .rotator {
-            font-family: var(--display);
-            font-style: normal;
-            font-weight: 500;
-            font-size: clamp(1.15rem, 3vw, 1.75rem);
-            letter-spacing: -0.01em;
-            color: #aef0f3;
-            min-height: 1.6em;
-            margin-bottom: 1.4rem;
-            display: block;
-        }
-        .rotator .caret {
-            display: inline-block;
-            width: 2px;
-            background: #aef0f3;
-            margin-left: 2px;
-            animation: blink 1s step-end infinite;
-            align-self: stretch;
-        }
-        @keyframes blink { 50% { opacity: 0; } }
+        .hero h1 em { font-style: normal; color: #7fd8dd; }
         .hero p.intro {
             font-size: clamp(1.05rem, 1.9vw, 1.35rem);
             color: rgba(255,255,255,0.86);
@@ -447,10 +431,18 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
         }
         .cap:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--line-strong); }
-        .cap .thumb { aspect-ratio: 16 / 10; overflow: hidden; background: var(--paper-2); }
-        .cap .thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .cap:hover .thumb img { transform: scale(1.05); }
-        .cap .body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+        .cap .cap-icon {
+            width: 54px; height: 54px;
+            border-radius: 14px;
+            background: var(--accent-wash);
+            color: var(--accent-ink);
+            display: flex; align-items: center; justify-content: center;
+            margin: 1.4rem 1.4rem 0;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+        .cap .cap-icon svg { width: 26px; height: 26px; }
+        .cap:hover .cap-icon { background: var(--accent); color: var(--paper); }
+        .cap .body { padding: 1.1rem 1.4rem 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
         .cap .tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
         .cap h3 { font-size: 1.28rem; }
         .cap p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
@@ -571,8 +563,8 @@
             padding: 1.8rem;
             display: flex; flex-direction: column;
         }
-        .quote .mark { font-family: var(--display); font-size: 3rem; line-height: 0.6; color: var(--accent); height: 1.4rem; }
-        .quote p { color: var(--ink-soft); font-size: 0.97rem; margin: 0.4rem 0 1.4rem; flex: 1; }
+        .quote .mark { font-family: var(--display); font-size: 4.2rem; line-height: 0.55; color: var(--accent); opacity: 0.45; height: 1.6rem; }
+        .quote p { color: var(--ink); font-size: 1.04rem; line-height: 1.6; margin: 0.5rem 0 1.4rem; flex: 1; }
         .quote .who { display: flex; align-items: center; gap: 0.8rem; }
         .quote .avatar {
             width: 44px; height: 44px; border-radius: 999px;
@@ -625,7 +617,6 @@
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
             .js .reveal { opacity: 1; transform: none; }
-            .rotator .caret { display: none; }
         }
     </style>
 
@@ -700,18 +691,17 @@
             <div class="hero-overlay"></div>
             <div class="container">
                 <div class="hero-inner">
-                    <p class="eyebrow hero-eyebrow">Operations &amp; Media-Technology · Automation Builder</p>
-                    <h1>Sebastian Basaldua</h1>
-                    <span class="rotator" aria-hidden="true"><span id="typewriter"></span><span class="caret">&nbsp;</span></span>
+                    <p class="eyebrow hero-eyebrow">Sebastian Basaldua · Operations &amp; Automation Builder</p>
+                    <h1>I find manual work and <em>engineer it away</em>.</h1>
                     <p class="intro">
-                        I find the slow, manual process and engineer it away — using AI, automation, and custom tooling
-                        to build systems that make teams faster and more reliable. I bridge creative media and the
+                        Systems thinker, force-multiplier, AI-assisted builder. I design automation and custom
+                        tooling that make teams faster and more reliable — bridging creative media and the
                         technical systems behind it.
                     </p>
                     <div class="hero-cta">
-                        <a href="#work" class="btn btn-primary"
-                            onclick="gtag('event', 'click_hero_button', {'event_category':'navigation','event_label':'view_my_work'});">
-                            View my work <i data-lucide="arrow-down"></i>
+                        <a href="#software" class="btn btn-primary"
+                            onclick="gtag('event', 'click_hero_button', {'event_category':'navigation','event_label':'see_what_i_build'});">
+                            See what I build <i data-lucide="arrow-down"></i>
                         </a>
                         <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf" class="btn btn-light"
                             onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_hero'});">
@@ -853,7 +843,7 @@
                 </div>
                 <div class="cap-grid">
                     <article class="cap reveal">
-                        <div class="thumb"><img src="assets/images/broadcast-operations.jpg" alt="Broadcast operations dashboard and equipment" loading="lazy"></div>
+                        <div class="cap-icon" aria-hidden="true"><i data-lucide="workflow"></i></div>
                         <div class="body">
                             <span class="tag">Automation</span>
                             <h3>Automation &amp; Workflow Engineering</h3>
@@ -861,7 +851,7 @@
                         </div>
                     </article>
                     <article class="cap reveal">
-                        <div class="thumb"><img src="assets/images/trff-web-thumb.jpg" alt="Website built and launched for a client" loading="lazy"></div>
+                        <div class="cap-icon" aria-hidden="true"><i data-lucide="sparkles"></i></div>
                         <div class="body">
                             <span class="tag">AI-assisted</span>
                             <h3>AI-Assisted Building</h3>
@@ -869,7 +859,7 @@
                         </div>
                     </article>
                     <article class="cap reveal">
-                        <div class="thumb"><img src="assets/images/studio-renovation-featured.jpg" alt="Production studio and technical equipment" loading="lazy"></div>
+                        <div class="cap-icon" aria-hidden="true"><i data-lucide="radio-tower"></i></div>
                         <div class="body">
                             <span class="tag">Operations</span>
                             <h3>Media-Technology Operations</h3>
@@ -877,7 +867,7 @@
                         </div>
                     </article>
                     <article class="cap reveal">
-                        <div class="thumb"><img src="assets/images/media-production-thumb.jpg" alt="Video, motion graphics and 3D production work" loading="lazy"></div>
+                        <div class="cap-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></div>
                         <div class="body">
                             <span class="tag">Supporting craft</span>
                             <h3>Creative Production</h3>
@@ -1253,31 +1243,20 @@
             menuToggle.setAttribute('aria-expanded', 'false');
         }));
 
-        // Typewriter rotator
-        const twEl = document.getElementById('typewriter');
-        const phrases = [
-            'Operations & Automation Builder',
-            'I engineer away manual work',
-            'Systems thinker & force-multiplier',
-            'AI-assisted builder',
-            'The media-technology bridge'
-        ];
-        if (twEl) {
-            if (reduceMotion) {
-                twEl.textContent = phrases[0];
-            } else {
-                let pi = 0, ci = 0, deleting = false;
-                const tick = () => {
-                    const p = phrases[pi];
-                    twEl.textContent = deleting ? p.substring(0, ci - 1) : p.substring(0, ci + 1);
-                    ci += deleting ? -1 : 1;
-                    let delay = deleting ? 45 : 75;
-                    if (!deleting && ci === p.length) { delay = 1900; deleting = true; }
-                    else if (deleting && ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; delay = 350; }
-                    setTimeout(tick, delay);
-                };
-                setTimeout(tick, 700);
-            }
+        // Scrollspy: highlight the nav link for the section in view
+        const spyLinks = new Map();
+        document.querySelectorAll('.nav-links a[href^="#"]').forEach(a => spyLinks.set(a.getAttribute('href').slice(1), a));
+        const spySections = [...spyLinks.keys()].map(id => document.getElementById(id)).filter(Boolean);
+        if (spySections.length && 'IntersectionObserver' in window) {
+            const spy = new IntersectionObserver((entries) => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        spyLinks.forEach(a => a.classList.remove('active'));
+                        spyLinks.get(e.target.id)?.classList.add('active');
+                    }
+                });
+            }, { rootMargin: '-40% 0px -55% 0px' });
+            spySections.forEach(s => spy.observe(s));
         }
 
         // Scroll reveal
