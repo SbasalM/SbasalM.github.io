@@ -248,7 +248,7 @@
         }
         #mobile-menu a:hover { background: var(--accent-wash); color: var(--accent-ink); }
 
-        @media (min-width: 880px) {
+        @media (min-width: 1040px) {
             .nav-links { display: flex; }
             .menu-toggle { display: none; }
         }
@@ -414,39 +414,43 @@
             .case.flip .case-body { order: 1; }
         }
 
-        /* ---------- Capabilities ---------- */
-        .cap-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        @media (min-width: 640px) { .cap-grid { grid-template-columns: repeat(2, 1fr); } }
-        @media (min-width: 1000px) { .cap-grid { grid-template-columns: repeat(4, 1fr); } }
+        /* ---------- Capabilities: index rows ---------- */
+        .cap-grid { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line-strong); counter-reset: cap; }
         .cap {
-            background: var(--paper);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            display: grid; grid-template-columns: 54px minmax(0, 1fr); gap: 0.4rem 1.2rem;
+            padding: 1.6rem 3rem 1.6rem 0; border-bottom: 1px solid var(--line);
+            position: relative; counter-increment: cap;
+            transition: padding 0.4s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.4s ease;
         }
-        .cap:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+        .cap::after {
+            content: counter(cap, decimal-leading-zero);
+            position: absolute; right: 0.2rem; top: 1.75rem;
+            font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; color: var(--ink-faint);
+            transition: color 0.3s ease;
+        }
         .cap .cap-icon {
-            width: 54px; height: 54px;
-            border-radius: 14px;
-            background: var(--accent-wash);
-            color: var(--accent-ink);
+            width: 54px; height: 54px; border-radius: 14px; grid-row: span 3;
+            background: var(--accent-wash); color: var(--accent-ink);
             display: flex; align-items: center; justify-content: center;
-            margin: 1.4rem 1.4rem 0;
-            transition: background 0.3s ease, color 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
         }
         .cap .cap-icon svg { width: 26px; height: 26px; }
-        .cap:hover .cap-icon { background: var(--accent); color: var(--paper); }
-        .cap .body { padding: 1.1rem 1.4rem 1.4rem; display: flex; flex-direction: column; gap: 0.55rem; flex: 1; }
+        .cap .body { display: grid; gap: 0.35rem; }
         .cap .tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
-        .cap h3 { font-size: 1.28rem; }
-        .cap p { margin: 0; color: var(--ink-soft); font-size: 0.94rem; }
+        .cap h3 { font-size: clamp(1.25rem, 2.2vw, 1.55rem); }
+        .cap p { margin: 0; color: var(--ink-soft); font-size: 0.97rem; max-width: 62ch; }
+        .cap:hover { background: linear-gradient(90deg, var(--accent-wash), transparent 75%); padding-left: 1rem; }
+        .cap:hover::after { color: var(--accent); }
+        .cap:hover .cap-icon { background: var(--accent); color: var(--paper); transform: rotate(-6deg) scale(1.04); }
+        @media (min-width: 900px) {
+            .cap { grid-template-columns: 54px minmax(0, 0.95fr) minmax(0, 1.15fr); align-items: center; column-gap: 2.2rem; padding-right: 4rem; }
+            .cap .body { display: contents; }
+            .cap .cap-icon { grid-row: 1 / span 2; }
+            .cap .tag { grid-column: 2; grid-row: 1; align-self: end; }
+            .cap h3 { grid-column: 2; grid-row: 2; align-self: start; }
+            .cap p { grid-column: 3; grid-row: 1 / span 2; }
+            .cap::after { top: 50%; transform: translateY(-50%); }
+        }
 
         /* ---------- Process ---------- */
         .process-grid { display: grid; gap: 1.5rem; grid-template-columns: 1fr; counter-reset: step; }
@@ -610,6 +614,168 @@
         #to-top.show { display: flex; }
         #to-top:hover { background: var(--accent); transform: translateY(-3px); }
         #to-top svg { width: 20px; height: 20px; }
+
+        /* ---------- Layout pass ---------- */
+        /* Split section heads use the side space on desktop */
+        @media (min-width: 1000px) {
+            .section-head.split {
+                max-width: none; display: grid;
+                grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+                column-gap: 4rem; align-items: end;
+            }
+            .section-head.split > .eyebrow { grid-column: 1; justify-self: start; }
+            .section-head.split > .section-title { grid-column: 1; }
+            .section-head.split > .lede {
+                grid-column: 2; grid-row: 1 / span 2; align-self: end;
+                margin: 0 !important; padding: 0.2rem 0 0.35rem 1.2rem;
+                border-left: 2px solid var(--accent); font-size: 1.08rem;
+            }
+            .ink-section .section-head.split > .lede { border-left-color: #7fd8dd; }
+        }
+
+        /* About: copy + station log */
+        .about-layout { display: grid; gap: 2.5rem; }
+        @media (min-width: 1000px) {
+            .about-layout { grid-template-columns: minmax(0, 1fr) 350px; gap: 4.5rem; align-items: start; }
+            .station-log { position: sticky; top: 6.5rem; margin-top: 0.4rem; }
+        }
+        .station-log {
+            background: var(--ink); color: var(--paper);
+            border-radius: 18px; padding: 1.35rem 1.5rem 1.2rem;
+            box-shadow: var(--shadow); position: relative; overflow: hidden;
+        }
+        .station-log::before {
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background: repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 3px);
+        }
+        .log-head {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.72rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+            color: #7fd8dd; padding-bottom: 0.9rem; margin-bottom: 0.2rem;
+            border-bottom: 1px dashed rgba(246, 244, 239, 0.2);
+        }
+        .log-live { display: inline-flex; align-items: center; gap: 0.45rem; color: #fff; letter-spacing: 0.16em; }
+        .station-log dl { margin: 0; }
+        .log-row { display: grid; grid-template-columns: 5.4rem minmax(0, 1fr); gap: 0.8rem; padding: 0.72rem 0; border-bottom: 1px dashed rgba(246, 244, 239, 0.1); }
+        .log-row:last-child { border-bottom: 0; }
+        .log-row dt {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(246, 244, 239, 0.48); padding-top: 0.22rem;
+        }
+        .log-row dd { margin: 0; color: rgba(246, 244, 239, 0.92); font-size: 0.93rem; line-height: 1.45; }
+        .log-row dd a { color: #7fd8dd; border-bottom: 1px solid rgba(127, 216, 221, 0.35); }
+        .log-row dd a:hover { border-bottom-color: #7fd8dd; }
+        .log-clock {
+            display: flex; justify-content: space-between; margin-top: 0.8rem; padding-top: 0.8rem;
+            border-top: 1px dashed rgba(246, 244, 239, 0.2);
+            font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+            font-size: 0.72rem; color: rgba(246, 244, 239, 0.55); letter-spacing: 0.06em;
+        }
+        #log-time { color: #7fd8dd; font-variant-numeric: tabular-nums; }
+
+        /* Websites: browser-framed bento (swipe carousel on mobile) */
+        .sites-grid { display: grid; gap: 1.5rem; }
+        @media (min-width: 900px) {
+            .sites-grid { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+            .site-card { grid-column: span 5; }
+            .site-card.wide { grid-column: span 7; }
+            .site-card .site-shot { flex: 1; min-height: 220px; }
+            .site-card.wide .site-shot { flex: none; aspect-ratio: 16 / 9; }
+        }
+        @media (max-width: 899px) {
+            .sites-grid {
+                grid-auto-flow: column; grid-auto-columns: 86%;
+                overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+                margin: 0 -1.5rem; padding: 0.3rem 1.5rem 1.2rem; scroll-padding: 0 1.5rem;
+                scrollbar-width: none;
+            }
+            .sites-grid::-webkit-scrollbar { display: none; }
+            .site-card { scroll-snap-align: start; }
+            .site-shot { aspect-ratio: 16 / 10; }
+        }
+        .site-card {
+            display: flex; flex-direction: column; color: var(--ink);
+            background: var(--paper); border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+            transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, border-color 0.3s ease;
+        }
+        .site-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: var(--line-strong); }
+        .browser-bar { display: flex; align-items: center; gap: 0.8rem; padding: 0.6rem 0.85rem; background: var(--paper-2); border-bottom: 1px solid var(--line); }
+        .browser-bar .dots { display: flex; gap: 6px; flex-shrink: 0; }
+        .browser-bar .dots i { width: 10px; height: 10px; border-radius: 50%; background: var(--line-strong); display: block; transition: background 0.3s ease; }
+        .site-card:hover .dots i:nth-child(1) { background: #ed6a5e; }
+        .site-card:hover .dots i:nth-child(2) { background: #f5bf4f; }
+        .site-card:hover .dots i:nth-child(3) { background: #61c554; }
+        .browser-bar .url {
+            flex: 1; min-width: 0; display: flex; align-items: center; gap: 0.4rem;
+            font-size: 0.78rem; color: var(--ink-soft); background: var(--paper);
+            border: 1px solid var(--line); border-radius: 999px; padding: 0.22rem 0.8rem;
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .browser-bar .url svg { width: 12px; height: 12px; flex-shrink: 0; color: var(--accent); }
+        .site-shot { overflow: hidden; background: #0c0e0e; position: relative; }
+        .site-shot img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 1.2s cubic-bezier(0.22, 1, 0.36, 1); }
+        .site-card:hover .site-shot img { transform: scale(1.045); }
+        .site-meta { padding: 1.05rem 1.2rem 1.25rem; display: grid; gap: 0.3rem; }
+        .site-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); }
+        .site-meta h3 { font-size: 1.3rem; display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; }
+        .site-meta h3 svg { width: 20px; height: 20px; color: var(--ink-faint); flex-shrink: 0; transition: transform 0.3s ease, color 0.3s ease; }
+        .site-card:hover .site-meta h3 svg { transform: translate(3px, -3px); color: var(--accent); }
+        .site-meta p { margin: 0; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.5; }
+        .swipe-hint { display: none; align-items: center; gap: 0.4rem; justify-content: center; font-size: 0.82rem; color: var(--ink-faint); margin-top: 0.4rem; }
+        .swipe-hint svg { width: 16px; height: 16px; }
+        @media (max-width: 899px) { .swipe-hint { display: flex; } }
+
+        /* Work: feature the flagship tile bento-style */
+        @media (min-width: 980px) {
+            .work-item.feature { grid-column: span 2; grid-row: span 2; }
+            .work-item.feature .work-media { aspect-ratio: auto; height: 100%; }
+            .work-item.feature .work-overlay { padding: 1.8rem; }
+            .work-item.feature .work-overlay h3 { font-size: 2rem; }
+        }
+
+        /* Testimonials: one big quote at a time, with a "playhead" */
+        .quote-stage { display: grid; gap: 2rem; }
+        @media (min-width: 900px) { .quote-stage { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 4.5rem; align-items: center; } }
+        .quote-main { position: relative; touch-action: pan-y; }
+        .quote-main .mark { display: block; height: 0.42em; font-family: var(--display); font-size: clamp(6rem, 12vw, 9rem); line-height: 0.75; color: var(--accent); opacity: 0.28; user-select: none; }
+        .q-slides { display: grid; }
+        .q-slide {
+            grid-area: 1 / 1; margin: 0; opacity: 0; visibility: hidden; transform: translateY(14px);
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s;
+        }
+        .q-slide.active { opacity: 1; visibility: visible; transform: none; }
+        .q-slide blockquote { margin: 0; }
+        .q-slide p { font-family: var(--display); font-weight: 500; font-size: clamp(1.35rem, 2.7vw, 2.05rem); line-height: 1.3; letter-spacing: -0.01em; color: var(--ink); margin: 0; text-wrap: pretty; }
+        .q-slide figcaption { margin-top: 1.3rem; font-size: 0.95rem; color: var(--ink-soft); }
+        .q-slide figcaption b { color: var(--ink); font-weight: 600; }
+        .q-progress { height: 2px; background: var(--line); margin-top: 2rem; border-radius: 2px; overflow: hidden; }
+        .q-progress span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; }
+        .q-progress.run span { animation: qprog 7s linear forwards; }
+        @keyframes qprog { to { transform: scaleX(1); } }
+        .quote-tabs { display: flex; flex-direction: column; gap: 0.5rem; }
+        .q-tab {
+            display: flex; align-items: center; gap: 0.9rem; text-align: left; width: 100%;
+            padding: 0.85rem 1rem; border-radius: 14px; border: 1px solid transparent;
+            background: transparent; color: var(--ink-soft); font: inherit; cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .q-tab:hover { background: rgba(246, 244, 239, 0.7); }
+        .q-tab[aria-selected="true"] { background: var(--paper); border-color: var(--line); box-shadow: 0 14px 34px -24px rgba(26, 23, 20, 0.5); }
+        .q-tab .avatar {
+            width: 44px; height: 44px; border-radius: 999px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.92rem; color: var(--paper);
+            background: var(--ink-faint); transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .q-tab[aria-selected="true"] .avatar { background: var(--accent); transform: scale(1.06); }
+        .q-who b { display: block; font-weight: 600; color: var(--ink); font-size: 0.95rem; }
+        .q-who small { color: var(--ink-faint); font-size: 0.82rem; }
+        @media (max-width: 899px) {
+            .quote-tabs { flex-direction: row; justify-content: center; order: 2; }
+            .q-tab { width: auto; padding: 0.35rem; border-radius: 999px; }
+            .q-tab .q-who { display: none; }
+        }
 
         /* ---------- Polish & play ---------- */
         html { scrollbar-color: var(--accent) var(--paper-2); }
@@ -776,6 +942,7 @@
             <nav class="nav-links" aria-label="Primary">
                 <a href="#about">About</a>
                 <a href="#software">Software</a>
+                <a href="#sites">Websites</a>
                 <a href="#capabilities">What I Do</a>
                 <a href="#process">How I Work</a>
                 <a href="#work">Work</a>
@@ -789,6 +956,7 @@
         <div id="mobile-menu">
             <a href="#about">About</a>
             <a href="#software">Software</a>
+            <a href="#sites">Websites</a>
             <a href="#capabilities">What I Do</a>
             <a href="#process">How I Work</a>
             <a href="#work">Work</a>
@@ -835,11 +1003,13 @@
         <!-- About / Why I'm Different -->
         <section id="about">
             <div class="container">
+                <div class="about-layout">
+                <div>
                 <div class="section-head">
                     <p class="eyebrow">Why I'm different</p>
                     <h2 class="section-title">I find the work that <em>shouldn't be manual</em> — and engineer it away.</h2>
                 </div>
-                <div class="about-copy reveal" style="max-width: 760px;">
+                <div class="about-copy reveal">
                     <p>
                         I'm a <strong>systems thinker and a force-multiplier</strong>. I find the slow, manual processes
                         that quietly drain a team — the recurring errors, the tedious prep work, the steps everyone dreads —
@@ -856,6 +1026,20 @@
                         creative media — broadcast, motion graphics, audio, 3D — so I speak fluently with the creative
                         teams I support and understand the technical systems behind their work. I sit exactly between the two.
                     </p>
+                </div>
+                </div>
+
+                <aside class="station-log reveal" aria-label="What I'm working on">
+                    <div class="log-head"><span>Station log</span><span class="log-live"><span class="tally-dot"></span>Live</span></div>
+                    <dl>
+                        <div class="log-row"><dt>Now</dt><dd>Operations Manager, WCTS Radio</dd></div>
+                        <div class="log-row"><dt>Building</dt><dd>Lumen Map 2.0 and new church &amp; ministry sites</dd></div>
+                        <div class="log-row"><dt>Shipped</dt><dd><a href="#software">Airchain</a> · <a href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener">CheckSpree</a> · <a href="#sites">live websites</a></dd></div>
+                        <div class="log-row"><dt>Studio</dt><dd>Luminary Craft Digital: web for churches &amp; ministries</dd></div>
+                        <div class="log-row"><dt>Toolkit</dt><dd>Claude Code · DaVinci Resolve · Premiere · After Effects · Blender · Audition</dd></div>
+                    </dl>
+                    <div class="log-clock"><span>Minneapolis · CT</span><span id="log-time">--:--:--</span></div>
+                </aside>
                 </div>
 
                 <div class="stats reveal" role="list">
@@ -886,7 +1070,7 @@
         <!-- Software & Automation -->
         <section id="software">
             <div class="container">
-                <div class="section-head">
+                <div class="section-head split">
                     <p class="eyebrow">Software &amp; automation</p>
                     <h2 class="section-title">Tools I've built to <em>erase manual work</em>.</h2>
                     <p class="lede" style="margin-top:1rem;">I find painful, repetitive processes and build real software to eliminate them — working with AI to ship fast. Two I built and use:</p>
@@ -955,10 +1139,64 @@
             </div>
         </section>
 
-        <!-- Capabilities / What I Do -->
-        <section id="capabilities" class="alt">
+        <!-- Websites -->
+        <section id="sites" class="alt">
             <div class="container">
-                <div class="section-head">
+                <div class="section-head split">
+                    <p class="eyebrow">On the web</p>
+                    <h2 class="section-title">Websites I've <em>designed &amp; built</em>.</h2>
+                    <p class="lede" style="margin-top:1rem;">Live sites for a radio station, a church, a school, and a missionary network. Click through; they're all running.</p>
+                </div>
+                <div class="sites-grid">
+                    <a class="site-card wide reveal" href="https://wctsradio.org" target="_blank" rel="noopener"
+                        onclick="gtag('event', 'click_site', {'event_category':'portfolio','event_label':'wctsradio'});">
+                        <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url"><i data-lucide="lock"></i>wctsradio.org</span></div>
+                        <div class="site-shot"><img src="assets/images/sites/wcts.webp" alt="WCTS Radio homepage with the station logo over the Minneapolis skyline and a live now-playing bar" loading="lazy" decoding="async"></div>
+                        <div class="site-meta">
+                            <span class="site-tag">Radio station · built in-house</span>
+                            <h3>WCTS Radio <i data-lucide="arrow-up-right"></i></h3>
+                            <p>The station's new home on the web: live streams with now-playing, a program archive, and Sharathon giving.</p>
+                        </div>
+                    </a>
+                    <a class="site-card reveal" href="https://lumenmap.com" target="_blank" rel="noopener"
+                        onclick="gtag('event', 'click_site', {'event_category':'portfolio','event_label':'lumenmap'});">
+                        <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url"><i data-lucide="lock"></i>lumenmap.com</span></div>
+                        <div class="site-shot"><img src="assets/images/sites/lumenmap.webp" alt="Lumen Map showing an interactive 3D globe with missionary counts by region" loading="lazy" decoding="async"></div>
+                        <div class="site-meta">
+                            <span class="site-tag">Interactive map</span>
+                            <h3>Lumen Map <i data-lucide="arrow-up-right"></i></h3>
+                            <p>A 3D missionary map that spans multiple mission boards, kept current with automated data enrichment.</p>
+                        </div>
+                    </a>
+                    <a class="site-card reveal" href="https://fourthbaptist.org" target="_blank" rel="noopener"
+                        onclick="gtag('event', 'click_site', {'event_category':'portfolio','event_label':'fourthbaptist'});">
+                        <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url"><i data-lucide="lock"></i>fourthbaptist.org</span></div>
+                        <div class="site-shot"><img src="assets/images/sites/fourthbaptist.webp" alt="Fourth Baptist Church homepage with gold serif headline over the church building" loading="lazy" decoding="async"></div>
+                        <div class="site-meta">
+                            <span class="site-tag">Church</span>
+                            <h3>Fourth Baptist Church <i data-lucide="arrow-up-right"></i></h3>
+                            <p>A church site built around visitors and members: sermons, livestream, ministries, missions, and events.</p>
+                        </div>
+                    </a>
+                    <a class="site-card wide reveal" href="https://fourthbaptistchristianschool.org" target="_blank" rel="noopener"
+                        onclick="gtag('event', 'click_site', {'event_category':'portfolio','event_label':'fbcs'});">
+                        <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url"><i data-lucide="lock"></i>fourthbaptistchristianschool.org</span></div>
+                        <div class="site-shot"><img src="assets/images/sites/fbcs.webp" alt="Fourth Baptist Christian School homepage with a graduate in cap and gown" loading="lazy" decoding="async"></div>
+                        <div class="site-meta">
+                            <span class="site-tag">School</span>
+                            <h3>Fourth Baptist Christian School <i data-lucide="arrow-up-right"></i></h3>
+                            <p>A K4–12 school site with admissions, academics, student life, and quick links for current families.</p>
+                        </div>
+                    </a>
+                </div>
+                <p class="swipe-hint" aria-hidden="true">Swipe to see more <i data-lucide="arrow-right"></i></p>
+            </div>
+        </section>
+
+        <!-- Capabilities / What I Do -->
+        <section id="capabilities">
+            <div class="container">
+                <div class="section-head split">
                     <p class="eyebrow">What I do</p>
                     <h2 class="section-title">Systems first. <em>Media is the bridge.</em></h2>
                     <p class="lede" style="margin-top:1rem;">The value I bring leads with automation and building — the creative craft is the supporting strength that lets me speak both languages.</p>
@@ -1003,7 +1241,7 @@
         <!-- Process / How I Work -->
         <section id="process" class="ink-section">
             <div class="container">
-                <div class="section-head">
+                <div class="section-head split">
                     <p class="eyebrow">How I work</p>
                     <h2 class="section-title">I don't just flag problems — <em>I build the fix.</em></h2>
                     <p class="lede" style="margin-top:1rem;">How I turn a manual, error-prone process into a reliable system.</p>
@@ -1052,12 +1290,12 @@
 
                 <div class="work-grid">
                     <!-- Airchain (full write-up in Software & Automation section) -->
-                    <div class="work-item reveal" data-category="software" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Airchain"
+                    <div class="work-item feature reveal" data-category="software" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Airchain"
                         data-modal-vimeo='<video src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp" controls autoplay playsinline style="width:100%;height:auto;display:block;"></video>'
                         data-modal-title="Airchain — Broadcast Ingest &amp; Delivery Automation"
                         data-modal-text="A Windows desktop app I designed and built end-to-end with Claude Code. It polls FTP/SFTP servers for syndicated shows, runs them through a configurable audio chain with EBU R128 loudness and BWF/CART metadata, and delivers them to the automation system on schedule — with a Mission Control calendar, promo tagging, a weather recorder, and proof-of-airing reports.">
                         <div class="work-media">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/airchain-demo.mp4" data-poster="assets/images/airchain-thumb.jpg" poster="assets/images/airchain-thumb.jpg">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/airchain-demo.mp4" data-poster="assets/images/airchain.webp" poster="assets/images/airchain.webp">
                                 <source src="" type="video/mp4">
                             </video>
                         </div>
@@ -1222,35 +1460,43 @@
         <!-- Testimonials -->
         <section id="testimonials" class="alt">
             <div class="container">
-                <div class="section-head center">
+                <div class="section-head">
                     <p class="eyebrow">In their words</p>
-                    <h2 class="section-title">Testimonials</h2>
+                    <h2 class="section-title">Kind words from <em>people I've worked with</em>.</h2>
                 </div>
-                <div class="quote-grid">
-                    <figure class="quote reveal">
-                        <div class="mark">"</div>
-                        <blockquote><p>Thank you to SB Media for the wonderful video you created for The EZ Sit — it is very effective on social media. We especially love the 3-D images. You were very communicative, helpful, and prompt with everything.</p></blockquote>
-                        <figcaption class="who">
-                            <span class="avatar">MS</span>
-                            <span><span class="name">Mary A. Schroeder</span><br><span class="role">The EZ Sit</span></span>
-                        </figcaption>
-                    </figure>
-                    <figure class="quote reveal">
-                        <div class="mark">"</div>
-                        <blockquote><p>I applaud his excellent work ethic and skill, and was grateful to partner with him on this project. Sebastian served as my sound engineer for the Astounding Truths audiobook.</p></blockquote>
-                        <figcaption class="who">
-                            <span class="avatar">AW</span>
-                            <span><span class="name">Annie Weber</span><br><span class="role">Author</span></span>
-                        </figcaption>
-                    </figure>
-                    <figure class="quote reveal">
-                        <div class="mark">"</div>
-                        <blockquote><p>Excellent visual representation! Outstanding understanding of the client's requirements and your insight to deliver a user-friendly interface. Impressive!</p></blockquote>
-                        <figcaption class="who">
-                            <span class="avatar">TR</span>
-                            <span><span class="name">TRFF</span><br><span class="role">Teressa Rosalind French Foundation</span></span>
-                        </figcaption>
-                    </figure>
+                <div class="quote-stage reveal">
+                    <div class="quote-main">
+                        <span class="mark" aria-hidden="true">&ldquo;</span>
+                        <div class="q-slides">
+                            <figure class="q-slide active" id="q-1" role="tabpanel" aria-labelledby="qt-1">
+                                <blockquote><p>Thank you to SB Media for the wonderful video you created for The EZ Sit — it is very effective on social media. We especially love the 3-D images. You were very communicative, helpful, and prompt with everything.</p></blockquote>
+                                <figcaption><b>Mary A. Schroeder</b> · The EZ Sit</figcaption>
+                            </figure>
+                            <figure class="q-slide" id="q-2" role="tabpanel" aria-labelledby="qt-2" aria-hidden="true">
+                                <blockquote><p>I applaud his excellent work ethic and skill, and was grateful to partner with him on this project. Sebastian served as my sound engineer for the Astounding Truths audiobook.</p></blockquote>
+                                <figcaption><b>Annie Weber</b> · Author</figcaption>
+                            </figure>
+                            <figure class="q-slide" id="q-3" role="tabpanel" aria-labelledby="qt-3" aria-hidden="true">
+                                <blockquote><p>Excellent visual representation! Outstanding understanding of the client's requirements and your insight to deliver a user-friendly interface. Impressive!</p></blockquote>
+                                <figcaption><b>TRFF</b> · Teressa Rosalind French Foundation</figcaption>
+                            </figure>
+                        </div>
+                        <div class="q-progress" aria-hidden="true"><span></span></div>
+                    </div>
+                    <div class="quote-tabs" role="tablist" aria-label="Testimonials">
+                        <button class="q-tab" role="tab" id="qt-1" aria-controls="q-1" aria-selected="true">
+                            <span class="avatar" aria-hidden="true">MS</span>
+                            <span class="q-who"><b>Mary A. Schroeder</b><small>The EZ Sit</small></span>
+                        </button>
+                        <button class="q-tab" role="tab" id="qt-2" aria-controls="q-2" aria-selected="false" tabindex="-1">
+                            <span class="avatar" aria-hidden="true">AW</span>
+                            <span class="q-who"><b>Annie Weber</b><small>Author</small></span>
+                        </button>
+                        <button class="q-tab" role="tab" id="qt-3" aria-controls="q-3" aria-selected="false" tabindex="-1">
+                            <span class="avatar" aria-hidden="true">TR</span>
+                            <span class="q-who"><b>TRFF</b><small>Teressa Rosalind French Foundation</small></span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1624,7 +1870,7 @@
 
         // Pointer-only niceties: card spotlight, magnetic buttons, tilting work cards
         if (finePointer) {
-            document.querySelectorAll('.cap, .quote, .stat').forEach(el => {
+            document.querySelectorAll('.stat').forEach(el => {
                 el.classList.add('spot');
                 el.addEventListener('pointermove', (e) => {
                     const r = el.getBoundingClientRect();
@@ -1658,6 +1904,64 @@
         const processGrid = document.querySelector('.process-grid');
         if (processGrid && !reduceMotion && 'IntersectionObserver' in window) {
             new IntersectionObserver(([e]) => processGrid.classList.toggle('live', e.isIntersecting), { threshold: 0.3 }).observe(processGrid);
+        }
+
+
+        // Station log clock (Minneapolis time)
+        const logTime = document.getElementById('log-time');
+        if (logTime) {
+            const fmt = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            const tick = () => { logTime.textContent = fmt.format(new Date()); };
+            tick(); setInterval(tick, 1000);
+        }
+
+        // Testimonials rotator: tabs, auto-advance with a playhead, swipe on touch
+        const qStage = document.querySelector('.quote-stage');
+        if (qStage) {
+            const qTabs = [...qStage.querySelectorAll('.q-tab')];
+            const qSlides = [...qStage.querySelectorAll('.q-slide')];
+            const qBar = qStage.querySelector('.q-progress');
+            const Q_DUR = 7000;
+            let qIdx = 0, qTimer = null, qPaused = false, qInView = false;
+            const qRestart = () => {
+                clearTimeout(qTimer);
+                qBar.classList.remove('run');
+                void qBar.offsetWidth;
+                if (reduceMotion || qPaused || !qInView) return;
+                qBar.classList.add('run');
+                qTimer = setTimeout(() => qShow(qIdx + 1), Q_DUR);
+            };
+            const qShow = (i) => {
+                qIdx = (i + qSlides.length) % qSlides.length;
+                qSlides.forEach((sl, k) => { sl.classList.toggle('active', k === qIdx); sl.setAttribute('aria-hidden', k === qIdx ? 'false' : 'true'); });
+                qTabs.forEach((t, k) => { t.setAttribute('aria-selected', k === qIdx ? 'true' : 'false'); t.tabIndex = k === qIdx ? 0 : -1; });
+                qRestart();
+            };
+            qTabs.forEach((t, k) => {
+                t.addEventListener('click', () => qShow(k));
+                t.addEventListener('keydown', (e) => {
+                    const step = (e.key === 'ArrowRight' || e.key === 'ArrowDown') ? 1 : (e.key === 'ArrowLeft' || e.key === 'ArrowUp') ? -1 : 0;
+                    if (!step) return;
+                    e.preventDefault(); qShow(qIdx + step); qTabs[qIdx].focus();
+                });
+            });
+            if (finePointer) {
+                qStage.addEventListener('pointerenter', () => { qPaused = true; qRestart(); });
+                qStage.addEventListener('pointerleave', () => { qPaused = false; qRestart(); });
+            }
+            qStage.addEventListener('focusin', () => { qPaused = true; qRestart(); });
+            qStage.addEventListener('focusout', () => { qPaused = false; qRestart(); });
+            let qX = null;
+            const qMain = qStage.querySelector('.quote-main');
+            qMain.addEventListener('touchstart', (e) => { qX = e.touches[0].clientX; }, { passive: true });
+            qMain.addEventListener('touchend', (e) => {
+                if (qX === null) return;
+                const dx = e.changedTouches[0].clientX - qX; qX = null;
+                if (Math.abs(dx) > 40) qShow(qIdx + (dx < 0 ? 1 : -1));
+            });
+            if ('IntersectionObserver' in window) {
+                new IntersectionObserver(([e]) => { qInView = e.isIntersecting; qRestart(); }, { threshold: 0.4 }).observe(qStage);
+            }
         }
 
         // Easter egg: type "onair" (or the Konami code) to go live
