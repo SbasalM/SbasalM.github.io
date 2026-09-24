@@ -755,7 +755,7 @@
                     <div class="stat" role="listitem">
                         <div class="num" data-count="2">2</div>
                         <div class="label">Tools shipped</div>
-                        <p class="desc">AudioPipe in daily station use; CheckSpree free and open source</p>
+                        <p class="desc">Airchain in daily station use; CheckSpree free and open source</p>
                     </div>
                     <div class="stat" role="listitem">
                         <div class="num" data-count="3">3</div>
@@ -776,29 +776,30 @@
                 </div>
 
                 <div class="case-list">
-                    <!-- AudioPipe -->
+                    <!-- Airchain -->
                     <article class="case reveal">
                         <div class="case-shot">
                             <img src="assets/images/audiopipe.webp" loading="lazy" decoding="async"
-                                alt="AudioPipe desktop app showing a weekly show calendar, a list of promos awaiting verification, and a waveform editor for tagging promos.">
+                                alt="Airchain desktop app showing a weekly show calendar, a list of promos awaiting verification, and a waveform editor for tagging promos.">
                         </div>
                         <div class="case-body">
                             <div class="tagrow">
                                 <span class="pill solid">Internal tool</span>
                                 <span class="pill ghost">Built with Claude Code</span>
                             </div>
-                            <h3>AudioPipe — Radio File-Management Automation</h3>
-                            <p>A tool I designed and built end-to-end with Claude Code to erase the weekly grind of broadcast file prep. It handles the whole pipeline so the automation system — and I — don't have to:</p>
+                            <h3>Airchain — Broadcast Ingest &amp; Delivery Automation</h3>
+                            <p>A Windows desktop app I designed and built end-to-end with Claude Code to erase the weekly grind of broadcast file prep. It handles the whole pipeline — from syndicated show files to the on-air automation system — so I don't have to:</p>
                             <ul class="case-feats">
-                                <li>Scheduled FTP ingest of program and promo files</li>
-                                <li>A configurable audio-processing pipeline on arrival (normalization plus other processing), with clean, normalized metadata written to every file</li>
-                                <li>A release/hold system that drops files under generic names at the right moment, so radio-automation watchfolders pick them up automatically</li>
-                                <li>Smart promo tagging — incoming promos are auto-tagged by detecting the trailing "tail" and mixing in a show-specific air-time clip (mixed into the audio, not replacing it), or tagged in one click via a waveform editor</li>
-                                <li>A calendar view of everything downloaded and released</li>
+                                <li>Watches local folders or polls FTP/SFTP servers for syndicated shows, with a visual filename-pattern builder</li>
+                                <li>A configurable audio chain (trim, EQ, compression, EBU R128 loudness) and BWF/CART metadata written to every file</li>
+                                <li>Hold &amp; release — files are delivered to the automation system at the right time before airdate</li>
+                                <li>Promo handling with auto-tagging and a waveform editor for one-click approval</li>
+                                <li>Mission Control calendar, to-do cards for missing or stuck shows, and a diagnose panel that explains why an episode didn't complete</li>
+                                <li>A weather recorder that builds scripts from NWS forecasts, plus proof-of-airing reports and invoicing</li>
                             </ul>
                             <p class="case-impact"><strong>Impact:</strong> cut weekly file management from roughly an hour across several programs down to minutes. Built solo with AI — a working example of how I ship real systems fast.</p>
                             <div class="case-tech">
-                                <span>Scheduled FTP</span><span>Audio DSP / normalization</span><span>Metadata</span><span>Watchfolder release</span><span>Waveform editor</span>
+                                <span>Electron</span><span>FTP / SFTP</span><span>FFmpeg audio chain</span><span>BWF / CART metadata</span><span>SQLite</span>
                             </div>
                         </div>
                     </article>
@@ -929,18 +930,18 @@
                 </div>
 
                 <div class="work-grid">
-                    <!-- AudioPipe (full write-up in Software & Automation section) -->
-                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: AudioPipe"
+                    <!-- Airchain (full write-up in Software & Automation section) -->
+                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: Airchain"
                         data-modal-image="assets/images/audiopipe.webp"
-                        data-modal-title="AudioPipe — Radio File-Management Automation"
-                        data-modal-text="An internal tool I designed and built end-to-end with Claude Code. It runs scheduled FTP ingest, a configurable audio-processing pipeline that writes normalized metadata, a release/hold system that feeds radio-automation watchfolders, and smart promo tagging via a waveform editor — cutting weekly file prep from roughly an hour to minutes.">
+                        data-modal-title="Airchain — Broadcast Ingest &amp; Delivery Automation"
+                        data-modal-text="A Windows desktop app I designed and built end-to-end with Claude Code. It polls FTP/SFTP servers for syndicated shows, runs them through a configurable audio chain with EBU R128 loudness and BWF/CART metadata, and delivers them to the automation system on schedule — with a Mission Control calendar, promo tagging, a weather recorder, and proof-of-airing reports.">
                         <div class="work-media">
-                            <img src="assets/images/audiopipe.webp" alt="AudioPipe app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
+                            <img src="assets/images/audiopipe.webp" alt="Airchain app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
                         </div>
                         <div class="work-overlay">
                             <span class="cue"><i data-lucide="maximize-2"></i></span>
                             <span class="kind">Internal tool · Built with AI</span>
-                            <h3>AudioPipe</h3>
+                            <h3>Airchain</h3>
                         </div>
                     </div>
 
