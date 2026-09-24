@@ -58,19 +58,19 @@
         {
             key: 'greenville', place: 'GREENVILLE, SC', years: '2022 – 2024', job: 'Lead Motion Graphics → Studio Tech Manager', org: 'BJU Press',
             sky: ['#2a2517', '#8a7440'],
-            skills: ['Blender 3D', 'After Effects', 'Motion graphics', 'Team lead', 'NAS archiving', 'Studio design'],
+            skills: ['Blender 3D', 'After Effects', 'Motion graphics', 'Team lead', 'NAS upkeep', 'Studio specs'],
             junk: ['RENDER QUEUE', 'CABLE MESS', 'DEADLINE'],
-            boss: { name: 'The Studio Teardown', item: 'SPEC', tool: 'Renovation spec + NAS archive', toolDesc: 'Write the specs, plan the rollout, and archive everything so nothing gets redone.', cost: 150 },
-            resume: ['Promoted to Lead within months and named Rookie of the Year.', 'Wrote the specs for a full studio renovation and oversaw the rollout.', 'Maintained NAS infrastructure and set up the team\'s archiving protocols.'],
+            boss: { name: 'The Studio Teardown', item: 'SPEC', tool: 'Studio spec + NAS upkeep', toolDesc: 'Help spec the new studio, keep the NAS healthy, and get the video crew the gear they need.', cost: 150 },
+            resume: ['Promoted to Lead within months and named Rookie of the Year.', 'Helped write the specs and design recommendations for a full studio renovation.', 'Helped maintain NAS infrastructure and supplied equipment to the video production crew.'],
             reward: { gear: 2, name: 'Rookie of the Year Trophy', desc: 'A shield that blocks one hit each stage' },
         },
         {
             key: 'mpls', place: 'MINNEAPOLIS', years: '2024 – now', job: 'Operations Manager', org: 'WCTS Radio',
             sky: ['#0d1626', '#2d4468'],
-            skills: ['Broadcast ops', 'FTP automation', 'Claude Code', 'Web builds', 'DaVinci Resolve', 'Alexa streaming'],
+            skills: ['Broadcast ops', 'FTP automation', 'Claude Code', 'Web builds', 'DaVinci Resolve', 'Podcast studio build'],
             junk: ['WAV ×50', 'RENAME', 'EXPORT'],
             boss: { name: 'The 50-Promo Monster', item: 'PROMO', tool: 'Airchain', toolDesc: 'Watches for promos, mixes in the tag, and drops each one in right when it airs.', cost: 170 },
-            resume: ['Built Airchain: automated show ingest, processing, and scheduled delivery.', 'Rebuilt wctsradio.org and brought the WCTS Praise stream to Alexa.', 'Launched 8 websites for churches, a school, missionaries, and local businesses.'],
+            resume: ['Built Airchain: automated show ingest, processing, and scheduled delivery.', 'Rebuilt wctsradio.org and designed and built the station\'s podcast studio.', 'Launched 8 websites for churches, a school, missionaries, and local businesses.'],
             reward: { gear: 3, name: 'Airchain', desc: '' },
         },
     ];
@@ -78,8 +78,8 @@
     const REGION_LEN = 7000;       // px of running per stage
     const LANE_TIME = 15;          // seconds of boss lanes
     const MANUAL_TAPS = 24;        // presses to finish a boss by hand
-    const LANES = 4, LW = 96, LX0 = (W - LANES * LW) / 2, LTOP = 172, AIR = 404;
-    const LANE_KEYS = [['d', '1'], ['f', '2'], ['j', '3'], ['k', '4']];
+    const LANES = 4, LW = 96, LX0 = (W - LANES * LW) / 2, LTOP = 172, AIR = 404, HIT_WIN = 40;
+    const LANE_KEYS = [['a', '1'], ['s', '2'], ['d', '3'], ['f', '4']];   // one-hand home row
 
     // ---------------- ASSETS ----------------
     const img = {};
@@ -106,7 +106,7 @@
     .sc-root{position:fixed;inset:0;z-index:2000;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px;background:rgba(8,10,10,.9);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);opacity:0;transition:opacity .35s ease}
     .sc-root.open{opacity:1}
     .sc-frame{position:relative;width:min(100%,calc((100svh - 80px) * 16 / 9),1120px);aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#0f1214;box-shadow:0 30px 80px rgba(0,0,0,.6);outline:1px solid rgba(127,216,221,.18)}
-    .sc-frame canvas{display:block;width:100%;height:100%;touch-action:none;image-rendering:pixelated;outline:none}
+    .sc-frame canvas{display:block;width:100%;height:100%;touch-action:none;outline:none}
     .sc-close{position:absolute;top:10px;right:10px;z-index:3;width:38px;height:38px;border-radius:999px;border:0;background:rgba(0,0,0,.55);color:#fff;font-size:22px;line-height:1;cursor:pointer}
     .sc-close:hover{background:#0e7a80}
     .sc-hint{margin:10px 0 0;color:rgba(246,244,239,.55);font:12px ${MONO};text-align:center}
@@ -151,21 +151,29 @@
                 <div class="sc-panel" hidden></div>
                 <button class="sc-close" aria-label="Close game">×</button>
             </div>
-            <p class="sc-hint">Jump: Space / ↑ / tap (double jump) · Boss lanes: D F J K or tap a lane · Esc to quit</p>
+            <p class="sc-hint">Jump: Space / ↑ / tap (double jump) · Boss lanes: A S D F (or 1–4) or tap a lane · Esc to quit</p>
             <p class="sc-rotate">↻ Turn your phone sideways for a bigger screen.<br>Tap to jump · tap a lane to hit it</p>`;
         document.body.appendChild(root);
         frameEl = root.querySelector('.sc-frame');
         canvas = root.querySelector('canvas');
         panel = root.querySelector('.sc-panel');
         ctx = canvas.getContext('2d');
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        canvas.width = W * dpr; canvas.height = H * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.imageSmoothingEnabled = false;
+        fitCanvas();
+        window.addEventListener('resize', fitCanvas);
         root.querySelector('.sc-close').addEventListener('click', close);
         root.addEventListener('click', (e) => { if (e.target === root) close(); });
         canvas.addEventListener('pointerdown', onPointer);
         panel.addEventListener('click', onPanelClick);
+    }
+    // Match the canvas backing store to its on-screen size so text stays sharp at any window size.
+    function fitCanvas() {
+        if (!canvas) return;
+        const r = canvas.getBoundingClientRect(), dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const bw = Math.max(W, Math.round((r.width || W) * dpr)), bh = Math.round(bw * H / W);
+        if (canvas.width !== bw) { canvas.width = bw; canvas.height = bh; }
+        const k = canvas.width / W;
+        ctx.setTransform(k, 0, 0, k, 0, 0);
+        ctx.imageSmoothingEnabled = false;
     }
     const gearIcon = (i) => `<span class="sc-gear" aria-hidden="true" style="background-image:url('${BASE}${ART.gear.src}');background-position:${i * 33.333}% 0"></span>`;
     function showPanel(html) { panel.innerHTML = html; panel.hidden = false; const b = panel.querySelector('[data-focus]') || panel.querySelector('button, a'); if (b) b.focus({ preventScroll: true }); }
@@ -275,7 +283,7 @@
         for (const k of S.toks) {
             if (!k.got && Math.hypot(PX - k.x, S.py - 30 - k.y) < 40) {
                 k.got = true; S.got[S.stage].push(k.label); S.score += 25;
-                pop(k.x, k.y - 22, '+ ' + k.label, COL.teal);
+                S.toast = { s: '+ ' + k.label, a: 1.8 };
             }
         }
         S.toks = S.toks.filter(k => !k.got && k.x > -60);
@@ -298,7 +306,7 @@
     function laneHit(lane) {
         const L = S.L; L.lf[lane] = 1;
         let best = null;
-        for (const it of L.items) if (it.lane === lane && !it.done && Math.abs(it.y - AIR) < 30) if (!best || it.y > best.y) best = it;
+        for (const it of L.items) if (it.lane === lane && !it.done && Math.abs(it.y - AIR) < HIT_WIN) if (!best || it.y > best.y) best = it;
         if (best) {
             best.done = true; L.combo++; L.hits++;
             L.pts += 10 + Math.min(L.combo, 10);
@@ -309,8 +317,8 @@
     function updateLanes(dt) {
         const L = S.L; L.t += dt; S.boss.t += dt;
         const flood = S.stage === 3 && L.t > 7;
-        const interval = flood ? 0.3 : [0.62, 0.55, 0.5, 0.44][S.stage];
-        const speed = [185, 200, 215, 230][S.stage];
+        const interval = flood ? 0.36 : [0.72, 0.64, 0.58, 0.52][S.stage];
+        const speed = [165, 178, 190, 200][S.stage];
         L.spawn -= dt;
         if (L.spawn <= 0 && L.t < LANE_TIME - 1.6) {
             L.spawn = interval * (0.75 + Math.random() * 0.5);
@@ -318,13 +326,13 @@
         }
         for (const it of L.items) {
             it.y += it.v * dt;
-            if (!it.done && it.y > AIR + 34) {
-                it.done = true; it.missed = true; L.combo = 0; L.dead = Math.min(100, L.dead + 20); L.flash = 0.4;
+            if (!it.done && it.y > AIR + HIT_WIN + 4) {
+                it.done = true; it.missed = true; L.combo = 0; L.dead = Math.min(100, L.dead + 16); L.flash = 0.4;
                 pop(LX0 + it.lane * LW + LW / 2, AIR + 4, 'MISSED', COL.red);
             }
         }
         L.items = L.items.filter(it => it.y < H + 30 && !(it.done && !it.missed));
-        L.dead = Math.max(0, L.dead - dt * 4);
+        L.dead = Math.max(0, L.dead - dt * 5);
         L.flash = Math.max(0, L.flash - dt);
         L.lf = L.lf.map(v => Math.max(0, v - dt * 5));
         if (L.dead >= 100) {
@@ -443,7 +451,15 @@
     // ---------------- DRAW ----------------
     function text(s, x, y, size, color, align, font, weight) {
         ctx.font = `${weight || 600} ${size}px ${font || MONO}`;
-        ctx.fillStyle = color || COL.paper; ctx.textAlign = align || 'left'; ctx.fillText(s, x, y);
+        ctx.fillStyle = color || COL.paper; ctx.textAlign = align || 'left'; ctx.fillText(s, Math.round(x), Math.round(y));
+    }
+    // Label on a dark pill, snapped to whole pixels, so it stays legible while scrolling past.
+    function label(s, x, y, size, color) {
+        ctx.font = `700 ${size}px ${MONO}`;
+        const w = Math.ceil(ctx.measureText(s).width) + 12, h = size + 8;
+        const lx = Math.round(x - w / 2), ly = Math.round(y - h + 4);
+        ctx.fillStyle = 'rgba(10,12,14,.82)'; ctx.beginPath(); ctx.roundRect(lx, ly, w, h, 5); ctx.fill();
+        text(s, lx + w / 2, ly + h - 6, size, color, 'center', MONO, 700);
     }
     function scenery(dist) {
         const r = REGIONS[S.stage], key = r.key;
@@ -531,6 +547,12 @@
         ctx.fillStyle = COL.teal; ctx.fillRect(bx, 22, seg * S.stage + seg * p, 4);
         for (let i = 0; i < REGIONS.length; i++) { ctx.fillStyle = i < S.stage || (i === S.stage && p >= 1) ? COL.red : 'rgba(255,255,255,.35)'; ctx.fillRect(bx + seg * (i + 1) - 3, 17, 6, 14); }
         text(`${R().place} · ${R().years}`, W / 2, 46, 11, 'rgba(246,244,239,.65)', 'center');
+        if (S.toast && S.toast.a > 0) {             // collected skill, pinned under the HUD so it's easy to read
+            ctx.globalAlpha = Math.min(1, S.toast.a);
+            label(S.toast.s, W / 2, 84, 16, COL.teal);
+            ctx.globalAlpha = 1;
+            S.toast.a -= 1 / 60;
+        }
     }
     function drawPops(dt) {
         for (const p of S.pops) {
@@ -546,11 +568,11 @@
         for (const k of S.toks) {
             const y = k.y + Math.sin(S.d / 60 + k.ph) * 4;
             if (!sprite('token', 0, 0, k.x, y + 15, 2.6)) { ctx.fillStyle = COL.teal; ctx.beginPath(); ctx.arc(k.x, y, 14, 0, 7); ctx.fill(); }
-            text(k.label, k.x, y - 22, 11, COL.paper, 'center');
+            label(k.label, k.x, y - 20, 13, COL.teal);
         }
         for (const o of S.obs) {
             if (!sprite('crate', 0, 0, o.x, GROUND, 1, o.w, o.h)) { ctx.fillStyle = '#3a3f44'; ctx.fillRect(o.x - o.w / 2, GROUND - o.h, o.w, o.h); }
-            text(o.label, o.x, GROUND - o.h - 7, 10, 'rgba(246,244,239,.75)', 'center');
+            label(o.label, o.x, GROUND - o.h - 6, 12, 'rgba(246,244,239,.9)');
         }
         if (S.boss) drawBoss(S.boss.x, GROUND, 3);
         drawPlayer();
@@ -583,9 +605,9 @@
             const x = LX0 + i * LW;
             ctx.fillStyle = i % 2 ? 'rgba(255,255,255,.03)' : 'rgba(255,255,255,.06)'; ctx.fillRect(x, LTOP, LW, H - LTOP);
             if (L.lf[i]) { ctx.fillStyle = `rgba(127,216,221,${L.lf[i] * 0.2})`; ctx.fillRect(x, LTOP, LW, H - LTOP); }
-            text(LANE_KEYS[i][0].toUpperCase(), x + LW / 2, H - 8, 12, 'rgba(246,244,239,.4)', 'center');
+            text(LANE_KEYS[i][0].toUpperCase(), x + LW / 2, H - 8, 13, 'rgba(246,244,239,.55)', 'center');
         }
-        ctx.fillStyle = 'rgba(229,72,77,.14)'; ctx.fillRect(LX0, AIR - 28, LANES * LW, 56);
+        ctx.fillStyle = 'rgba(229,72,77,.14)'; ctx.fillRect(LX0, AIR - HIT_WIN, LANES * LW, HIT_WIN * 2);
         ctx.fillStyle = COL.red; ctx.fillRect(LX0, AIR, LANES * LW, 2);
         text('● AIR', LX0 - 10, AIR + 5, 11, COL.red, 'right');
         const itemCol = S.stage === 3 ? COL.red : COL.teal;
@@ -650,7 +672,8 @@
         newGame();
         open = true; lastFocus = document.activeElement;
         root.style.display = 'flex';
-        requestAnimationFrame(() => root.classList.add('open'));
+        fitCanvas();
+        requestAnimationFrame(() => { root.classList.add('open'); fitCanvas(); });
         document.body.style.overflow = 'hidden';
         hidePanel();
         window.addEventListener('keydown', onKey, true);
