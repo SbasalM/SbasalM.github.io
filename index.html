@@ -611,6 +611,119 @@
         #to-top:hover { background: var(--accent); transform: translateY(-3px); }
         #to-top svg { width: 20px; height: 20px; }
 
+        /* ---------- Polish & play ---------- */
+        html { scrollbar-color: var(--accent) var(--paper-2); }
+
+        /* Scroll progress as a broadcast level meter */
+        .level-meter {
+            position: absolute; left: 0; right: 0; bottom: -1px; height: 3px;
+            display: flex; gap: 2px; pointer-events: none;
+            opacity: 0; transition: opacity 0.3s ease;
+        }
+        header.site.scrolled .level-meter { opacity: 1; }
+        .level-meter span { flex: 1; background: rgba(26, 23, 20, 0.07); transition: background-color 0.18s ease; }
+        .level-meter span.on { background: var(--accent); }
+        .level-meter span.on.hot { background: #e0a33a; }
+        .level-meter span.on.peak { background: #e5484d; }
+
+        /* Hero: live "waveform" with a tag window that follows the cursor */
+        #heroWave {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            width: 100%; height: clamp(90px, 20vh, 180px);
+            z-index: 1; pointer-events: none;
+            -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+            mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        }
+        @media (max-width: 640px) {
+            #heroWave { height: 90px; opacity: 0.6; }
+            .hero-eyebrow { letter-spacing: 0.14em; font-size: 0.72rem; line-height: 1.7; }
+            .hero-eyebrow::before { display: none; }
+        }
+        .ink-section .section-title em { color: #7fd8dd; }
+        .hero h1 em {
+            background: linear-gradient(#7fd8dd, #7fd8dd) 0 94% / 0% 3px no-repeat;
+            animation: swipe 0.9s 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+        @keyframes swipe { to { background-size: 100% 3px; } }
+
+        /* Cursor spotlight on cards */
+        .spot { position: relative; }
+        .spot::after {
+            content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+            opacity: 0; transition: opacity 0.35s ease;
+            background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(14, 122, 128, 0.11), transparent 62%);
+        }
+        .spot:hover::after { opacity: 1; }
+        .stat { transition: background-color 0.3s ease; }
+        .stat .num { transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+        .stat:hover .num { transform: translateY(-3px); }
+
+        /* Case-study media glow */
+        .case-shot { transition: box-shadow 0.4s ease, transform 0.4s ease; }
+        .case:hover .case-shot { box-shadow: 0 24px 60px -26px rgba(14, 122, 128, 0.55); transform: translateY(-3px); }
+
+        /* Work cards: tilt + glare */
+        .work-item { transition: transform 0.2s ease-out, box-shadow 0.3s ease; transform-style: preserve-3d; }
+        .work-item::after {
+            content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2;
+            opacity: 0; transition: opacity 0.3s ease;
+            background: radial-gradient(420px circle at var(--gx, 50%) var(--gy, 50%), rgba(255, 255, 255, 0.14), transparent 60%);
+        }
+        .work-item:hover::after { opacity: 1; }
+
+        /* Buttons: magnetic pull is set inline by JS; keep it springy */
+        .btn, .clink { will-change: transform; }
+
+        /* How I work: a signal pulse runs the chain, lighting each step */
+        @media (min-width: 1000px) {
+            .process-grid { position: relative; }
+            .process-grid::before {
+                content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; z-index: 1;
+                background: linear-gradient(90deg, transparent, #7fd8dd 50%, transparent) no-repeat;
+                background-size: 30% 100%; background-position: -30% 0;
+                opacity: 0; transition: opacity 0.4s ease;
+            }
+            .process-grid.live::before { opacity: 1; animation: signal 3.2s linear infinite; }
+            .process-grid.live .step .n { animation: tally 3.2s linear infinite; }
+            .process-grid.live .step:nth-child(1) .n { animation-delay: 0.45s; }
+            .process-grid.live .step:nth-child(2) .n { animation-delay: 1.16s; }
+            .process-grid.live .step:nth-child(3) .n { animation-delay: 1.88s; }
+            .process-grid.live .step:nth-child(4) .n { animation-delay: 2.59s; }
+        }
+        @keyframes signal { to { background-position: 130% 0; } }
+        @keyframes tally {
+            0% { color: #fff; text-shadow: 0 0 22px rgba(127, 216, 221, 0.95); }
+            22%, 100% { color: #7fd8dd; text-shadow: none; }
+        }
+
+        /* Easter egg: ON AIR */
+        .onair-pill {
+            display: none; align-items: center; gap: 0.4rem; margin-left: 0.8rem; margin-right: auto;
+            font-size: 0.68rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+            padding: 0.28rem 0.6rem; border-radius: 6px; background: #e5484d; color: #fff;
+            box-shadow: 0 0 18px rgba(229, 72, 77, 0.55);
+        }
+        body.on-air .onair-pill { display: inline-flex; }
+        body.on-air .wordmark .dot { color: #e5484d; text-shadow: 0 0 12px rgba(229, 72, 77, 0.8); }
+        .tally-dot {
+            width: 9px; height: 9px; border-radius: 50%; background: #e5484d; flex-shrink: 0;
+            box-shadow: 0 0 10px #e5484d; animation: tally-pulse 1.2s ease-in-out infinite;
+        }
+        .onair-pill .tally-dot { background: #fff; box-shadow: 0 0 8px #fff; width: 6px; height: 6px; }
+        @keyframes tally-pulse { 50% { opacity: 0.35; } }
+        .toast {
+            position: fixed; left: 50%; bottom: 1.5rem; z-index: 300;
+            transform: translate(-50%, 180%);
+            display: flex; align-items: center; gap: 0.7rem;
+            max-width: calc(100vw - 2rem);
+            background: var(--ink); color: var(--paper);
+            padding: 0.8rem 1.25rem; border-radius: 999px;
+            font-size: 0.92rem; box-shadow: var(--shadow);
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .toast.show { transform: translate(-50%, 0); }
+        .toast a { color: #7fd8dd; font-weight: 600; }
+
         /* ---------- Reveal animation ---------- */
         .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .js .reveal.in-view { opacity: 1; transform: none; }
@@ -659,6 +772,7 @@
     <header class="site" id="header">
         <div class="nav-row">
             <a href="#" class="wordmark" aria-label="Sebastian Basaldua — home">Sebastian Basaldua<span class="dot">.</span></a>
+            <span class="onair-pill" aria-hidden="true"><span class="tally-dot"></span>On air</span>
             <nav class="nav-links" aria-label="Primary">
                 <a href="#about">About</a>
                 <a href="#software">Software</a>
@@ -681,6 +795,7 @@
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
         </div>
+        <div class="level-meter" aria-hidden="true"></div>
     </header>
 
     <main id="main">
@@ -690,6 +805,7 @@
                 <source src="assets/videos/Hero_Video.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
+            <canvas id="heroWave" aria-hidden="true"></canvas>
             <div class="container">
                 <div class="hero-inner">
                     <p class="eyebrow hero-eyebrow">Sebastian Basaldua · Operations · Media Technology · Automation</p>
@@ -1185,6 +1301,7 @@
     </footer>
 
     <button id="to-top" aria-label="Back to top"><i data-lucide="arrow-up"></i></button>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -1382,6 +1499,194 @@
                 item.style.display = show ? '' : 'none';
             });
         }));
+
+        // ================= Polish & play =================
+        const finePointer = window.matchMedia('(pointer: fine)').matches;
+        const track = (name, label) => { if (typeof gtag === 'function') gtag('event', name, { event_category: 'engagement', event_label: label }); };
+
+        // Scroll progress as a level meter (green → amber → red at the very end)
+        const meter = document.querySelector('.level-meter');
+        if (meter) {
+            const SEG = 36;
+            for (let i = 0; i < SEG; i++) {
+                const seg = document.createElement('span');
+                if (i >= SEG - 7) seg.classList.add('hot');
+                if (i >= SEG - 2) seg.classList.add('peak');
+                meter.appendChild(seg);
+            }
+            const segs = [...meter.children];
+            let lastLit = -1;
+            const updateMeter = () => {
+                const max = document.documentElement.scrollHeight - window.innerHeight;
+                const lit = Math.round((max > 0 ? window.scrollY / max : 0) * SEG);
+                if (lit === lastLit) return;
+                lastLit = lit;
+                segs.forEach((seg, i) => seg.classList.toggle('on', i < lit));
+            };
+            updateMeter();
+            window.addEventListener('scroll', updateMeter, { passive: true });
+            window.addEventListener('resize', updateMeter);
+        }
+
+        // Hero waveform — bars flow like program audio; a "tag" window follows the cursor
+        const wave = document.getElementById('heroWave');
+        const heroEl = document.querySelector('.hero');
+        if (wave && heroEl && wave.getContext) {
+            const ctx = wave.getContext('2d');
+            const BAR = 3, GAP = 3;
+            const table = Array.from({ length: 256 }, () => Math.random());
+            const noise = (x) => { const i = Math.floor(x), f = x - i, u = f * f * (3 - 2 * f); return table[i & 255] * (1 - u) + table[(i + 1) & 255] * u; };
+            let W = 0, H = 0, bars = 0, tagX = 0, targetX = null, running = false;
+            const resize = () => {
+                const dpr = Math.min(window.devicePixelRatio || 1, 2);
+                W = wave.clientWidth; H = wave.clientHeight;
+                wave.width = W * dpr; wave.height = H * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                bars = Math.ceil(W / (BAR + GAP));
+                if (!tagX) tagX = W * 0.62;
+            };
+            resize();
+            window.addEventListener('resize', () => { resize(); if (!running) draw(performance.now()); });
+            heroEl.addEventListener('pointermove', (e) => {
+                if (e.pointerType !== 'mouse') return;
+                targetX = e.clientX - heroEl.getBoundingClientRect().left;
+            });
+            heroEl.addEventListener('pointerleave', () => { targetX = null; });
+
+            function draw(now) {
+                const t = now / 1000;
+                const goal = targetX ?? W * (0.5 + 0.3 * Math.sin(t * 0.35));
+                tagX += (goal - tagX) * 0.07;
+                const tagW = Math.max(120, Math.min(260, W * 0.2));
+                const mid = H * 0.56;
+                const hot = document.body.classList.contains('on-air') ? '229, 72, 77' : '127, 216, 221';
+                ctx.clearRect(0, 0, W, H);
+                ctx.fillStyle = `rgba(${hot}, 0.07)`;
+                ctx.fillRect(tagX - tagW / 2, H * 0.08, tagW, H * 0.84);
+                for (let i = 0; i < bars; i++) {
+                    const x = i * (BAR + GAP);
+                    const n = noise(i * 0.19 + t * 2.4) * 0.72 + noise(i * 0.63 - t * 3.3) * 0.28;
+                    const env = 0.3 + 0.7 * noise(i * 0.033 + t * 0.45);
+                    const d = Math.abs(x - tagX) / tagW;
+                    const inTag = d < 0.5;
+                    const k = inTag ? 1 - d * 2 : 0;
+                    const h = Math.min(H * 0.8, Math.max(2, n * env * (1 + 0.4 * k) * H * 0.82));
+                    ctx.fillStyle = inTag ? `rgba(${hot}, ${0.5 + 0.45 * k})` : 'rgba(255, 255, 255, 0.2)';
+                    ctx.fillRect(x, mid - h / 2, BAR, h);
+                }
+                const cue = tagX - tagW / 2;
+                ctx.fillStyle = '#f5a623';
+                ctx.fillRect(cue, H * 0.08, 1.5, H * 0.84);
+                ctx.beginPath(); ctx.arc(cue + 0.75, H * 0.08, 3.5, 0, Math.PI * 2); ctx.fill();
+                if (running) requestAnimationFrame(draw);
+            }
+            if (reduceMotion || !('IntersectionObserver' in window)) {
+                draw(0);
+            } else {
+                new IntersectionObserver(([e]) => {
+                    const was = running;
+                    running = e.isIntersecting && !document.hidden;
+                    if (running && !was) requestAnimationFrame(draw);
+                }).observe(heroEl);
+                document.addEventListener('visibilitychange', () => {
+                    const was = running;
+                    running = !document.hidden && window.scrollY < heroEl.offsetHeight;
+                    if (running && !was) requestAnimationFrame(draw);
+                });
+            }
+        }
+
+        // Eyebrows "decode" in like a signal locking on
+        if (!reduceMotion && 'IntersectionObserver' in window) {
+            const GLYPHS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/<>_+#';
+            const scramble = (el) => {
+                const final = el.textContent;
+                if (!final.trim() || el.children.length) return;
+                el.setAttribute('aria-label', final.trim());
+                const dur = Math.min(950, 320 + final.length * 20);
+                let start = null;
+                const step = (ts) => {
+                    if (start === null) start = ts;
+                    const p = Math.min((ts - start) / dur, 1);
+                    const n = Math.floor(p * final.length);
+                    let out = final.slice(0, n);
+                    for (let i = n; i < final.length; i++) out += /[\s·&']/.test(final[i]) ? final[i] : GLYPHS[(Math.random() * GLYPHS.length) | 0];
+                    el.textContent = p < 1 ? out : final;
+                    if (p < 1) requestAnimationFrame(step);
+                };
+                requestAnimationFrame(step);
+            };
+            const eo = new IntersectionObserver((entries, obs) => {
+                entries.forEach(e => { if (e.isIntersecting) { scramble(e.target); obs.unobserve(e.target); } });
+            }, { threshold: 1 });
+            document.querySelectorAll('.eyebrow').forEach(el => eo.observe(el));
+        }
+
+        // Pointer-only niceties: card spotlight, magnetic buttons, tilting work cards
+        if (finePointer) {
+            document.querySelectorAll('.cap, .quote, .stat').forEach(el => {
+                el.classList.add('spot');
+                el.addEventListener('pointermove', (e) => {
+                    const r = el.getBoundingClientRect();
+                    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            });
+            if (!reduceMotion) {
+                document.querySelectorAll('.btn, .clink').forEach(b => {
+                    b.addEventListener('pointermove', (e) => {
+                        const r = b.getBoundingClientRect();
+                        const dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+                        b.style.transform = `translate(${dx * 0.16}px, ${dy * 0.3 - 2}px)`;
+                    });
+                    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
+                });
+                document.querySelectorAll('.work-item').forEach(card => {
+                    card.addEventListener('pointermove', (e) => {
+                        const r = card.getBoundingClientRect();
+                        const px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+                        card.style.transform = `perspective(900px) rotateX(${(0.5 - py) * 6}deg) rotateY(${(px - 0.5) * 8}deg) translateY(-5px)`;
+                        card.style.setProperty('--gx', (px * 100) + '%');
+                        card.style.setProperty('--gy', (py * 100) + '%');
+                    });
+                    card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+                });
+            }
+        }
+
+        // How I work: run the signal pulse only while the section is on screen
+        const processGrid = document.querySelector('.process-grid');
+        if (processGrid && !reduceMotion && 'IntersectionObserver' in window) {
+            new IntersectionObserver(([e]) => processGrid.classList.toggle('live', e.isIntersecting), { threshold: 0.3 }).observe(processGrid);
+        }
+
+        // Easter egg: type "onair" (or the Konami code) to go live
+        const toast = document.getElementById('toast');
+        let toastTimer;
+        const showToast = (html) => {
+            toast.innerHTML = html;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 5200);
+        };
+        const toggleOnAir = () => {
+            const on = document.body.classList.toggle('on-air');
+            showToast(on
+                ? '<span class="tally-dot"></span><span>You\'re on air. Thanks for poking around — <a href="mailto:sbasalmedia@gmail.com">say hi</a>.</span>'
+                : '<span>Off air. Back to regular programming.</span>');
+            track('easter_egg', on ? 'on_air' : 'off_air');
+        };
+        const KONAMI = 'ArrowUp,ArrowUp,ArrowDown,ArrowDown,ArrowLeft,ArrowRight,ArrowLeft,ArrowRight,b,a';
+        let keyLog = [];
+        document.addEventListener('keydown', (e) => {
+            if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
+            keyLog.push(e.key.length === 1 ? e.key.toLowerCase() : e.key);
+            keyLog = keyLog.slice(-10);
+            if (keyLog.join(',') === KONAMI || keyLog.slice(-5).join('') === 'onair') { keyLog = []; toggleOnAir(); }
+        });
+
+        console.log('%c● ON AIR%c  You opened the console — my kind of person.\nThis site is hand-built with AI assistance. Psst: type "onair" anywhere on the page.',
+            'color:#e5484d;font-weight:700;font-size:13px', 'color:inherit;font-size:12px');
     </script>
 </body>
 
