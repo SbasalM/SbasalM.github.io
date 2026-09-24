@@ -25,7 +25,7 @@
     // ---------------- ART MANIFEST ----------------
     // fw/fh = frame size in pixels on the sheet. Frames run left→right; rows top→bottom.
     const ART = {
-        player: { src: 'sprites/player.png', fw: 14, fh: 20 },          // 4 frames: run A, stride, run B, jump
+        player: { src: 'sprites/player.png', fw: 40, fh: 54, scale: 1.15, run: [0, 1, 2, 3, 4, 5], jump: 6 }, // rendered from the rigged Blender model
         bosses: { src: 'sprites/bosses.png', fw: 48, fh: 48 },          // 2 frames (idle, blink) × 4 rows (one per boss)
         token:  { src: 'sprites/token.png',  fw: 12, fh: 12 },          // 1 frame: skill token
         crate:  { src: 'sprites/crate.png',  fw: 16, fh: 16 },          // 1 frame: "manual work" obstacle
@@ -506,8 +506,8 @@
         const x = PX, y = S.py;
         if (S.inv > 0 && ((S.inv * 12) | 0) % 2) return;
         const air = y < GROUND - 1;
-        const cyc = [0, 1, 2, 1][((S.d / 38) | 0) % 4];
-        if (!sprite('player', air ? 3 : cyc, 0, x, y + 1, 3)) {
+        const P = ART.player, cyc = P.run[((S.d / 30) | 0) % P.run.length];
+        if (!sprite('player', air ? P.jump : cyc, 0, x, y + 1, P.scale)) {
             ctx.fillStyle = COL.acc; ctx.fillRect(x - 14, y - 50, 28, 34); ctx.fillStyle = '#d9a77a'; ctx.fillRect(x - 10, y - 62, 20, 14);
         }
         if (S.shield) { ctx.strokeStyle = 'rgba(245,166,35,.8)'; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(x, y - 30, 30, 38, 0, 0, 7); ctx.stroke(); }
@@ -624,7 +624,7 @@
         text('PRESS SPACE OR TAP TO START', W / 2, 312, 14, COL.teal, 'center');
         ctx.globalAlpha = 1;
         const bob = Math.abs(Math.sin(t * 6)) * 6;
-        sprite('player', ((t * 8) | 0) % 3, 0, W / 2, 382 - bob, 3);
+        sprite('player', ART.player.run[((t * 10) | 0) % ART.player.run.length], 0, W / 2, 382 - bob, ART.player.scale);
     }
 
     // ---------------- LOOP ----------------

@@ -6,7 +6,7 @@ Draw at small pixel sizes on a transparent background. The game scales images up
 
 | File | Frame size | Layout | What it is |
 |---|---|---|---|
-| `player.png` | 14 × 20 | 4 frames in a row: run A, stride, run B, jump | You, facing right. Drawn at 3×. |
+| `player.png` | 40 × 54 | 7 frames in a row: 6 run frames, then jump | You, facing right, rendered from the rigged Sebastian in `Actors.blend` and pixelized. Drawn at 1.15×. `player-classic.png` is the original hand-drawn 14 × 20 version (4 frames: run A, stride, run B, jump); to use it, set `fw: 14, fh: 20, scale: 3, run: [0, 1, 2, 1], jump: 3` in `ART.player`. |
 | `bosses.png` | 48 × 48 | 2 columns (idle, blink) × 4 rows | Rows: Compliance Binder, Timezone Beast, Studio Teardown, 50-Promo Monster |
 | `token.png` | 12 × 12 | 1 frame | Skill token |
 | `crate.png` | 16 × 16 | 1 frame | "Manual work" obstacle. It gets stretched to each obstacle's size, so keep it simple. |
