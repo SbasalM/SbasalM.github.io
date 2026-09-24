@@ -382,6 +382,7 @@
         .case-shot { aspect-ratio: 1920 / 1032; } /* reserve space pre-load: no layout shift */
         .case-shot img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease; }
         .case:hover .case-shot img { transform: scale(1.02); }
+        .case-shot video { width: 100%; height: 100%; object-fit: cover; display: block; }
         .case-body .tagrow { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
         .pill {
             font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
@@ -779,8 +780,11 @@
                     <!-- Airchain -->
                     <article class="case reveal">
                         <div class="case-shot">
-                            <img src="assets/images/audiopipe.webp" loading="lazy" decoding="async"
-                                alt="Airchain desktop app showing a weekly show calendar, a list of promos awaiting verification, and a waveform editor for tagging promos.">
+                            <video class="lazy-video" autoplay loop muted playsinline preload="none"
+                                data-src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp"
+                                aria-label="Airchain demo: reviewing the week's shows, approving auto-tagged promos, and placing a show tag on a waveform with one click.">
+                                <source src="" type="video/mp4">
+                            </video>
                         </div>
                         <div class="case-body">
                             <div class="tagrow">
@@ -788,7 +792,8 @@
                                 <span class="pill ghost">Built with Claude Code</span>
                             </div>
                             <h3>Airchain — Broadcast Ingest &amp; Delivery Automation</h3>
-                            <p>A Windows desktop app I designed and built end-to-end with Claude Code to erase the weekly grind of broadcast file prep. It handles the whole pipeline — from syndicated show files to the on-air automation system — so I don't have to:</p>
+                            <p>It started with one slow task. Syndicated shows send promos with none of our branding, and each one needs a station tag mixed in with that show's air times. At five promos a show across 10+ shows, that's about 50 files to edit every week. My first fix was an Adobe Audition Favorite I could batch-run, but I still had to check every file, fix the odd ones by hand, and drop them into the radio software myself.</p>
+                            <p>So I built Airchain, a Windows desktop app made end-to-end with Claude Code. It now handles the whole pipeline, from syndicated show files to the on-air automation system:</p>
                             <ul class="case-feats">
                                 <li>Watches local folders or polls FTP/SFTP servers for syndicated shows, with a visual filename-pattern builder</li>
                                 <li>A configurable audio chain (trim, EQ, compression, EBU R128 loudness) and BWF/CART metadata written to every file</li>
@@ -797,7 +802,7 @@
                                 <li>Mission Control calendar, to-do cards for missing or stuck shows, and a diagnose panel that explains why an episode didn't complete</li>
                                 <li>A weather recorder that builds scripts from NWS forecasts, plus proof-of-airing reports and invoicing</li>
                             </ul>
-                            <p class="case-impact"><strong>Impact:</strong> cut weekly file management from roughly an hour across several programs down to minutes. Built solo with AI — a working example of how I ship real systems fast.</p>
+                            <p class="case-impact"><strong>Now:</strong> I open the queue that built up while I was out (often days ahead), listen, and approve. Several files take under a minute, and the most consistent promos don't need my approval at all. Airchain holds them and drops them into the automation system right when they're scheduled to air.</p>
                             <div class="case-tech">
                                 <span>Electron</span><span>FTP / SFTP</span><span>FFmpeg audio chain</span><span>BWF / CART metadata</span><span>SQLite</span>
                             </div>
@@ -931,15 +936,17 @@
 
                 <div class="work-grid">
                     <!-- Airchain (full write-up in Software & Automation section) -->
-                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: Airchain"
-                        data-modal-image="assets/images/audiopipe.webp"
+                    <div class="work-item reveal" data-category="software" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Airchain"
+                        data-modal-vimeo='<video src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp" controls autoplay playsinline style="width:100%;height:auto;display:block;"></video>'
                         data-modal-title="Airchain — Broadcast Ingest &amp; Delivery Automation"
                         data-modal-text="A Windows desktop app I designed and built end-to-end with Claude Code. It polls FTP/SFTP servers for syndicated shows, runs them through a configurable audio chain with EBU R128 loudness and BWF/CART metadata, and delivers them to the automation system on schedule — with a Mission Control calendar, promo tagging, a weather recorder, and proof-of-airing reports.">
                         <div class="work-media">
-                            <img src="assets/images/audiopipe.webp" alt="Airchain app — show calendar, promo verification, and waveform tagging editor" loading="lazy">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/airchain-demo.mp4" data-poster="assets/images/airchain-thumb.jpg" poster="assets/images/airchain-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
                         </div>
                         <div class="work-overlay">
-                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
                             <span class="kind">Internal tool · Built with AI</span>
                             <h3>Airchain</h3>
                         </div>
