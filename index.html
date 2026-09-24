@@ -722,6 +722,19 @@
         .site-meta h3 svg { width: 20px; height: 20px; color: var(--ink-faint); flex-shrink: 0; transition: transform 0.3s ease, color 0.3s ease; }
         .site-card:hover .site-meta h3 svg { transform: translate(3px, -3px); color: var(--accent); }
         .site-meta p { margin: 0; color: var(--ink-soft); font-size: 0.93rem; line-height: 1.5; }
+        .more-card { background: var(--ink); color: var(--paper); border-color: transparent; padding: 1.6rem 1.5rem; justify-content: flex-start; gap: 1.4rem; }
+        .more-card:hover { transform: none; box-shadow: none; }
+        .more-card .site-tag { color: #7fd8dd; }
+        .more-card h3 { font-size: 1.45rem; color: #fff; margin-top: 0.35rem; }
+        .more-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.2rem; }
+        .more-list li { display: grid; grid-template-columns: 3rem 1fr; align-items: baseline; gap: 0.6rem; padding: 0.55rem 0; border-bottom: 1px dashed rgba(246, 244, 239, 0.14); }
+        .more-list li:last-child { border-bottom: 0; }
+        .more-list b { font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: #7fd8dd; line-height: 1; }
+        .more-list span { color: rgba(246, 244, 239, 0.85); font-size: 0.95rem; }
+        .more-link { margin-top: auto; color: #fff; font-weight: 600; font-size: 0.95rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+        .more-link svg { width: 18px; height: 18px; transition: transform 0.3s ease; }
+        .more-link:hover { color: #7fd8dd; }
+        .more-link:hover svg { transform: translateX(4px); }
         .swipe-hint { display: none; align-items: center; gap: 0.4rem; justify-content: center; font-size: 0.82rem; color: var(--ink-faint); margin-top: 0.4rem; }
         .swipe-hint svg { width: 16px; height: 16px; }
         @media (max-width: 899px) { .swipe-hint { display: flex; } }
@@ -1033,7 +1046,7 @@
                     <div class="log-head"><span>Station log</span><span class="log-live"><span class="tally-dot"></span>Live</span></div>
                     <dl>
                         <div class="log-row"><dt>Now</dt><dd>Operations Manager, WCTS Radio</dd></div>
-                        <div class="log-row"><dt>Building</dt><dd>Lumen Map 2.0 and new church &amp; ministry sites</dd></div>
+                        <div class="log-row"><dt>Building</dt><dd>Lumen Map 2.0 and two new church sites</dd></div>
                         <div class="log-row"><dt>Shipped</dt><dd><a href="#software">Airchain</a> · <a href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener">CheckSpree</a> · <a href="#sites">live websites</a></dd></div>
                         <div class="log-row"><dt>Studio</dt><dd>Luminary Craft Digital: web for churches &amp; ministries</dd></div>
                         <div class="log-row"><dt>Toolkit</dt><dd>Claude Code · DaVinci Resolve · Premiere · After Effects · Blender · Audition</dd></div>
@@ -1049,9 +1062,9 @@
                         <p class="desc">Radio, studio, and IT roles since 2016</p>
                     </div>
                     <div class="stat" role="listitem">
-                        <div class="num" data-count="3">3</div>
+                        <div class="num" data-count="8">8</div>
                         <div class="label">Websites launched</div>
-                        <p class="desc">wctsradio.org, MACS, and a Christian school — two more in build</p>
+                        <p class="desc">Churches, a school, missionaries, a radio station, and a local business — more in build</p>
                     </div>
                     <div class="stat" role="listitem">
                         <div class="num" data-count="2">2</div>
@@ -1145,7 +1158,7 @@
                 <div class="section-head split">
                     <p class="eyebrow">On the web</p>
                     <h2 class="section-title">Websites I've <em>designed &amp; built</em>.</h2>
-                    <p class="lede" style="margin-top:1rem;">Live sites for a radio station, a church, a school, and a missionary network. Click through; they're all running.</p>
+                    <p class="lede" style="margin-top:1rem;">Eight sites and counting: churches, a Christian school, missionaries, a radio station, and a local business. Click through; they're all running.</p>
                 </div>
                 <div class="sites-grid">
                     <a class="site-card wide reveal" href="https://wctsradio.org" target="_blank" rel="noopener"
@@ -1188,6 +1201,29 @@
                             <p>A K4–12 school site with admissions, academics, student life, and quick links for current families.</p>
                         </div>
                     </a>
+                    <a class="site-card wide reveal" href="https://apemanhandyman.com" target="_blank" rel="noopener"
+                        onclick="gtag('event', 'click_site', {'event_category':'portfolio','event_label':'apemanhandyman'});">
+                        <div class="browser-bar" aria-hidden="true"><span class="dots"><i></i><i></i><i></i></span><span class="url"><i data-lucide="lock"></i>apemanhandyman.com</span></div>
+                        <div class="site-shot"><img src="assets/images/sites/apeman.webp" alt="Ape Man Handyman homepage with a green hero and a cartoon ape mascot holding a hammer and wrench" loading="lazy" decoding="async"></div>
+                        <div class="site-meta">
+                            <span class="site-tag">Local business</span>
+                            <h3>Ape Man Handyman <i data-lucide="arrow-up-right"></i></h3>
+                            <p>A lead-focused site for a handyman in Greer, SC: services, past projects, and a quick path to request a quote or call.</p>
+                        </div>
+                    </a>
+                    <div class="site-card more-card reveal">
+                        <div>
+                            <span class="site-tag">Also shipped &amp; in the works</span>
+                            <h3>A few more on the board</h3>
+                        </div>
+                        <ul class="more-list">
+                            <li><b>2</b><span>Missionary support sites</span></li>
+                            <li><b>1</b><span>More church site, live</span></li>
+                            <li><b>2</b><span>Church sites in build</span></li>
+                            <li><b>2.0</b><span>Lumen Map rebuild with automated data</span></li>
+                        </ul>
+                        <a href="#contact" class="more-link">Want to see one or talk shop? <i data-lucide="arrow-right"></i></a>
+                    </div>
                 </div>
                 <p class="swipe-hint" aria-hidden="true">Swipe to see more <i data-lucide="arrow-right"></i></p>
             </div>
