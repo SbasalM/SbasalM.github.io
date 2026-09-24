@@ -197,7 +197,8 @@
             align-items: baseline;
             gap: 0.4rem;
         }
-        .wordmark .dot { color: var(--accent); }
+        .wordmark .dot { color: var(--accent); position: relative; cursor: pointer; }
+        .wordmark .dot::after { content: ''; position: absolute; inset: -14px -12px; }
         /* On the hero (before scroll) the header sits over dark video */
         header.site:not(.scrolled) .wordmark,
         header.site:not(.scrolled) .nav-links a,
@@ -2016,16 +2017,42 @@
                 : '<span>Off air. Back to regular programming.</span>');
             track('easter_egg', on ? 'on_air' : 'off_air');
         };
+        // Konami code (or 5 taps on the wordmark dot) = go on air, then launch the Signal Chain game
+        const gameOpen = () => window.SignalChain && window.SignalChain.isOpen();
+        const launchGame = () => {
+            if (window.SignalChain) { window.SignalChain.open(); return; }
+            const sc = document.createElement('script');
+            sc.src = 'assets/game/game.js'; sc.charset = 'utf-8';
+            sc.onload = () => window.SignalChain && window.SignalChain.open();
+            document.head.appendChild(sc);
+        };
+        const goLiveAndPlay = () => {
+            if (!document.body.classList.contains('on-air')) toggleOnAir();
+            track('easter_egg', 'game');
+            setTimeout(launchGame, 1100);
+        };
         const KONAMI = 'ArrowUp,ArrowUp,ArrowDown,ArrowDown,ArrowLeft,ArrowRight,ArrowLeft,ArrowRight,b,a';
         let keyLog = [];
         document.addEventListener('keydown', (e) => {
+            if (gameOpen()) return;
             if (e.target.closest && e.target.closest('input, textarea, select, [contenteditable]')) return;
             keyLog.push(e.key.length === 1 ? e.key.toLowerCase() : e.key);
             keyLog = keyLog.slice(-10);
-            if (keyLog.join(',') === KONAMI || keyLog.slice(-5).join('') === 'onair') { keyLog = []; toggleOnAir(); }
+            if (keyLog.join(',') === KONAMI) { keyLog = []; goLiveAndPlay(); }
+            else if (keyLog.slice(-5).join('') === 'onair') { keyLog = []; toggleOnAir(); }
         });
+        const dot = document.querySelector('.wordmark .dot');
+        if (dot) {
+            let taps = 0, tapTimer;
+            dot.addEventListener('click', (e) => {
+                e.preventDefault(); e.stopPropagation();
+                taps++; clearTimeout(tapTimer);
+                tapTimer = setTimeout(() => { taps = 0; }, 1600);
+                if (taps >= 5) { taps = 0; goLiveAndPlay(); }
+            });
+        }
 
-        console.log('%c● ON AIR%c  You opened the console — my kind of person.\nThis site is hand-built with AI assistance. Psst: type "onair" anywhere on the page.',
+        console.log('%c● ON AIR%c  You opened the console — my kind of person.\nThis site is hand-built with AI assistance. Psst: type "onair" anywhere on the page, or try the Konami code.',
             'color:#e5484d;font-weight:700;font-size:13px', 'color:inherit;font-size:12px');
     </script>
 </body>
