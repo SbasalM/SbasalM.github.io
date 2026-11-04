@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sbasalm.github.io/sitemap.xml
+Sitemap: https://sebastian.luminarycraftdigital.com/sitemap.xml
