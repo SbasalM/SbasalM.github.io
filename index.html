@@ -4,23 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sebastian Basaldua | Video · Social Media · Media Technology</title>
-    <meta name="description" content="Video, social media, and media technology: interviews, reels, and weekly social content for churches, ministries, and organizations, plus the automation and tools that keep it running.">
+    <title>Sebastian Basaldua | Operations · Media Technology · Automation</title>
+    <meta name="description" content="Operations and media-technology specialist who finds slow, manual processes and engineers them away with AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
 
     <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
-    <meta property="og:title" content="Sebastian Basaldua | Video · Social Media · Media Technology">
-    <meta property="og:description" content="Video and social media work for churches, ministries, and organizations, and the automation and tools that keep it running.">
-    <meta property="og:image" content="https://sebastian.luminarycraftdigital.com/assets/images/social-share-image.jpg">
-    <meta property="og:url" content="https://sebastian.luminarycraftdigital.com/">
+    <meta property="og:title" content="Sebastian Basaldua | Operations · Media Technology · Automation">
+    <meta property="og:description" content="A systems thinker who engineers away slow, manual work using AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
+    <meta property="og:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
+    <meta property="og:url" content="https://sbasalm.github.io/">
     <meta property="og:type" content="website">
 
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Sebastian Basaldua | Video · Social Media · Media Technology">
-    <meta name="twitter:description" content="Video and social media work for churches, ministries, and organizations, and the automation and tools that keep it running.">
-    <meta name="twitter:image" content="https://sebastian.luminarycraftdigital.com/assets/images/social-share-image.jpg">
+    <meta name="twitter:title" content="Sebastian Basaldua | Operations · Media Technology · Automation">
+    <meta name="twitter:description" content="A systems thinker who engineers away slow, manual work using AI, automation, and custom tooling — bridging creative media and the technical systems behind it.">
+    <meta name="twitter:image" content="https://sbasalm.github.io/assets/images/social-share-image.jpg">
 
-    <link rel="canonical" href="https://sebastian.luminarycraftdigital.com/">
+    <link rel="canonical" href="https://sbasalm.github.io/">
     <meta name="author" content="Sebastian Basaldua">
     <meta name="theme-color" content="#0e7a80">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%230e7a80%22/><text x=%2250%22 y=%2272%22 font-size=%2256%22 font-family=%22Georgia,serif%22 fill=%22%23f6f4ef%22 text-anchor=%22middle%22>SB</text></svg>">
@@ -545,7 +545,6 @@
         }
         .modal-media { background: #000; }
         .modal-media img { width: 100%; }
-        .modal-media .vertical-video { display: block; margin: 0 auto; width: auto; max-width: 100%; max-height: 78vh; aspect-ratio: 9 / 16; }
         .modal-body { padding: 1.8rem; }
         .modal-body h3 { font-size: 1.7rem; margin-bottom: 0.6rem; }
         .modal-body p { color: var(--ink-soft); margin: 0; }
@@ -749,107 +748,6 @@
             .work-item.feature .work-overlay h3 { font-size: 2rem; }
         }
 
-        @media (min-width: 640px) {
-            .work-item.wide { grid-column: 1 / -1; }
-            .work-item.wide .work-media { aspect-ratio: 21 / 8; }
-        }
-
-        /* ---------- Vertical video: shared phone frame ---------- */
-        .reel-frame {
-            position: relative; display: block; aspect-ratio: 9 / 16; width: 100%;
-            border-radius: 18px; overflow: hidden; background: #0b1220;
-            box-shadow: 0 0 0 1px rgba(255,255,255,0.08), var(--shadow);
-        }
-        .reel-frame video { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .reel-play {
-            position: absolute; right: 0.7rem; bottom: 0.7rem;
-            width: 42px; height: 42px; border-radius: 999px;
-            display: grid; place-items: center;
-            background: rgba(10, 12, 12, 0.55); color: #fff;
-            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
-            border: 1px solid rgba(255,255,255,0.35);
-            opacity: 0.9; transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
-        }
-        .reel-play svg { width: 18px; height: 18px; }
-        .reel-play.big {
-            width: auto; height: auto; right: auto; left: 50%; bottom: 1.1rem; transform: translateX(-50%);
-            padding: 0.6rem 1.1rem; gap: 0.5rem; display: inline-flex; align-items: center;
-            font-weight: 600; font-size: 0.92rem; white-space: nowrap;
-        }
-        .reel-play.big svg { width: 18px; height: 18px; }
-
-        /* Featured reel (Video section) */
-        .feature-reel {
-            display: grid; gap: 2rem; align-items: center;
-            margin-bottom: clamp(3rem, 6vw, 4.5rem);
-        }
-        .feature-reel-player {
-            all: unset; cursor: pointer; display: block;
-            width: min(100%, 340px); justify-self: center;
-        }
-        .feature-reel-player:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; border-radius: 18px; }
-        .feature-reel-player:hover .reel-frame video { transform: scale(1.03); }
-        .feature-reel-player:hover .reel-play { background: var(--accent); border-color: var(--accent); }
-        @media (min-width: 900px) {
-            .feature-reel { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 4rem; }
-        }
-
-        /* ---------- Social media section ---------- */
-        .package-row {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
-            background: rgba(246,244,239,0.14);
-            border: 1px solid rgba(246,244,239,0.14); border-radius: 14px; overflow: hidden;
-            margin-bottom: clamp(2rem, 4vw, 3rem);
-        }
-        @media (min-width: 900px) { .package-row { grid-template-columns: repeat(4, 1fr); } }
-        .package-step { background: var(--ink); padding: 1.1rem 1.2rem 1.2rem; }
-        .package-step .n { font-family: var(--display); font-size: 0.85rem; letter-spacing: 0.1em; color: #7fd8dd; font-weight: 600; }
-        .package-step h3 { font-size: 1.15rem; margin: 0.35rem 0 0.25rem; }
-        .package-step p { margin: 0; font-size: 0.9rem; color: rgba(246,244,239,0.68); line-height: 1.45; }
-
-        .reel-strip {
-            display: grid; grid-auto-flow: column; grid-auto-columns: minmax(170px, 1fr);
-            gap: 1.1rem; overflow-x: auto; scroll-snap-type: x mandatory;
-            padding: 0.4rem 0.2rem 1rem; margin: 0 -0.2rem;
-            scrollbar-width: thin;
-        }
-        @media (max-width: 899px) { .reel-strip { grid-auto-columns: 62%; } }
-        .reel-card {
-            all: unset; cursor: pointer; display: flex; flex-direction: column; gap: 0.7rem;
-            scroll-snap-align: start; min-width: 0;
-        }
-        .reel-card:focus-visible { outline: 2px solid #7fd8dd; outline-offset: 5px; border-radius: 18px; }
-        .reel-card:hover .reel-frame video { transform: scale(1.04); }
-        .reel-card:hover .reel-play { background: var(--accent); border-color: var(--accent); opacity: 1; }
-        .reel-meta { display: flex; flex-direction: column; gap: 0.1rem; }
-        .reel-meta .kind { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #7fd8dd; }
-        .reel-meta .title { font-family: var(--display); font-weight: 600; font-size: 1.02rem; color: #fff; line-height: 1.25; }
-        .swipe-hint.on-ink { color: rgba(246,244,239,0.55); }
-
-        .post-grid {
-            display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem;
-            margin-top: clamp(2rem, 4vw, 3rem);
-        }
-        @media (min-width: 640px) { .post-grid { grid-template-columns: repeat(3, 1fr); } }
-        @media (min-width: 980px) { .post-grid { grid-template-columns: repeat(4, 1fr); gap: 1.1rem; } }
-        .post-tile {
-            display: block; aspect-ratio: 4 / 5; border-radius: 12px; overflow: hidden;
-            background: #0f1d33; box-shadow: 0 0 0 1px rgba(255,255,255,0.08);
-        }
-        .post-tile img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .post-tile.square img { object-fit: contain; }
-        .post-tile:hover img { transform: scale(1.04); }
-        .post-tile:focus-visible { outline: 2px solid #7fd8dd; outline-offset: 3px; }
-        .social-note {
-            margin: clamp(2rem, 4vw, 2.75rem) 0 0; max-width: 760px;
-            border-left: 3px solid #7fd8dd; padding: 0.2rem 0 0.2rem 1rem;
-            color: rgba(246,244,239,0.8); font-size: 0.98rem;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reel-frame video, .post-tile img { transition: none; }
-        }
-
         /* Testimonials: one big quote at a time, with a "playhead" */
         .quote-stage { display: grid; gap: 2rem; }
         @media (min-width: 900px) { .quote-stage { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: 4.5rem; align-items: center; } }
@@ -1022,18 +920,18 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Sebastian Basaldua",
-        "url": "https://sebastian.luminarycraftdigital.com/",
-        "image": "https://sebastian.luminarycraftdigital.com/assets/images/social-share-image.jpg",
+        "url": "https://sbasalm.github.io/",
+        "image": "https://sbasalm.github.io/assets/images/social-share-image.jpg",
         "jobTitle": "Operations Manager",
         "worksFor": { "@type": "Organization", "name": "WCTS Radio" },
-        "description": "Video, social media, and media-technology professional who produces video and social content for churches, ministries, and organizations, and builds the automation behind it.",
+        "description": "Operations and media-technology specialist who finds slow, manual processes and engineers them away with AI, automation, and custom tooling.",
         "homeLocation": { "@type": "Place", "name": "Minneapolis, MN" },
         "sameAs": [
             "https://www.linkedin.com/in/sebastian-basaldua/",
             "https://www.youtube.com/@SBasalMedia",
             "https://github.com/luminary-craft"
         ],
-        "knowsAbout": ["Video production", "Social media content", "Motion graphics", "Broadcast operations", "Workflow automation", "AI-assisted software development", "Audio engineering", "3D animation"]
+        "knowsAbout": ["Workflow automation", "Broadcast operations", "AI-assisted software development", "Audio engineering", "Video production", "3D animation"]
     }
     </script>
 
@@ -1056,12 +954,12 @@
             <a href="#" class="wordmark" aria-label="Sebastian Basaldua — home">Sebastian Basaldua<span class="dot">.</span></a>
             <span class="onair-pill" aria-hidden="true"><span class="tally-dot"></span>On air</span>
             <nav class="nav-links" aria-label="Primary">
-                <a href="#media">Video</a>
-                <a href="#social">Social</a>
                 <a href="#about">About</a>
-                <a href="#sites">Websites</a>
                 <a href="#software">Software</a>
+                <a href="#sites">Websites</a>
                 <a href="#capabilities">What I Do</a>
+                <a href="#process">How I Work</a>
+                <a href="#work">Work</a>
                 <a href="#testimonials">Testimonials</a>
                 <a href="#contact">Contact</a>
             </nav>
@@ -1070,13 +968,12 @@
             </button>
         </div>
         <div id="mobile-menu">
-            <a href="#media">Video</a>
-            <a href="#social">Social</a>
             <a href="#about">About</a>
-            <a href="#sites">Websites</a>
             <a href="#software">Software</a>
+            <a href="#sites">Websites</a>
             <a href="#capabilities">What I Do</a>
             <a href="#process">How I Work</a>
+            <a href="#work">Work</a>
             <a href="#testimonials">Testimonials</a>
             <a href="#contact">Contact</a>
         </div>
@@ -1093,17 +990,17 @@
             <canvas id="heroWave" aria-hidden="true"></canvas>
             <div class="container">
                 <div class="hero-inner">
-                    <p class="eyebrow hero-eyebrow">Sebastian Basaldua · Video · Social Media · Media Technology</p>
-                    <h1>I make media that moves people, <em>and build the systems behind it</em>.</h1>
+                    <p class="eyebrow hero-eyebrow">Sebastian Basaldua · Operations · Media Technology · Automation</p>
+                    <h1>I find manual work and <em>engineer it away</em>.</h1>
                     <p class="intro">
-                        Ten years in broadcast and media production. I film, edit, and design video and social
-                        content for churches, ministries, and organizations, and when the process behind it is
-                        slow or keeps breaking, I build the fix.
+                        Ten years in broadcast and media production, working where creative teams meet the
+                        systems they depend on. When a process is slow, manual, or keeps breaking, I build the
+                        fix, get it running reliably, and move on to the next one.
                     </p>
                     <div class="hero-cta">
-                        <a href="#media" class="btn btn-primary"
-                            onclick="gtag('event', 'click_hero_button', {'event_category':'navigation','event_label':'watch_the_work'});">
-                            <i data-lucide="play"></i> Watch the work
+                        <a href="#software" class="btn btn-primary"
+                            onclick="gtag('event', 'click_hero_button', {'event_category':'navigation','event_label':'see_what_i_build'});">
+                            See what I build <i data-lucide="arrow-down"></i>
                         </a>
                         <a href="sebastian-basaldua-resume.pdf" download="sebastian-basaldua-resume.pdf" class="btn btn-light"
                             onclick="gtag('event', 'download_resume', {'event_category':'engagement','event_label':'resume_hero'});">
@@ -1112,304 +1009,9 @@
                     </div>
                 </div>
             </div>
-            <a href="#media" class="scroll-cue" aria-label="Scroll to video work">
+            <a href="#about" class="scroll-cue" aria-label="Scroll to about">
                 <i data-lucide="chevron-down"></i>
             </a>
-        </section>
-
-        <!-- Video work -->
-        <section id="media">
-            <div class="container">
-                <div class="section-head split">
-                    <p class="eyebrow">Video &amp; motion</p>
-                    <h2 class="section-title">Video that <em>tells the story</em>.</h2>
-                    <p class="lede" style="margin-top:1rem;">Interviews, documentaries, recruitment reels, and motion graphics: I plan it, shoot it, cut it, and finish it.</p>
-                </div>
-
-                <!-- Featured: Central Seminary recruitment reel (pre-release cut) -->
-                <article class="feature-reel reveal">
-                    <button type="button" class="feature-reel-player" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/central-seminary-reel.mp4" poster="assets/images/central-seminary-reel-poster.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Central Seminary — Recruitment Reel"
-                        data-modal-text="A 60-second vertical reel from a recruitment campaign I'm producing for Central Baptist Theological Seminary. A pre-release cut; the longer trailer is in post."
-                        aria-label="Play the Central Seminary recruitment reel with sound">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/central-seminary-preview-vertical.mp4" poster="assets/images/central-seminary-reel-poster.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play big" aria-hidden="true"><i data-lucide="volume-2"></i> Watch with sound</span>
-                        </span>
-                    </button>
-                    <div class="case-body">
-                        <div class="tagrow">
-                            <span class="pill solid">Newest work</span>
-                            <span class="pill ghost">Pre-release cut</span>
-                        </div>
-                        <h3>Central Seminary — Recruitment Reel</h3>
-                        <p>A recruitment campaign for Central Baptist Theological Seminary. We traveled to film pastors and a church planter in New York and Pennsylvania for sit-down interviews.</p>
-                        <ul class="case-feats">
-                            <li>Co-led the interviews, steering toward open-ended conversation instead of rehearsed answers</li>
-                            <li>Cut this 60-second vertical reel as a direct call to action for young people weighing ministry</li>
-                            <li>Kinetic captions, on-screen name supers, and an end card that points to the application</li>
-                        </ul>
-                        <p class="case-impact"><strong>Next:</strong> a longer trailer from the same interviews is in post.</p>
-                        <div class="case-tech"><span>Interviews</span><span>4K · 24 fps</span><span>Vertical edit</span><span>Kinetic type</span></div>
-                    </div>
-                </article>
-
-                <div class="filters" role="group" aria-label="Filter video work by type">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="video">Video</button>
-                    <button class="filter-btn" data-filter="3d">3D / Studio</button>
-                    <button class="filter-btn" data-filter="audio">Audio</button>
-                    <button class="filter-btn" data-filter="photo">Photography</button>
-                </div>
-
-                <div class="work-grid">
-                    <!-- WCTS 60th Documentary -->
-                    <div class="work-item feature reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: WCTS 60th-Anniversary Documentary"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
-                        data-modal-title="WCTS 60th-Anniversary Documentary"
-                        data-modal-text="A cinematic documentary for WCTS Radio's 60th anniversary, currently in production. I built an AI-assisted workflow for interview management and narrative development that turned the slowest part of the edit — sorting hours of interviews — into one of the fastest.">
-                        <div class="work-media">
-                            <img src="assets/images/The_Bible_Station.jpg" alt="WCTS 60th-anniversary documentary still" loading="lazy">
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="play-circle"></i></span>
-                            <span class="kind">AI-assisted production</span>
-                            <h3>WCTS 60th Documentary</h3>
-                        </div>
-                    </div>
-                    <!-- Melton 50-Year -->
-                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Melton 50-year video"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Q19D_5Kon9c?si=x7b5Gm4EdKK-Lchu&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="Melton 50-Year Celebration"
-                        data-modal-text="A commemorative video marking 50 years of missionary work in Japan. I developed 2.5D techniques to animate historical photographs and built 3D recreations of significant moments — making a static archive feel alive.">
-                        <div class="work-media">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/Melton_50.mp4" data-poster="assets/images/melton-50-thumb.jpg" poster="assets/images/melton-50-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="play-circle"></i></span>
-                            <span class="kind">Historical recreation</span>
-                            <h3>Melton 50-Year</h3>
-                        </div>
-                    </div>
-                    <!-- TRFF Website -->
-                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: TRFF website rebuild"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="TRFF Website Rebuild"
-                        data-modal-text="A full redesign and build of the Teresa Rosalind French Foundation website on WordPress and Divi, including the video production and photography for its content — one cohesive visual system from build to media.<br><br><a href=&quot;https://teressarosalindfrenchfoundation.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Visit the live website →</a>">
-                        <div class="work-media">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/trff-web.mp4" data-poster="assets/images/trff-web-thumb.jpg" poster="assets/images/trff-web-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="play-circle"></i></span>
-                            <span class="kind">Web build &amp; media</span>
-                            <h3>TRFF Website</h3>
-                        </div>
-                    </div>
-                    <!-- Clone Trooper -->
-                    <div class="work-item reveal" data-category="3d" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Clone Trooper 3D animation"
-                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
-                        data-modal-title="Clone Trooper vs. Alien"
-                        data-modal-text="A personal 3D animation project showcasing character animation and compositing — combining Mixamo animations with custom hand-animated sequences in Blender.">
-                        <div class="work-media">
-                            <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper 3D character animation still" loading="lazy">
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="play-circle"></i></span>
-                            <span class="kind">3D character animation</span>
-                            <h3>Clone Trooper</h3>
-                        </div>
-                    </div>
-                    <!-- Breathless Haste audiobook -->
-                    <div class="work-item reveal" data-category="audio" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: Breathless Haste audiobook"
-                        data-modal-image="assets/images/book-cover.jpg"
-                        data-modal-title="Breathless Haste — Audiobook"
-                        data-modal-text="My second audiobook production for Hope*Books: cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and mastering the final to strict ACX standards.<br><br><a href=&quot;https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>See the book on Amazon →</a>">
-                        <div class="work-media">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/breathless-haste.mp4" data-poster="assets/images/breathless-haste-thumb.jpg" poster="assets/images/breathless-haste-thumb.jpg">
-                                <source src="" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="maximize-2"></i></span>
-                            <span class="kind">Audio engineering</span>
-                            <h3>Breathless Haste</h3>
-                        </div>
-                    </div>
-                    <!-- Studio Renovation -->
-                    <div class="work-item reveal" data-category="3d" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: podcast studio"
-                        data-modal-image="assets/images/studio-design-featured.jpg"
-                        data-modal-title="Podcast Studio"
-                        data-modal-text="At BJU Press I helped write the technical specs and design recommendations for a full studio renovation. I put that experience to work at WCTS, designing and building the station's podcast studio: room layout, audio-equipment integration, and a workflow that's simple to run.">
-                        <div class="work-media">
-                            <img src="assets/images/studio-renovation-featured.jpg" alt="Renovated podcast studio" loading="lazy">
-                        </div>
-                        <div class="work-overlay">
-                            <span class="cue"><i data-lucide="maximize-2"></i></span>
-                            <span class="kind">Studio design</span>
-                            <h3>Podcast Studio</h3>
-                        </div>
-                    </div>
-                    <!-- Photography Gallery -->
-                    <div class="work-item wide reveal" data-category="photo">
-                        <a href="assets/images/photography/full/Black_and_White_Portrait.jpg" data-fancybox="gallery-photography" data-caption="Black and white closeup portrait." aria-label="Open photography gallery">
-                            <div class="work-media">
-                                <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/photography-reel.mp4" data-poster="assets/images/photography-reel-thumb.jpg" poster="assets/images/photography-reel-thumb.jpg">
-                                    <source src="" type="video/mp4">
-                                </video>
-                            </div>
-                            <div class="work-overlay">
-                                <span class="cue"><i data-lucide="images"></i></span>
-                                <span class="kind">Photography</span>
-                                <h3>Selected Photography</h3>
-                            </div>
-                        </a>
-                        <div hidden>
-                            <a href="assets/images/photography/full/Candid_Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo looking out at the beach"></a>
-                            <a href="assets/images/photography/full/Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo at an apple orchard"></a>
-                            <a href="assets/images/photography/full/Food.jpg" data-fancybox="gallery-photography" data-caption="Burger from Select"></a>
-                            <a href="assets/images/photography/full/Hibiscus.jpg" data-fancybox="gallery-photography" data-caption="Hibiscus flower on Guam"></a>
-                            <a href="assets/images/photography/full/Landscape.jpg" data-fancybox="gallery-photography" data-caption="Ocean Landscape"></a>
-                            <a href="assets/images/photography/full/Pregnancy.jpg" data-fancybox="gallery-photography" data-caption="Pregnancy photo on the rocks"></a>
-                            <a href="assets/images/photography/full/Sunset.jpg" data-fancybox="gallery-photography" data-caption="Sunset over a lake"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Social media -->
-        <section id="social" class="ink-section">
-            <div class="container">
-                <div class="section-head split">
-                    <p class="eyebrow">Social media · Fourth Baptist Church</p>
-                    <h2 class="section-title">A church's week, <em>told in posts and reels</em>.</h2>
-                    <p class="lede" style="margin-top:1rem;">I produce Fourth Baptist Church's social media: the weekly Sunday announcement, sermon quote cards, a summer series on the Names of God, and, every Sunday since September, a full sermon package.</p>
-                </div>
-
-                <div class="package-row reveal" role="list" aria-label="What goes into each weekly sermon package">
-                    <div class="package-step" role="listitem"><span class="n">01</span><h3>Quote card</h3><p>A still built around a line from the sermon.</p></div>
-                    <div class="package-step" role="listitem"><span class="n">02</span><h3>Quote reel</h3><p>A different line, captioned as it's spoken.</p></div>
-                    <div class="package-step" role="listitem"><span class="n">03</span><h3>Summary reel</h3><p>The whole message in about 90 seconds.</p></div>
-                    <div class="package-step" role="listitem"><span class="n">04</span><h3>Post copy</h3><p>Captions and hashtags, ready to schedule.</p></div>
-                </div>
-
-                <div class="reel-strip">
-                    <button type="button" class="reel-card reveal" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/social/summary-john-the-baptist.mp4" poster="assets/images/social/summary-john-the-baptist.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Sermon Summary Reel: The Testimony of John the Baptist"
-                        data-modal-text="About 90 seconds that walk through the sermon's main points in order, with the passage, section headings, and word-by-word captions on screen."
-                        aria-label="Play summary reel: Sermon Summary Reel: The Testimony of John the Baptist">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/social/summary-john-the-baptist-preview.mp4" poster="assets/images/social/summary-john-the-baptist.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play" aria-hidden="true"><i data-lucide="play"></i></span>
-                        </span>
-                        <span class="reel-meta"><span class="kind">Summary reel</span><span class="title">The Testimony of John the Baptist</span></span>
-                    </button>
-                    <button type="button" class="reel-card reveal" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/social/quote-will-you-follow-jesus.mp4" poster="assets/images/social/quote-will-you-follow-jesus.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Quote Reel: Will You Follow Jesus?"
-                        data-modal-text="One moment from the sermon, captioned as it is spoken, with key words picked out in gold and a soft piano bed."
-                        aria-label="Play quote reel: Quote Reel: Will You Follow Jesus?">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/social/quote-will-you-follow-jesus.mp4" poster="assets/images/social/quote-will-you-follow-jesus.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play" aria-hidden="true"><i data-lucide="play"></i></span>
-                        </span>
-                        <span class="reel-meta"><span class="kind">Quote reel</span><span class="title">Will You Follow Jesus?</span></span>
-                    </button>
-                    <button type="button" class="reel-card reveal" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/social/quote-grace-for-today.mp4" poster="assets/images/social/quote-grace-for-today.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Quote Reel: Grace for Today"
-                        data-modal-text="A quote reel from another pastor on staff, built on the same template so every speaker's week looks like part of one series."
-                        aria-label="Play quote reel: Quote Reel: Grace for Today">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/social/quote-grace-for-today.mp4" poster="assets/images/social/quote-grace-for-today.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play" aria-hidden="true"><i data-lucide="play"></i></span>
-                        </span>
-                        <span class="reel-meta"><span class="kind">Quote reel</span><span class="title">Grace for Today</span></span>
-                    </button>
-                    <button type="button" class="reel-card reveal" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/social/summary-when-god-became-a-man.mp4" poster="assets/images/social/summary-when-god-became-a-man.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Sermon Summary Reel: When God Became a Man"
-                        data-modal-text="A summary reel that opens with the question the sermon answers, then follows the message point by point."
-                        aria-label="Play summary reel: Sermon Summary Reel: When God Became a Man">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/social/summary-when-god-became-a-man-preview.mp4" poster="assets/images/social/summary-when-god-became-a-man.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play" aria-hidden="true"><i data-lucide="play"></i></span>
-                        </span>
-                        <span class="reel-meta"><span class="kind">Summary reel</span><span class="title">When God Became a Man</span></span>
-                    </button>
-                    <button type="button" class="reel-card reveal" data-modal-type="vimeo"
-                        data-modal-vimeo='<video class="vertical-video" src="assets/videos/social/quote-so-that-we-could-go-free.mp4" poster="assets/images/social/quote-so-that-we-could-go-free.jpg" controls autoplay playsinline></video>'
-                        data-modal-title="Quote Reel: So That We Could Go Free"
-                        data-modal-text="A guest speaker's quote reel. The package runs the same way whoever is in the pulpit."
-                        aria-label="Play quote reel: Quote Reel: So That We Could Go Free">
-                        <span class="reel-frame">
-                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/social/quote-so-that-we-could-go-free.mp4" poster="assets/images/social/quote-so-that-we-could-go-free.jpg" aria-hidden="true">
-                                <source src="" type="video/mp4">
-                            </video>
-                            <span class="reel-play" aria-hidden="true"><i data-lucide="play"></i></span>
-                        </span>
-                        <span class="reel-meta"><span class="kind">Quote reel</span><span class="title">So That We Could Go Free</span></span>
-                    </button>
-                </div>
-                <p class="swipe-hint on-ink" aria-hidden="true">Swipe for more reels <i data-lucide="arrow-right"></i></p>
-
-                <div class="post-grid">
-                    <a class="post-tile reveal" href="assets/images/social/names-adonai.webp" data-fancybox="fbc-social" data-caption="Names of God summer series: Adonai">
-                        <img src="assets/images/social/names-adonai-thumb.webp" alt="Names of God summer series: Adonai" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-know-his-son.webp" data-fancybox="fbc-social" data-caption="Sermon quote card: Know His Son">
-                        <img src="assets/images/social/quote-know-his-son-thumb.webp" alt="Sermon quote card: Know His Son" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal square" href="assets/images/social/this-sunday-2026-11-01.webp" data-fancybox="fbc-social" data-caption="Weekly This Sunday announcement graphic">
-                        <img src="assets/images/social/this-sunday-2026-11-01-thumb.webp" alt="Weekly This Sunday announcement graphic" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/names-jehovah-nissi.webp" data-fancybox="fbc-social" data-caption="Names of God summer series: Jehovah Nissi">
-                        <img src="assets/images/social/names-jehovah-nissi-thumb.webp" alt="Names of God summer series: Jehovah Nissi" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-bold-for-truth.webp" data-fancybox="fbc-social" data-caption="Sermon quote card: Bold for the sake of truth">
-                        <img src="assets/images/social/quote-bold-for-truth-thumb.webp" alt="Sermon quote card: Bold for the sake of truth" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-heart-of-christ.webp" data-fancybox="fbc-social" data-caption="Sermon quote card in the light parchment style">
-                        <img src="assets/images/social/quote-heart-of-christ-thumb.webp" alt="Sermon quote card in the light parchment style" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/names-yahweh.webp" data-fancybox="fbc-social" data-caption="Names of God summer series: Yahweh">
-                        <img src="assets/images/social/names-yahweh-thumb.webp" alt="Names of God summer series: Yahweh" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-a-role-to-play.webp" data-fancybox="fbc-social" data-caption="Guest speaker quote card: A role to play">
-                        <img src="assets/images/social/quote-a-role-to-play-thumb.webp" alt="Guest speaker quote card: A role to play" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/pastor-appreciation-morrell.webp" data-fancybox="fbc-social" data-caption="Pastor Appreciation Month post">
-                        <img src="assets/images/social/pastor-appreciation-morrell-thumb.webp" alt="Pastor Appreciation Month post" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-all-about-him.webp" data-fancybox="fbc-social" data-caption="Sermon quote card: It's all about Him">
-                        <img src="assets/images/social/quote-all-about-him-thumb.webp" alt="Sermon quote card: It's all about Him" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/names-elohim.webp" data-fancybox="fbc-social" data-caption="Names of God summer series: Elohim">
-                        <img src="assets/images/social/names-elohim-thumb.webp" alt="Names of God summer series: Elohim" loading="lazy" decoding="async">
-                    </a>
-                    <a class="post-tile reveal" href="assets/images/social/quote-look-up.webp" data-fancybox="fbc-social" data-caption="Guest speaker quote card: Look up">
-                        <img src="assets/images/social/quote-look-up-thumb.webp" alt="Guest speaker quote card: Look up" loading="lazy" decoding="async">
-                    </a>
-                </div>
-
-                <p class="social-note reveal">The weekly sermon package comes out of an AI-assisted pipeline I built: it pulls the Sunday service video, finds the sermon, picks the quotes, and renders the graphics and reels in the church's navy-and-gold look, so the church gets a finished set every week.</p>
-            </div>
         </section>
 
         <!-- About / Why I'm Different -->
@@ -1445,7 +1047,7 @@
                     <div class="log-head"><span>Station log</span><span class="log-live"><span class="tally-dot"></span>Live</span></div>
                     <dl>
                         <div class="log-row"><dt>Now</dt><dd>Operations Manager, WCTS Radio</dd></div>
-                        <div class="log-row"><dt>Building</dt><dd>Central Seminary recruitment video · Lumen Map 2.0 · new church sites</dd></div>
+                        <div class="log-row"><dt>Building</dt><dd>Lumen Map 2.0 and two new church sites</dd></div>
                         <div class="log-row"><dt>Shipped</dt><dd><a href="#software">Airchain</a> · <a href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener">CheckSpree</a> · <a href="#sites">live websites</a></dd></div>
                         <div class="log-row"><dt>Studio</dt><dd>Luminary Craft Digital: web for churches &amp; ministries</dd></div>
                         <div class="log-row"><dt>Toolkit</dt><dd>Claude Code · DaVinci Resolve · Premiere · After Effects · Blender · Audition</dd></div>
@@ -1475,6 +1077,78 @@
                         <div class="label">Continents worked</div>
                         <p class="desc">Guam, China, and the U.S.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Software & Automation -->
+        <section id="software">
+            <div class="container">
+                <div class="section-head split">
+                    <p class="eyebrow">Software &amp; automation</p>
+                    <h2 class="section-title">Tools I've built to <em>erase manual work</em>.</h2>
+                    <p class="lede" style="margin-top:1rem;">I find painful, repetitive processes and build real software to eliminate them — working with AI to ship fast. Two I built and use:</p>
+                </div>
+
+                <div class="case-list">
+                    <!-- Airchain -->
+                    <article class="case reveal">
+                        <div class="case-shot">
+                            <video class="lazy-video" autoplay loop muted playsinline preload="none"
+                                data-src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp"
+                                aria-label="Airchain demo: reviewing the week's shows, approving auto-tagged promos, and placing a show tag on a waveform with one click.">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="case-body">
+                            <div class="tagrow">
+                                <span class="pill solid">Internal tool</span>
+                                <span class="pill ghost">Built with Claude Code</span>
+                            </div>
+                            <h3>Airchain — Broadcast Ingest &amp; Delivery Automation</h3>
+                            <p>It started with one slow task. Syndicated shows send promos with none of our branding, and each one needs a station tag mixed in with that show's air times. At five promos a show across 10+ shows, that's about 50 files to edit every week. My first fix was an Adobe Audition Favorite I could batch-run, but I still had to check every file, fix the odd ones by hand, and drop them into the radio software myself.</p>
+                            <p>So I built Airchain, a Windows desktop app made end-to-end with Claude Code. It now handles the whole pipeline, from syndicated show files to the on-air automation system:</p>
+                            <ul class="case-feats">
+                                <li>Watches local folders or polls FTP/SFTP servers for syndicated shows, with a visual filename-pattern builder</li>
+                                <li>A configurable audio chain (trim, EQ, compression, EBU R128 loudness) and BWF/CART metadata written to every file</li>
+                                <li>Hold &amp; release — files are delivered to the automation system at the right time before airdate</li>
+                                <li>Promo handling with auto-tagging and a waveform editor for one-click approval</li>
+                                <li>Mission Control calendar, to-do cards for missing or stuck shows, and a diagnose panel that explains why an episode didn't complete</li>
+                                <li>A weather recorder that builds scripts from NWS forecasts, plus proof-of-airing reports and invoicing</li>
+                            </ul>
+                            <p class="case-impact"><strong>Now:</strong> I open the queue that built up while I was out (often days ahead), listen, and approve. Several files take under a minute, and the most consistent promos don't need my approval at all. Airchain holds them and drops them into the automation system right when they're scheduled to air.</p>
+                            <div class="case-tech">
+                                <span>Electron</span><span>FTP / SFTP</span><span>FFmpeg audio chain</span><span>BWF / CART metadata</span><span>SQLite</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CheckSpree -->
+                    <article class="case flip reveal">
+                        <div class="case-shot">
+                            <img src="assets/images/checkspree.webp" loading="lazy" decoding="async"
+                                alt="CheckSpree desktop app showing a digital check preview ready to print, with a ledger sidebar tracking running balances.">
+                        </div>
+                        <div class="case-body">
+                            <div class="tagrow">
+                                <span class="pill solid">Open source</span>
+                                <span class="pill ghost">Actively developed</span>
+                            </div>
+                            <h3>CheckSpree — Open-Source Check Printing &amp; Ledger</h3>
+                            <p>A free, open-source tool I built and shipped publicly. It started as a simple way to fill in a check digitally and print it onto check paper, and grew into a full ledger:</p>
+                            <ul class="case-feats">
+                                <li>Digital check entry that prints cleanly onto pre-loaded check stock</li>
+                                <li>A ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles</li>
+                                <li>Free for anyone to use and extend</li>
+                            </ul>
+                            <p class="case-impact">Actively developed — the core is solid, with a few features still being hardened.</p>
+                            <a class="btn btn-ghost" href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener"
+                                onclick="gtag('event', 'click_project_link', {'event_category':'software','event_label':'checkspree_github'});">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+                                View on GitHub
+                            </a>
+                        </div>
+                    </article>
                 </div>
             </div>
         </section>
@@ -1556,95 +1230,15 @@
             </div>
         </section>
 
-        <!-- Software & Automation -->
-        <section id="software">
-            <div class="container">
-                <div class="section-head split">
-                    <p class="eyebrow">Software &amp; automation</p>
-                    <h2 class="section-title">Tools I've built to <em>erase manual work</em>.</h2>
-                    <p class="lede" style="margin-top:1rem;">I find painful, repetitive processes and build real software to eliminate them — working with AI to ship fast. Two I built and use:</p>
-                </div>
-
-                <div class="case-list">
-                    <!-- Airchain -->
-                    <article class="case reveal">
-                        <div class="case-shot">
-                            <video class="lazy-video" autoplay loop muted playsinline preload="none"
-                                data-src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp"
-                                aria-label="Airchain demo: reviewing the week's shows, approving auto-tagged promos, and placing a show tag on a waveform with one click.">
-                                <source src="" type="video/mp4">
-                            </video>
-                        </div>
-                        <div class="case-body">
-                            <div class="tagrow">
-                                <span class="pill solid">Internal tool</span>
-                                <span class="pill ghost">Built with Claude Code</span>
-                            </div>
-                            <h3>Airchain — Broadcast Ingest &amp; Delivery Automation</h3>
-                            <p>It started with one slow task. Syndicated shows send promos with none of our branding, and each one needs a station tag mixed in with that show's air times. At five promos a show across 10+ shows, that's about 50 files to edit every week. My first fix was an Adobe Audition Favorite I could batch-run, but I still had to check every file, fix the odd ones by hand, and drop them into the radio software myself.</p>
-                            <p>So I built Airchain, a Windows desktop app made end-to-end with Claude Code. It now handles the whole pipeline, from syndicated show files to the on-air automation system:</p>
-                            <ul class="case-feats">
-                                <li>Watches local folders or polls FTP/SFTP servers for syndicated shows, with a visual filename-pattern builder</li>
-                                <li>A configurable audio chain (trim, EQ, compression, EBU R128 loudness) and BWF/CART metadata written to every file</li>
-                                <li>Hold &amp; release — files are delivered to the automation system at the right time before airdate</li>
-                                <li>Promo handling with auto-tagging and a waveform editor for one-click approval</li>
-                                <li>Mission Control calendar, to-do cards for missing or stuck shows, and a diagnose panel that explains why an episode didn't complete</li>
-                                <li>A weather recorder that builds scripts from NWS forecasts, plus proof-of-airing reports and invoicing</li>
-                            </ul>
-                            <p class="case-impact"><strong>Now:</strong> I open the queue that built up while I was out (often days ahead), listen, and approve. Several files take under a minute, and the most consistent promos don't need my approval at all. Airchain holds them and drops them into the automation system right when they're scheduled to air.</p>
-                            <div class="case-tech">
-                                <span>Electron</span><span>FTP / SFTP</span><span>FFmpeg audio chain</span><span>BWF / CART metadata</span><span>SQLite</span>
-                            </div>
-                        </div>
-                    </article>
-
-                    <!-- CheckSpree -->
-                    <article class="case flip reveal">
-                        <div class="case-shot">
-                            <img src="assets/images/checkspree.webp" loading="lazy" decoding="async"
-                                alt="CheckSpree desktop app showing a digital check preview ready to print, with a ledger sidebar tracking running balances.">
-                        </div>
-                        <div class="case-body">
-                            <div class="tagrow">
-                                <span class="pill solid">Open source</span>
-                                <span class="pill ghost">Actively developed</span>
-                            </div>
-                            <h3>CheckSpree — Open-Source Check Printing &amp; Ledger</h3>
-                            <p>A free, open-source tool I built and shipped publicly. It started as a simple way to fill in a check digitally and print it onto check paper, and grew into a full ledger:</p>
-                            <ul class="case-feats">
-                                <li>Digital check entry that prints cleanly onto pre-loaded check stock</li>
-                                <li>A ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles</li>
-                                <li>Free for anyone to use and extend</li>
-                            </ul>
-                            <p class="case-impact">Actively developed — the core is solid, with a few features still being hardened.</p>
-                            <a class="btn btn-ghost" href="https://github.com/luminary-craft/CheckSpree" target="_blank" rel="noopener"
-                                onclick="gtag('event', 'click_project_link', {'event_category':'software','event_label':'checkspree_github'});">
-                                <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 .5a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.23c-3.34.73-4.04-1.41-4.04-1.41-.55-1.39-1.34-1.76-1.34-1.76-1.09-.75.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5.99.11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
         <!-- Capabilities / What I Do -->
         <section id="capabilities">
             <div class="container">
                 <div class="section-head split">
                     <p class="eyebrow">What I do</p>
-                    <h2 class="section-title">Media up front. <em>Systems underneath.</em></h2>
-                    <p class="lede" style="margin-top:1rem;">The work people see is video, social, and design. What keeps it coming every week, on time, is the automation and tooling I build behind it.</p>
+                    <h2 class="section-title">Systems first. <em>Media is the bridge.</em></h2>
+                    <p class="lede" style="margin-top:1rem;">The value I bring leads with automation and building — the creative craft is the supporting strength that lets me speak both languages.</p>
                 </div>
                 <div class="cap-grid">
-                    <article class="cap reveal">
-                        <div class="cap-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></div>
-                        <div class="body">
-                            <span class="tag">Front &amp; center</span>
-                            <h3>Video &amp; Social Media</h3>
-                            <p>Interviews, documentaries, reels, and weekly social content, plus motion graphics, 3D in Blender, audio, and photography: the work people actually see.</p>
-                        </div>
-                    </article>
                     <article class="cap reveal">
                         <div class="cap-icon" aria-hidden="true"><i data-lucide="workflow"></i></div>
                         <div class="body">
@@ -1667,6 +1261,14 @@
                             <span class="tag">Operations</span>
                             <h3>Media-Technology Operations</h3>
                             <p>Broadcast &amp; studio operations, equipment configuration, and NAS &amp; digital asset management — keeping the systems behind production running reliably.</p>
+                        </div>
+                    </article>
+                    <article class="cap reveal">
+                        <div class="cap-icon" aria-hidden="true"><i data-lucide="clapperboard"></i></div>
+                        <div class="body">
+                            <span class="tag">Supporting craft</span>
+                            <h3>Creative Production</h3>
+                            <p>Video, motion graphics, 3D in Blender, audiobook &amp; broadcast audio, and photography — the craft I support, automate, and understand from the inside.</p>
                         </div>
                     </article>
                 </div>
@@ -1706,6 +1308,179 @@
             </div>
         </section>
 
+        <!-- Work -->
+        <section id="work">
+            <div class="container">
+                <div class="section-head center">
+                    <p class="eyebrow">Selected work</p>
+                    <h2 class="section-title">Things I've built &amp; produced</h2>
+                </div>
+
+                <div class="filters" role="group" aria-label="Filter work by type">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="software">Software</button>
+                    <button class="filter-btn" data-filter="video">Video</button>
+                    <button class="filter-btn" data-filter="audio">Audio</button>
+                    <button class="filter-btn" data-filter="photo">Photography</button>
+                    <button class="filter-btn" data-filter="3d">3D / Graphics</button>
+                </div>
+
+                <div class="work-grid">
+                    <!-- Airchain (full write-up in Software & Automation section) -->
+                    <div class="work-item feature reveal" data-category="software" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Airchain"
+                        data-modal-vimeo='<video src="assets/videos/airchain-demo.mp4" poster="assets/images/airchain.webp" controls autoplay playsinline style="width:100%;height:auto;display:block;"></video>'
+                        data-modal-title="Airchain — Broadcast Ingest &amp; Delivery Automation"
+                        data-modal-text="A Windows desktop app I designed and built end-to-end with Claude Code. It polls FTP/SFTP servers for syndicated shows, runs them through a configurable audio chain with EBU R128 loudness and BWF/CART metadata, and delivers them to the automation system on schedule — with a Mission Control calendar, promo tagging, a weather recorder, and proof-of-airing reports.">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/airchain-demo.mp4" data-poster="assets/images/airchain.webp" poster="assets/images/airchain.webp">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">Internal tool · Built with AI</span>
+                            <h3>Airchain</h3>
+                        </div>
+                    </div>
+
+                    <!-- CheckSpree (full write-up in Software & Automation section) -->
+                    <div class="work-item reveal" data-category="software" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: CheckSpree"
+                        data-modal-image="assets/images/checkspree.webp"
+                        data-modal-title="CheckSpree — Open-Source Check Printing &amp; Ledger"
+                        data-modal-text="A free, open-source tool I built and shipped publicly: digital check entry that prints cleanly onto check stock, plus a ledger that tracks every check, keeps running balances, and auto-prefills from saved payee profiles. Actively developed — the core is solid, with a few features still being hardened.<br><br><a href=&quot;https://github.com/luminary-craft/CheckSpree&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>View on GitHub →</a>">
+                        <div class="work-media">
+                            <img src="assets/images/checkspree.webp" alt="CheckSpree app — digital check preview with a ledger sidebar tracking running balances" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Open source</span>
+                            <h3>CheckSpree</h3>
+                        </div>
+                    </div>
+
+                    <!-- WCTS 60th Documentary -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: WCTS 60th-Anniversary Documentary"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/1093211651?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&autoplay=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" style="position:absolute;top:0;left:0;width:100%;height:100%;" title="WCTS Radio - The Bible Station"></iframe></div>'
+                        data-modal-title="WCTS 60th-Anniversary Documentary"
+                        data-modal-text="A cinematic documentary for WCTS Radio's 60th anniversary, currently in production. I built an AI-assisted workflow for interview management and narrative development that turned the slowest part of the edit — sorting hours of interviews — into one of the fastest.">
+                        <div class="work-media">
+                            <img src="assets/images/The_Bible_Station.jpg" alt="WCTS 60th-anniversary documentary still" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">AI-assisted production</span>
+                            <h3>WCTS 60th Documentary</h3>
+                        </div>
+                    </div>
+
+                    <!-- TRFF Website -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: TRFF website rebuild"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/iM5zNaNuLm0?si=BSlpzwkJ_9BpRMFT&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="TRFF Website Rebuild"
+                        data-modal-text="A full redesign and build of the Teresa Rosalind French Foundation website on WordPress and Divi, including the video production and photography for its content — one cohesive visual system from build to media.<br><br><a href=&quot;https://teressarosalindfrenchfoundation.org/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Visit the live website →</a>">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/trff-web.mp4" data-poster="assets/images/trff-web-thumb.jpg" poster="assets/images/trff-web-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">Web build &amp; media</span>
+                            <h3>TRFF Website</h3>
+                        </div>
+                    </div>
+
+                    <!-- Studio Renovation -->
+                    <div class="work-item reveal" data-category="3d" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: podcast studio"
+                        data-modal-image="assets/images/studio-design-featured.jpg"
+                        data-modal-title="Podcast Studio"
+                        data-modal-text="At BJU Press I helped write the technical specs and design recommendations for a full studio renovation. I put that experience to work at WCTS, designing and building the station's podcast studio: room layout, audio-equipment integration, and a workflow that's simple to run.">
+                        <div class="work-media">
+                            <img src="assets/images/studio-renovation-featured.jpg" alt="Renovated podcast studio" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Studio design</span>
+                            <h3>Podcast Studio</h3>
+                        </div>
+                    </div>
+
+                    <!-- Melton 50-Year -->
+                    <div class="work-item reveal" data-category="video" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Melton 50-year video"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/Q19D_5Kon9c?si=x7b5Gm4EdKK-Lchu&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="Melton 50-Year Celebration"
+                        data-modal-text="A commemorative video marking 50 years of missionary work in Japan. I developed 2.5D techniques to animate historical photographs and built 3D recreations of significant moments — making a static archive feel alive.">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/Melton_50.mp4" data-poster="assets/images/melton-50-thumb.jpg" poster="assets/images/melton-50-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">Historical recreation</span>
+                            <h3>Melton 50-Year</h3>
+                        </div>
+                    </div>
+
+                    <!-- Breathless Haste audiobook -->
+                    <div class="work-item reveal" data-category="audio" data-modal-type="image" tabindex="0" role="button" aria-label="Open project: Breathless Haste audiobook"
+                        data-modal-image="assets/images/book-cover.jpg"
+                        data-modal-title="Breathless Haste — Audiobook"
+                        data-modal-text="My second audiobook production for Hope*Books: cleaning and professionalizing author-recorded audio, removing retakes and noise, inserting newly recorded pickups, and mastering the final to strict ACX standards.<br><br><a href=&quot;https://www.amazon.com/Breathless-Haste-Finding-Ordinary-Life-ebook/dp/B0CNVV56NW/ref=tmm_kin_swatch_0&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>See the book on Amazon →</a>">
+                        <div class="work-media">
+                            <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/breathless-haste.mp4" data-poster="assets/images/breathless-haste-thumb.jpg" poster="assets/images/breathless-haste-thumb.jpg">
+                                <source src="" type="video/mp4">
+                            </video>
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="maximize-2"></i></span>
+                            <span class="kind">Audio engineering</span>
+                            <h3>Breathless Haste</h3>
+                        </div>
+                    </div>
+
+                    <!-- Clone Trooper -->
+                    <div class="work-item reveal" data-category="3d" data-modal-type="vimeo" tabindex="0" role="button" aria-label="Open project: Clone Trooper 3D animation"
+                        data-modal-vimeo='<div style="padding:56.25% 0 0 0;position:relative;"><iframe style="position:absolute;top:0;left:0;width:100%;height:100%;" src="https://www.youtube.com/embed/SROmGA6yRQU?si=rbmIH6ZMo-6C6L4R&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>'
+                        data-modal-title="Clone Trooper vs. Alien"
+                        data-modal-text="A personal 3D animation project showcasing character animation and compositing — combining Mixamo animations with custom hand-animated sequences in Blender.">
+                        <div class="work-media">
+                            <img src="assets/images/clone-trooper.jpg" alt="Clone Trooper 3D character animation still" loading="lazy">
+                        </div>
+                        <div class="work-overlay">
+                            <span class="cue"><i data-lucide="play-circle"></i></span>
+                            <span class="kind">3D character animation</span>
+                            <h3>Clone Trooper</h3>
+                        </div>
+                    </div>
+
+                    <!-- Photography Gallery -->
+                    <div class="work-item reveal" data-category="photo">
+                        <a href="assets/images/photography/full/Black_and_White_Portrait.jpg" data-fancybox="gallery-photography" data-caption="Black and white closeup portrait." aria-label="Open photography gallery">
+                            <div class="work-media">
+                                <video class="lazy-video" autoplay loop muted playsinline data-src="assets/videos/photography-reel.mp4" data-poster="assets/images/photography-reel-thumb.jpg" poster="assets/images/photography-reel-thumb.jpg">
+                                    <source src="" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="work-overlay">
+                                <span class="cue"><i data-lucide="images"></i></span>
+                                <span class="kind">Photography</span>
+                                <h3>Selected Photography</h3>
+                            </div>
+                        </a>
+                        <div hidden>
+                            <a href="assets/images/photography/full/Candid_Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo looking out at the beach"></a>
+                            <a href="assets/images/photography/full/Family.jpg" data-fancybox="gallery-photography" data-caption="Family photo at an apple orchard"></a>
+                            <a href="assets/images/photography/full/Food.jpg" data-fancybox="gallery-photography" data-caption="Burger from Select"></a>
+                            <a href="assets/images/photography/full/Hibiscus.jpg" data-fancybox="gallery-photography" data-caption="Hibiscus flower on Guam"></a>
+                            <a href="assets/images/photography/full/Landscape.jpg" data-fancybox="gallery-photography" data-caption="Ocean Landscape"></a>
+                            <a href="assets/images/photography/full/Pregnancy.jpg" data-fancybox="gallery-photography" data-caption="Pregnancy photo on the rocks"></a>
+                            <a href="assets/images/photography/full/Sunset.jpg" data-fancybox="gallery-photography" data-caption="Sunset over a lake"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Portfolio Modal -->
         <div id="portfolio-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -1801,7 +1576,7 @@
     <footer class="site">
         <div class="container">
             <div class="row">
-                <p>© <span id="year"></span> Sebastian Basaldua · Video · Social Media · Media Technology</p>
+                <p>© <span id="year"></span> Sebastian Basaldua · Operations · Media Technology · Automation</p>
                 <p>Minneapolis, MN · Built and maintained with AI assistance · <a href="https://github.com/SbasalM/SbasalM.github.io" target="_blank" rel="noopener"
                     onclick="gtag('event', 'click_social', {'event_category':'social','event_label':'site_source'});">View source</a></p>
             </div>
@@ -1984,7 +1759,8 @@
             if (lastFocused) lastFocused.focus();
         };
 
-        document.querySelectorAll('[data-modal-type]').forEach(item => {
+        document.querySelectorAll('.work-item').forEach(item => {
+            if (!item.dataset.modalType) return; // photography gallery uses Fancybox
             item.addEventListener('click', () => openModal(item));
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(item); }
